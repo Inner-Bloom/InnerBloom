@@ -8,7 +8,7 @@
     "start": "npm run -w react-frontend dev"
   },
   "workspaces" : [
-    "packages/"
+    "packages/*"
   ],
   "author": "",
   "license": "ISC"
