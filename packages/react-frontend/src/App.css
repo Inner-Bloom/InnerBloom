@@ -40,3 +40,24 @@
 .read-the-docs {
   color: #888;
 }
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+}
+
+.happy-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
