@@ -23,7 +23,7 @@ function addLog(log,userId){
   // TODO: Need to check if the user has already submitted a log today
   const user = findUserById(id)
   if(user !== undefined){
-    return userModel.findByIdAndUpdate(userId, {logs = [...user.logs, log]});
+    return userModel.findByIdAndUpdate(userId, {logs: [...user.logs, log]});
   }
 }
 
