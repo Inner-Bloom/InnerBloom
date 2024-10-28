@@ -4,10 +4,12 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userService from "./services/user-service.js";
 
+
 dotenv.config();
 const { MONGO_CONNECTION_STRING } = process.env;
 
 mongoose.set("debug", true);
+
 mongoose.connect(MONGO_CONNECTION_STRING).catch((error) => console.log(error));
 
 const app = express();
