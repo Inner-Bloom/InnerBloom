@@ -61,3 +61,66 @@
 }
 
 
+.dialog-box {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.sleep-input,
+.meals-input {
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 14px;
+  width: 60px;
+}
+
+.sleep-range {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.exercise-checkbox {
+  margin-top: 10px;
+}
+
+.relationship-select {
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.dialog-box button {
+  margin-top: 10px;
+  padding: 5px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.emotion-buttons,
+.sub-emotion-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.emotion-button,
+.sub-emotion-button {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.emotion-button:hover,
+.sub-emotion-button:hover {
+  background-color: #0056b3;
+}
