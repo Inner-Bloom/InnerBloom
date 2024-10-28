@@ -2,6 +2,7 @@
     "name": "express-backend",
     "version": "1.0.0",
     "main": "index.js",
+    "type" : "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "npx nodemon backend.js",
@@ -11,7 +12,11 @@
     "license": "ISC",
     "description": "",
     "dependencies": {
-        "express": "^4.21.1"
+        "express": "^4.21.1",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "mongoose": "^8.7.2"
+
     },
     "devDependencies": {
         "@eslint/compat": "^1.2.1",
