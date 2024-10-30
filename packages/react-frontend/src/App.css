@@ -124,3 +124,14 @@
 .sub-emotion-button:hover {
   background-color: #0056b3;
 }
+
+.centered-text {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px; /* Increased font size */
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
