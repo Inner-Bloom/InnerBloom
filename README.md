@@ -1,5 +1,10 @@
 # InnerBloom
 
 ## Setup
-1. When you first clone the project go to /packages/react-frontend and run ```npm install```
-2. To run the project use ```npm run dev``` inside the react-frontend folder
+
+1. Run `npm install`
+
+### Running
+
+1. To run the project use `npm start`
+2. To clean up the code formatting use `npm run format`

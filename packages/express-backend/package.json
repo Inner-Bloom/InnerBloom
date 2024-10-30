@@ -1,0 +1,23 @@
+{
+    "name": "express-backend",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "npx nodemon backend.js",
+        "start": "node backend.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "express": "^4.21.1"
+    },
+    "devDependencies": {
+        "@eslint/compat": "^1.2.1",
+        "@eslint/eslintrc": "^3.1.0",
+        "@eslint/js": "^9.13.0",
+        "eslint": "^9.13.0",
+        "nodemon": "^3.1.7"
+    }
+}

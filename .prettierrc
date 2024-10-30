@@ -1,0 +1,11 @@
+trailingComma: none
+semi: true
+singleQuote: false
+bracketSameLine: true
+bracketSpacing: true
+htmlWhitespaceSensitivity: ignore
+proseWrap: always
+printWidth: 80
+tabWidth: 4
+useTabs : false
+arrowParens: always
