@@ -52,20 +52,13 @@ app.get("/users/:id/log", (req, res) => {
     const id = req.params.id;
     const day = req.query.day;
     userService
-        .findUserById(id)
+        .getLogs(id, day)
         .then((result) => {
             if (result === undefined) {
                 res.status(404).send("Resource not found.");
             } else {
                 console.log(result);
-                res.send(
-                    result.logs.filter((log) => {
-                        //TODO move this into user service
-                        console.log(log.Time.toLocaleDateString());
-                        console.log(day);
-                        return log.Time.toLocaleDateString() === day;
-                    })
-                );
+                res.send(result);
             }
         })
         .catch((error) => {

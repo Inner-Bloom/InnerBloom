@@ -21,13 +21,31 @@ function addUser(user) {
 }
 
 function addLog(log, userId) {
-    // TODO: Need to check if the user has already submitted a log today
     const user = findUserById(id);
     if (user !== undefined) {
         log.Time = json.stringify(new Date());
         return userModel.findByIdAndUpdate(userId, {
             logs: [...user.logs, log]
         });
+    }
+}
+
+function getLogs(userId, day) {
+    const user = userModel.findById(userId);
+    if (user !== undefined) {
+        if (day !== undefined) {
+            return user.then((result) => {
+                return result.logs.filter((log) => {
+                    console.log(log.Time.toLocaleDateString());
+                    console.log(day);
+                    return log.Time.toLocaleDateString() === day;
+                });
+            });
+        } else {
+            return user.then((result) => {
+                return result.logs;
+            });
+        }
     }
 }
 
@@ -45,5 +63,6 @@ export default {
     findUserById,
     findUserByName,
     deleteUserById,
-    addLog
+    addLog,
+    getLogs
 };
