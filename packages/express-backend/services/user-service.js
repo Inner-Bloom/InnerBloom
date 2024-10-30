@@ -7,6 +7,7 @@ function getUsers(name) {
     } else {
         promise = findUserByName(name);
     }
+    return promise;
 }
 
 function findUserById(id) {
@@ -23,6 +24,7 @@ function addLog(log, userId) {
     // TODO: Need to check if the user has already submitted a log today
     const user = findUserById(id);
     if (user !== undefined) {
+        log.Time = json.stringify(new Date());
         return userModel.findByIdAndUpdate(userId, {
             logs: [...user.logs, log]
         });
