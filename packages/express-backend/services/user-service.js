@@ -24,7 +24,7 @@ function addLog(log, userId) {
     const user = findUserById(userId);
     if (user !== undefined) {
         return user.then((result) => {
-            log.Time = new Date();
+            log.time = new Date();
 
             return userModel.findByIdAndUpdate(userId, {
                 logs: [...result.logs, log]
@@ -39,7 +39,7 @@ function getLogs(userId, day) {
         if (day !== undefined) {
             return user.then((result) => {
                 return result.logs.filter((log) => {
-                    return log.Time.toLocaleDateString() === day;
+                    return log.time.toLocaleDateString() === day;
                 });
             });
         } else {

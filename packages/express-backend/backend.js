@@ -96,7 +96,6 @@ app.delete("/users/:id", (req, res) => {
     userService
         .deleteUserById(idToDelete)
         .then((result) => {
-            console.log(result);
             if (result !== undefined) {
                 res.status(204).send();
             } else {
