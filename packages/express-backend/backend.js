@@ -48,7 +48,7 @@ app.get("/users/:id", (req, res) => {
             console.log(error);
         });
 });
-app.get("/users/:id/log", (req, res) => {
+app.get("/users/:id/logs", (req, res) => {
     const id = req.params.id;
     const day = req.query.day;
     userService
@@ -78,12 +78,13 @@ app.post("/users", (req, res) => {
         });
 });
 
-app.post("/users", (req, res) => {
-    const userToAdd = req.body;
+app.post("/users/:id/logs", (req, res) => {
+    const logToAdd = req.body;
+    const id = req.params.id;
     userService
-        .addUser(userToAdd)
-        .then((user) => {
-            res.status(201).send(user);
+        .addLog(logToAdd, id)
+        .then((log) => {
+            res.status(201).send(log);
         })
         .catch((error) => {
             console.log(error);

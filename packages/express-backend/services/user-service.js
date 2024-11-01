@@ -21,11 +21,14 @@ function addUser(user) {
 }
 
 function addLog(log, userId) {
-    const user = findUserById(id);
+    const user = findUserById(userId);
     if (user !== undefined) {
-        log.Time = json.stringify(new Date());
-        return userModel.findByIdAndUpdate(userId, {
-            logs: [...user.logs, log]
+        return user.then((result) => {
+            log.Time = new Date();
+
+            return userModel.findByIdAndUpdate(userId, {
+                logs: [...result.logs, log]
+            });
         });
     }
 }
@@ -36,8 +39,6 @@ function getLogs(userId, day) {
         if (day !== undefined) {
             return user.then((result) => {
                 return result.logs.filter((log) => {
-                    console.log(log.Time.toLocaleDateString());
-                    console.log(day);
                     return log.Time.toLocaleDateString() === day;
                 });
             });
