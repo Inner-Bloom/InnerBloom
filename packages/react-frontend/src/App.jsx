@@ -90,16 +90,15 @@ function App() {
               <div>
                 <label>How many hours did you sleep?</label>
                 <input
-                  type="number"
-                  value={sleepHours}
-                  onChange={(e) =>
-                    setSleepHours(Math.min(Math.max(parseFloat(e.target.value), 1), 24))
-                  }
+                  type="range"
                   min="1"
                   max="24"
-                  step="0.5"
-                  className="sleep-input"
+                  step="1" // Only whole numbers for hours
+                  value={sleepHours}
+                  onChange={(e) => setSleepHours(parseInt(e.target.value))}
+                  className="sleep-range"
                 />
+                <p>{`Hours of sleep: ${sleepHours} hours`}</p>
               </div>
 
               <div>
