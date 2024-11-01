@@ -15,6 +15,7 @@ function findUserById(id) {
 }
 
 function addUser(user) {
+    user.logs = []; // Assert we aren't adding logs through this endpoint
     const userToAdd = new userModel(user);
     const promise = userToAdd.save();
     return promise;
