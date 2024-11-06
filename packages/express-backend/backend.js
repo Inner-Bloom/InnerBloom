@@ -19,7 +19,6 @@ app.use(cors());
 app.use(express.json());
 
 
-
 // DEBUG FUNCTION ONLY, REMOVE IN REAL CODE
 app.get("/users", (req, res) => {
     const name = req.query.name;

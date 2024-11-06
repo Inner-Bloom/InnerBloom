@@ -5,7 +5,7 @@ function getUsers(name) {
     if (name === undefined) {
         promise = userModel.find();
     } else {
-        promise = findUserByName(name);
+        promise = findUserByUsername(name);
     }
     return promise;
 }
@@ -18,12 +18,12 @@ function addUser(user) {
 }
 
 function addLog(log, userName) {
-    const user = findUser({ name: name });
+    const user = findUser({ username: name });
     if (user !== undefined) {
         return user.then((result) => {
             log.time = new Date();
 
-            return userModel.findAndUpdate({ name: name }, {
+            return userModel.findAndUpdate({ username: name }, {
                 logs: [...result.logs, log]
             });
         });
@@ -48,11 +48,11 @@ function getLogs(userName, day) {
 }
 
 function findUserByUsername(name) {
-    return userModel.find({ name: name });
+    return userModel.find({ username: name });
 }
 
 function deleteUserByUsername(name) {
-    return userModel.findAndDelete( {name: name });
+    return userModel.findAndDelete( {username: name });
 }
 
 export default {

@@ -3,7 +3,7 @@ import LogSchema from "./log.js";
 
 const UserSchema = new mongoose.Schema(
     {
-        name: {
+        username: {
             type: String,
             required: true,
             trim: true
