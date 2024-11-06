@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userService from "./services/user-service.js";
+import { registerUser, authenticateUser, loginUser } from "./auth.js"
 
 dotenv.config();
 const { MONGO_CONNECTION_STRING } = process.env;
@@ -17,6 +18,9 @@ const port = 8000;
 app.use(cors());
 app.use(express.json());
 
+
+
+// DEBUG FUNCTION ONLY, REMOVE IN REAL CODE
 app.get("/users", (req, res) => {
     const name = req.query.name;
     userService
@@ -32,11 +36,27 @@ app.get("/users", (req, res) => {
             console.log(error);
         });
 });
-
-app.get("/users/:id", (req, res) => {
-    const id = req.params.id;
+// DEBUG FUNCTION ONLY, REMOVE IN REAL CODE
+app.post("/users", (req, res) => {
+    const userToAdd = req.body;
     userService
-        .findUserById(id)
+        .addUser(userToAdd)
+        .then((user) => {
+            res.status(201).send(user);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
+
+app.post("/signup", registerUser);
+app.post("/login", loginUser);
+
+
+app.get("/users/:username" , authenticateUser, (req, res) => {
+    const username = req.params.username;
+    userService
+        .findUserByUsername(username)
         .then((result) => {
             if (result === undefined) {
                 res.status(404).send("Resource not found.");
@@ -48,11 +68,11 @@ app.get("/users/:id", (req, res) => {
             console.log(error);
         });
 });
-app.get("/users/:id/logs", (req, res) => {
-    const id = req.params.id;
+app.get("/users/:username/logs", authenticateUser, (req, res) => {
+    const username = req.params.username;
     const day = req.query.day;
     userService
-        .getLogs(id, day)
+        .getLogs(username, day)
         .then((result) => {
             if (result === undefined) {
                 res.status(404).send("Resource not found.");
@@ -66,23 +86,11 @@ app.get("/users/:id/logs", (req, res) => {
         });
 });
 
-app.post("/users", (req, res) => {
-    const userToAdd = req.body;
-    userService
-        .addUser(userToAdd)
-        .then((user) => {
-            res.status(201).send(user);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-});
-
-app.post("/users/:id/logs", (req, res) => {
+app.post("/users/:username/logs", authenticateUser, (req, res) => {
     const logToAdd = req.body;
-    const id = req.params.id;
+    const username = req.params.username;
     userService
-        .addLog(logToAdd, id)
+        .addLog(logToAdd, username)
         .then((log) => {
             res.status(201).send(log);
         })
@@ -91,12 +99,11 @@ app.post("/users/:id/logs", (req, res) => {
         });
 });
 
-app.delete("/users/:id", (req, res) => {
-    const idToDelete = req.params.id;
+app.delete("/users/:username", authenticateUser, (req, res) => {
+    const usernameToDelete = req.params.username;
     userService
-        .deleteUserById(idToDelete)
+        .deleteUserByUsername(usernameToDelete)
         .then((result) => {
-            console.log(result);
             if (result !== undefined) {
                 res.status(204).send();
             } else {

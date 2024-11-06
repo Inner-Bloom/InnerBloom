@@ -6,11 +6,11 @@ const LogSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    sleep: String,
-    eat: String,
-    Exercise: Boolean,
-    Relationships: String,
-    Time: Date
+    sleep: Number,
+    eat: Number,
+    exercise: Boolean,
+    relationships: String,
+    time: Date
 });
 
 export default LogSchema;
