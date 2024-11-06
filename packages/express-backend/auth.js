@@ -56,8 +56,10 @@ export function loginUser(req, res) {
 
 export function authenticateUser(req, res, next) {
     const authHeader = req.headers["authorization"];
+    console.log(req.headers)
     //Getting the 2nd part of the auth header (the token)
-    const token = authHeader && authHeader.split(" ")[1];
+    //const token = authHeader && authHeader.split(" ")[1];
+    const token = authHeader;
 
     if (!token) {
         console.log("No token received");
@@ -68,6 +70,7 @@ export function authenticateUser(req, res, next) {
         process.env.TOKEN_SECRET,
         (error, decoded) => {
             if (decoded) {
+            console.log(decoded)
             next();
             } else {
             console.log("JWT error:", error);

@@ -8,6 +8,10 @@ const UserSchema = new mongoose.Schema(
             required: true,
             trim: true
         },
+        pwd: {
+            type: String,
+            required: true
+        },
         logs: [LogSchema]
     },
     { collection: "users_list" }

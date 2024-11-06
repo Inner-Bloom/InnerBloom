@@ -53,8 +53,8 @@ app.post("/signup", registerUser);
 app.post("/login", loginUser);
 
 
-app.get("/users/:id" , authenticateUser, (req, res) => {
-    const id = req.params.id;
+app.get("/users/:username" , authenticateUser, (req, res) => {
+    const id = req.params.username;
     userService
         .findUserById(id)
         .then((result) => {
@@ -68,8 +68,8 @@ app.get("/users/:id" , authenticateUser, (req, res) => {
             console.log(error);
         });
 });
-app.get("/users/:id/logs", authenticateUser, (req, res) => {
-    const id = req.params.id;
+app.get("/users/:username/logs", authenticateUser, (req, res) => {
+    const id = req.params.username;
     const day = req.query.day;
     userService
         .getLogs(id, day)
@@ -86,9 +86,9 @@ app.get("/users/:id/logs", authenticateUser, (req, res) => {
         });
 });
 
-app.post("/users/:id/logs", authenticateUser, (req, res) => {
+app.post("/users/:username/logs", authenticateUser, (req, res) => {
     const logToAdd = req.body;
-    const id = req.params.id;
+    const id = req.params.username;
     userService
         .addLog(logToAdd, id)
         .then((log) => {
