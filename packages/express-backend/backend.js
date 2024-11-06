@@ -54,9 +54,9 @@ app.post("/login", loginUser);
 
 
 app.get("/users/:username" , authenticateUser, (req, res) => {
-    const id = req.params.username;
+    const username = req.params.username;
     userService
-        .findUserById(id)
+        .findUserByUsername(username)
         .then((result) => {
             if (result === undefined) {
                 res.status(404).send("Resource not found.");
@@ -69,10 +69,10 @@ app.get("/users/:username" , authenticateUser, (req, res) => {
         });
 });
 app.get("/users/:username/logs", authenticateUser, (req, res) => {
-    const id = req.params.username;
+    const username = req.params.username;
     const day = req.query.day;
     userService
-        .getLogs(id, day)
+        .getLogs(username, day)
         .then((result) => {
             if (result === undefined) {
                 res.status(404).send("Resource not found.");
@@ -88,9 +88,9 @@ app.get("/users/:username/logs", authenticateUser, (req, res) => {
 
 app.post("/users/:username/logs", authenticateUser, (req, res) => {
     const logToAdd = req.body;
-    const id = req.params.username;
+    const username = req.params.username;
     userService
-        .addLog(logToAdd, id)
+        .addLog(logToAdd, username)
         .then((log) => {
             res.status(201).send(log);
         })
@@ -99,10 +99,10 @@ app.post("/users/:username/logs", authenticateUser, (req, res) => {
         });
 });
 
-app.delete("/users/:id", authenticateUser, (req, res) => {
-    const idToDelete = req.params.id;
+app.delete("/users/:username", authenticateUser, (req, res) => {
+    const usernameToDelete = req.params.username;
     userService
-        .deleteUserById(idToDelete)
+        .deleteUserByUsername(usernameToDelete)
         .then((result) => {
             if (result !== undefined) {
                 res.status(204).send();

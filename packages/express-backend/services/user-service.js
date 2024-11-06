@@ -10,10 +10,6 @@ function getUsers(name) {
     return promise;
 }
 
-function findUserById(id) {
-    return userModel.findById(id);
-}
-
 function addUser(user) {
     user.logs = []; // Assert we aren't adding logs through this endpoint
     const userToAdd = new userModel(user);
@@ -21,21 +17,21 @@ function addUser(user) {
     return promise;
 }
 
-function addLog(log, userId) {
-    const user = findUserById(userId);
+function addLog(log, userName) {
+    const user = findUser({ name: name });
     if (user !== undefined) {
         return user.then((result) => {
             log.time = new Date();
 
-            return userModel.findByIdAndUpdate(userId, {
+            return userModel.findAndUpdate({ name: name }, {
                 logs: [...result.logs, log]
             });
         });
     }
 }
 
-function getLogs(userId, day) {
-    const user = userModel.findById(userId);
+function getLogs(userName, day) {
+    const user = userModel.findUserByUsername(userName);
     if (user !== undefined) {
         if (day !== undefined) {
             return user.then((result) => {
@@ -51,20 +47,19 @@ function getLogs(userId, day) {
     }
 }
 
-function findUserByName(name) {
+function findUserByUsername(name) {
     return userModel.find({ name: name });
 }
 
-function deleteUserById(id) {
-    return userModel.findByIdAndDelete(id);
+function deleteUserByUsername(name) {
+    return userModel.findAndDelete( {name: name });
 }
 
 export default {
     addUser,
     getUsers,
-    findUserById,
-    findUserByName,
-    deleteUserById,
+    findUserByUsername,
+    deleteUserByUsername,
     addLog,
     getLogs
 };
