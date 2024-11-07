@@ -18,30 +18,30 @@ function addUser(user) {
 }
 
 function addLog(log, userName) {
-    const user = findUser({ username: name });
+    const user = findUserByUsername(userName);
     if (user !== undefined) {
         return user.then((result) => {
             log.time = new Date();
 
-            return userModel.findAndUpdate({ username: name }, {
-                logs: [...result.logs, log]
+            return userModel.findByIdAndUpdate(result[0]._id, {
+                logs: [...result[0].logs, log]
             });
         });
     }
 }
 
 function getLogs(userName, day) {
-    const user = userModel.findUserByUsername(userName);
+    const user = findUserByUsername(userName);
     if (user !== undefined) {
         if (day !== undefined) {
             return user.then((result) => {
-                return result.logs.filter((log) => {
+                return result[0].logs.filter((log) => {
                     return log.time.toLocaleDateString() === day;
                 });
             });
         } else {
             return user.then((result) => {
-                return result.logs;
+                return result[0].logs;
             });
         }
     }
