@@ -44,7 +44,7 @@ export function loginUser(req, res) {
       } else {
         console.log(retrievedUser)
         bcrypt
-          .compare(pwd, retrievedUser.hashedPassword)
+          .compare(pwd, retrievedUser[0]["pwd"])
           .then((matched) => {
             if (matched) {
               generateAccessToken(username).then((token) => {
@@ -52,10 +52,10 @@ export function loginUser(req, res) {
               });
             } else {
               // invalid password
-              res.status(401).send(pwd, retrievedUser.hashedPassword);
+              res.status(401).send("Unauthorized");
             }
           })
-          .catch(() => { // error
+          .catch((error) => { // error
             res.status(401).send("Unauthorized");
           });
       }
