@@ -135,3 +135,105 @@
   color: #333;
   text-align: center;
 }
+
+/* Container for the login page */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+  padding: 2rem;
+}
+
+/* Styling for the login form */
+.login-form {
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Form header */
+.login-form h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* Input fields */
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Button styles */
+.login-form input[type="button"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form input[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+/* Sign-up link styling */
+.login-form .signup-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #333;
+}
+
+.login-form .signup-link a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-form .signup-link a:hover {
+  color: #0056b3;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 500px) {
+  .login-form {
+    padding: 1.5rem;
+  }
+
+  .login-form h2 {
+    font-size: 20px;
+  }
+
+  .login-form input[type="button"] {
+    font-size: 14px;
+  }
+}
+
+
+
+
