@@ -51,7 +51,7 @@ function findUserByUsername(name) {
 }
 
 function deleteUserByUsername(name) {
-    return userModel.findAndDelete( {username: name });
+    return userModel.findAndDelete({ username: name });
 }
 
 export default {
