@@ -22,7 +22,6 @@ function addLog(log, userName) {
     if (user !== undefined) {
         return user.then((result) => {
             log.time = new Date();
-
             return userModel.findByIdAndUpdate(result[0]._id, {
                 logs: [...result[0].logs, log]
             });
