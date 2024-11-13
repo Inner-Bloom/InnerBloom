@@ -24,7 +24,7 @@ function Login(props) {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          name="password"
+          name="pwd"
           id="password"
           value={creds.pwd}
           onChange={handleChange}
