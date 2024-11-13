@@ -5,7 +5,7 @@ function getUsers(name) {
     if (name === undefined) {
         promise = userModel.find();
     } else {
-        promise = findUserByName(name);
+        promise = findUserByUsername(name);
     }
     return promise;
 }
@@ -18,41 +18,40 @@ function addUser(user) {
 }
 
 function addLog(log, userName) {
-    const user = findUser({ name: name });
+    const user = findUserByUsername(userName);
     if (user !== undefined) {
         return user.then((result) => {
             log.time = new Date();
-
-            return userModel.findAndUpdate({ name: name }, {
-                logs: [...result.logs, log]
+            return userModel.findByIdAndUpdate(result[0]._id, {
+                logs: [...result[0].logs, log]
             });
         });
     }
 }
 
 function getLogs(userName, day) {
-    const user = userModel.findUserByUsername(userName);
+    const user = findUserByUsername(userName);
     if (user !== undefined) {
         if (day !== undefined) {
             return user.then((result) => {
-                return result.logs.filter((log) => {
+                return result[0].logs.filter((log) => {
                     return log.time.toLocaleDateString() === day;
                 });
             });
         } else {
             return user.then((result) => {
-                return result.logs;
+                return result[0].logs;
             });
         }
     }
 }
 
 function findUserByUsername(name) {
-    return userModel.find({ name: name });
+    return userModel.find({ username: name });
 }
 
 function deleteUserByUsername(name) {
-    return userModel.findAndDelete( {name: name });
+    return userModel.findAndDelete( {username: name });
 }
 
 export default {

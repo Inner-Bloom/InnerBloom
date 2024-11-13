@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import React from 'react';
+import Form from './LogForm';
 import './App.css';
 import Login from "./login";
 
@@ -89,28 +91,51 @@ function App() {
 
   const handleSubEmotionClick = () => {
     setIsVisible(true);
+  }
+
+  const handleSubmit = (logData) => {
+    console.log('Mood Log:', logData);
+    postLog(logData)
+    .then((response) => {
+      if(response.status === 201) {
+        return response.json();
+      }
+      else {
+        throw new Error("Failed to add log data");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+  const handleBack = () => {
+    console.log('Going back!');
   };
 
-  const handleEnter = () => {
-    console.log(`Selected Emotion: ${selectedEmotion}`);
-    console.log(`Total Sleep: ${sleepHours} hours ${sleepMinutes} minutes`);
-    console.log(`Meals: ${meals}`);
-    console.log(`Exercise: ${exercise ? "Yes" : "No"}`);
-    console.log(`Relationship: ${relationship}`);
+  function postLog(logData) {
+    const promise = fetch("http://localhost:8000/users/TestUser/logs", {
+      method: "POST",
+      headers: {
+        "authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RVc2VyIiwiaWF0IjoxNzMwOTQ4OTAzLCJleHAiOjE3MzEwMzUzMDN9.k8kcmSaBxXkdMma4-PpUX8hlMaod2ajVfNt19ct0idI",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(logData),
+    });
+    return promise;
+  }
 
-    setIsVisible(false);
-    setSelectedEmotion('');
-  };
-
-  const handleCheckInClick = () => {
-    setShowMainScreen(false);
-  };
-
-  const handleBackClick = () => {
-    setShowMainScreen(true);
-    setIsVisible(false); // Hide dialog box if open
-    setSelectedEmotion(''); // Reset selected emotion if any
-  };
+  function getUserToken() {
+      const promise = fetch("http://localhost:8000/login", {
+        method: "POST", 
+        headers: {"Content-Type" : "application/json"},
+        body : JSON.stringify({
+          "username" : "TestUser",
+          "pwd" : "123"
+        })
+      });
+      return promise;
+    }
 
   return (
     <Router>
@@ -245,6 +270,9 @@ function App() {
         />
        
       </Routes>
+    <div>
+      <Form onSubmit={handleSubmit} onBack={handleBack} />
+    </div>
     </div>
   </Router>
 
