@@ -22,6 +22,26 @@ function App() {
   const [token, setToken] = useState(INVALID_TOKEN);
   const [message, setMessage] = useState("");
 
+  function fetchDay(date) {
+    const url = `http://localhost:8000/users/${creds.username}/logs?day=${encodeURIComponent(date)}`;
+  
+    return fetch(url, {
+      method: "GET",
+      headers: addAuthHeader({
+        "Content-Type": "application/json"
+      })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .catch(error => {
+        console.error("Error fetching day logs:", error);
+      });
+  }
+  
   function loginUser(creds) {
     const promise = fetch(`http://localhost:8000/login`, {
       method: "POST",
@@ -114,27 +134,27 @@ function App() {
   };
 
   function postLog(logData) {
-    const promise = fetch("http://localhost:8000/users/TestUser/logs", {
+    const promise = fetch(`http://localhost:8000/users/${creds.username}/logs`, {
       method: "POST",
-      headers: {
-        "authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RVc2VyIiwiaWF0IjoxNzMwOTQ4OTAzLCJleHAiOjE3MzEwMzUzMDN9.k8kcmSaBxXkdMma4-PpUX8hlMaod2ajVfNt19ct0idI",
-        "Content-Type": "application/json",
-      },
+      headers : addAuthHeader ({
+        "Content-Type": "application/json"
+      }),
       body: JSON.stringify(logData),
     });
     return promise;
   }
 
-  function getUserToken() {
-      const promise = fetch("http://localhost:8000/login", {
-        method: "POST", 
-        headers: {"Content-Type" : "application/json"},
-        body : JSON.stringify({
-          "username" : "TestUser",
-          "pwd" : "123"
-        })
-      });
-      return promise;
+  function addAuthHeader(otherHeaders = {}) {
+      if (token === INVALID_TOKEN) {
+        return otherHeaders;
+      }
+      else
+      {
+        return {
+          ... otherHeaders,
+          authorization : token
+        }
+      }
     }
 
   return (
