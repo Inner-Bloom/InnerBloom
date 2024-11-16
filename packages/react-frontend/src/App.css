@@ -133,8 +133,6 @@
     font-weight: bold;
     color: #333;
     text-align: center;
-<<<<<<< HEAD
-=======
 }
 
 /* Container for the login page */
@@ -233,5 +231,4 @@
     .login-form input[type="button"] {
         font-size: 14px;
     }
->>>>>>> main
 }
