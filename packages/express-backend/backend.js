@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userService from "./services/user-service.js";
-import { registerUser, authenticateUser, loginUser } from "./auth.js"
+import { registerUser, authenticateUser, loginUser } from "./auth.js";
 
 dotenv.config();
 const { MONGO_CONNECTION_STRING } = process.env;
@@ -17,7 +17,6 @@ const port = 8000;
 
 app.use(cors());
 app.use(express.json());
-
 
 // DEBUG FUNCTION ONLY, REMOVE IN REAL CODE
 app.get("/users", (req, res) => {
@@ -51,8 +50,7 @@ app.post("/users", (req, res) => {
 app.post("/signup", registerUser);
 app.post("/login", loginUser);
 
-
-app.get("/users/:username" , authenticateUser, (req, res) => {
+app.get("/users/:username", authenticateUser, (req, res) => {
     const username = req.params.username;
     userService
         .findUserByUsername(username)
