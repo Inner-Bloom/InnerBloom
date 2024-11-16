@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import React from 'react';
 import Form from './LogForm';
@@ -21,6 +21,7 @@ function App() {
   const INVALID_TOKEN = "INVALID_TOKEN";
   const [token, setToken] = useState(INVALID_TOKEN);
   const [message, setMessage] = useState("");
+  
 
   function loginUser(creds) {
     const promise = fetch(`http://localhost:8000/login`, {
@@ -36,6 +37,7 @@ function App() {
             .json()
             .then((payload) => setToken(payload.token));
           setMessage(`Login successful; auth token saved`);
+          window.location.href = "/checkin";
         } else {
           setMessage(
             `Login Error ${response.status}: ${response.data}`
@@ -45,11 +47,12 @@ function App() {
       .catch((error) => {
         setMessage(`Login Error: ${error}`);
       });
-  
+    console.log(message);
     return promise;
   }
   
   function signupUser(creds) {
+
     const promise = fetch(`http://localhost:8000/signup`, {
       method: "POST",
       headers: {
@@ -65,6 +68,7 @@ function App() {
           setMessage(
             `Signup successful for user: ${creds.username}; auth token saved`
           );
+          window.location.href = "/login";
         } else {
           setMessage(
             `Signup Error ${response.status}: ${response.data}`
@@ -142,6 +146,10 @@ function App() {
     <div className="app">
       <Routes>
         <Route
+            path="/"
+            element={<Navigate to="/login" replace />}
+        />
+        <Route
           path="login"
           element={<Login handleSubmit={loginUser} />}
         />
@@ -151,22 +159,12 @@ function App() {
             <Login handleSubmit={signupUser} buttonLabel="Sign Up" />
           }
         />
-        <Route
-          path="/"
-          element={
-            <div className="main-screen">
-              <h1>Welcome to Inner Bloom</h1>
-              <button className="checkin-button" onClick={() => window.location.href = '/checkin'}>
-                Check In
-              </button>
-            </div>
-          }
-        />
+      
         <Route
           path="/checkin"
-          element = {<Form onSubmit={handleSubmit} onBack={handleBack} />}
-          
+          element = {<Form onSubmit={handleSubmit} onBack={handleBack} />}        
         />
+
        
       </Routes>
     
