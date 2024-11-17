@@ -187,7 +187,7 @@ function App() {
         />
         <Route
             path="/calendar"
-            element={<LogCalendar />}
+            element={<LogCalendar fetchDay={fetchDay}/>}
           />
        
       </Routes>
