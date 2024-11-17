@@ -6,18 +6,7 @@ import Form from './LogForm';
 import './App.css';
 import Login from "./login";
 
-
-
-
 function App() {
-  const [showMainScreen, setShowMainScreen] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
-  const [selectedEmotion, setSelectedEmotion] = useState('');
-  const [sleepHours, setSleepHours] = useState(8);
-  const [sleepMinutes, setSleepMinutes] = useState(0);
-  const [meals, setMeals] = useState(3);
-  const [exercise, setExercise] = useState(false);
-  const [relationship, setRelationship] = useState('By yourself');
   const INVALID_TOKEN = "INVALID_TOKEN";
   const [token, setToken] = useState(INVALID_TOKEN);
   const [message, setMessage] = useState("");
