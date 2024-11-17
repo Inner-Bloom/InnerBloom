@@ -5,6 +5,8 @@ import React from 'react';
 import Form from './LogForm';
 import './App.css';
 import Login from "./login";
+import LogCalendar from './LogCalendar'; 
+
 
 function App() {
   const INVALID_TOKEN = "INVALID_TOKEN";
@@ -165,8 +167,15 @@ function App() {
           element={
             <div className="main-screen">
               <h1>Welcome to Inner Bloom</h1>
-              <button className="checkin-button" onClick={() => window.location.href = '/checkin'}>
+              <button className="checkin-button" 
+              onClick={() => window.location.href = '/checkin'}>
                 Check In
+              </button>
+              <button
+                className="calendar-button"
+                onClick={() => (window.location.href = '/calendar')}
+              >
+                Calendar
               </button>
             </div>
           }
@@ -176,6 +185,10 @@ function App() {
           element = {<Form onSubmit={handleSubmit} onBack={handleBack} />}
           
         />
+        <Route
+            path="/calendar"
+            element={<LogCalendar />}
+          />
        
       </Routes>
     
