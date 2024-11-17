@@ -42,198 +42,193 @@
 }
 
 .app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  flex-direction: column;
-  text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
 }
 
 .happy-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-
 .dialog-box {
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .sleep-input,
 .meals-input {
-  margin-top: 10px;
-  padding: 5px;
-  font-size: 14px;
-  width: 60px;
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 14px;
+    width: 60px;
 }
 
 .sleep-range {
-  width: 100%;
-  margin-top: 10px;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .exercise-checkbox {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .relationship-select {
-  margin-top: 10px;
-  padding: 5px;
-  font-size: 14px;
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 14px;
 }
 
 .dialog-box button {
-  margin-top: 10px;
-  padding: 5px 15px;
-  font-size: 14px;
-  cursor: pointer;
+    margin-top: 10px;
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 .emotion-buttons,
 .sub-emotion-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px; /* Space between buttons */
-  margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
 }
 
 .emotion-button,
 .sub-emotion-button {
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .emotion-button:hover,
 .sub-emotion-button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 .centered-text {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 32px; /* Increased font size */
-  font-weight: bold;
-  color: #333;
-  text-align: center;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px; /* Increased font size */
+    font-weight: bold;
+    color: #333;
+    text-align: center;
 }
 
 /* Container for the login page */
 .login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f0f2f5;
-  padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+    padding: 2rem;
 }
 
 /* Styling for the login form */
 .login-form {
-  max-width: 400px;
-  width: 100%;
-  padding: 2rem;
-  background-color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  text-align: center;
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
 }
 
 /* Form header */
 .login-form h2 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 1rem;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 1rem;
 }
 
 /* Input fields */
 .login-form input[type="text"],
 .login-form input[type="password"] {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
 
 .login-form input[type="text"]:focus,
 .login-form input[type="password"]:focus {
-  border-color: #007bff;
-  outline: none;
+    border-color: #007bff;
+    outline: none;
 }
 
 /* Button styles */
 .login-form input[type="button"] {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  color: white;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .login-form input[type="button"]:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 /* Sign-up link styling */
 .login-form .signup-link {
-  margin-top: 15px;
-  font-size: 14px;
-  color: #333;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
 }
 
 .login-form .signup-link a {
-  color: #007bff;
-  text-decoration: none;
-  transition: color 0.3s ease;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .login-form .signup-link a:hover {
-  color: #0056b3;
+    color: #0056b3;
 }
 
 /* Responsive design for smaller screens */
 @media (max-width: 500px) {
-  .login-form {
-    padding: 1.5rem;
-  }
+    .login-form {
+        padding: 1.5rem;
+    }
 
-  .login-form h2 {
-    font-size: 20px;
-  }
+    .login-form h2 {
+        font-size: 20px;
+    }
 
-  .login-form input[type="button"] {
-    font-size: 14px;
-  }
+    .login-form input[type="button"] {
+        font-size: 14px;
+    }
 }
-
-
-
-
