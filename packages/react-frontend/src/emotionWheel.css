@@ -290,6 +290,11 @@
 
 /* Emotion Wheel container */
 .emotion-wheel {
+        animation: fadeIn 0.5s;
+        -webkit-animation: fadeIn 0.5s;
+        -moz-animation: fadeIn 0.5s;
+        -o-animation: fadeIn 0.5s;
+        -ms-animation: fadeIn 0.5s;
         display: grid;
         place-items: center;
         position: relative;
