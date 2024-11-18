@@ -13,6 +13,9 @@ import Login from "./login";
 import LogCalendar from "./LogCalendar";
 import Navbar from "./Navbar";
 
+import About from "./About";
+import Support from "./Support";
+
 function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
     const [token, setToken] = useState(INVALID_TOKEN);
@@ -208,6 +211,9 @@ function App() {
                         path="/calendar"
                         element={<LogCalendar fetchDay={fetchDay} />}
                     />
+
+                    <Route path="/about" element={<About />}></Route>
+                    <Route path="/support" element={<Support />}></Route>
                 </Routes>
             </div>
         </Router>
