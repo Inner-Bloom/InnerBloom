@@ -12,25 +12,17 @@ import "./App.css";
 import Login from "./login";
 
 function App() {
-    const [showMainScreen, setShowMainScreen] = useState(true);
-    const [isVisible, setIsVisible] = useState(false);
-    const [selectedEmotion, setSelectedEmotion] = useState("");
-    const [sleepHours, setSleepHours] = useState(8);
-    const [sleepMinutes, setSleepMinutes] = useState(0);
-    const [meals, setMeals] = useState(3);
-    const [exercise, setExercise] = useState(false);
-    const [relationship, setRelationship] = useState("By yourself");
     const INVALID_TOKEN = "INVALID_TOKEN";
     const [token, setToken] = useState(INVALID_TOKEN);
     const [message, setMessage] = useState("");
     //const [userCreds, setUserCreds] = useState(null);
 
     useEffect(() => {
-      if (token && token !== INVALID_TOKEN) {
-          console.log("Token updated:", token);
-          // Perform any action dependent on the token here
-      }
-  }, [token]);
+        if (token && token !== INVALID_TOKEN) {
+            console.log("Token updated:", token);
+            // Perform any action dependent on the token here
+        }
+    }, [token]);
 
     function fetchDay(date) {
         const url = `http://localhost:8000/users/${creds.username}/logs?day=${encodeURIComponent(date)}`;
@@ -52,7 +44,7 @@ function App() {
             });
     }
 
-    function loginUser(creds) {
+    async function loginUser(creds) {
         const promise = fetch(`http://localhost:8000/login`, {
             method: "POST",
             headers: {
@@ -62,8 +54,9 @@ function App() {
         })
             .then(async (response) => {
                 if (response.status === 200) {
-                    response.json().then((payload) => setToken(payload.token));
-                    //console.log("here",payload.token);
+                    const payload = await response.json();
+                    setToken(payload.token); // Set the token in state
+                    localStorage.setItem("authToken", payload.token); // Save token to localStorage
                     localStorage.setItem("userCreds", JSON.stringify(creds));
 
                     setMessage(`Login successful; auth token saved`);
@@ -145,7 +138,8 @@ function App() {
 
     function postLog(logData) {
         const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
-
+        const storedToken = localStorage.getItem("authToken");
+        console.log("stored", storedToken);
         console.log(savedCreds);
         console.log(token);
         const promise = fetch(
@@ -162,12 +156,15 @@ function App() {
     }
 
     function addAuthHeader(otherHeaders = {}) {
-        if (token === INVALID_TOKEN) {
+        const storedToken = localStorage.getItem("authToken");
+        console.log("authy", storedToken);
+        if (storedToken === INVALID_TOKEN) {
             return otherHeaders;
         } else {
+            console.log("here");
             return {
                 ...otherHeaders,
-                Authorization: `Bearer ${token}`
+                authorization: storedToken
             };
         }
     }
@@ -176,10 +173,6 @@ function App() {
         <Router>
             <div className="app">
                 <Routes>
-                    <Route
-                        path="/"
-                        element={<Navigate to="/login" replace />}
-                    />
                     <Route
                         path="login"
                         element={<Login handleSubmit={loginUser} />}
