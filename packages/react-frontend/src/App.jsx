@@ -6,17 +6,17 @@ import {
     Navigate
 } from "react-router-dom";
 
-import React from 'react';
-import Form from './LogForm';
-import './App.css';
+import React from "react";
+import Form from "./LogForm";
+import "./App.css";
 import Login from "./login";
-import LogCalendar from './LogCalendar'; 
+import LogCalendar from "./LogCalendar";
 import Navbar from "./Navbar";
 
 function App() {
-  const INVALID_TOKEN = "INVALID_TOKEN";
-  const [token, setToken] = useState(INVALID_TOKEN);
-  const [message, setMessage] = useState("");
+    const INVALID_TOKEN = "INVALID_TOKEN";
+    const [token, setToken] = useState(INVALID_TOKEN);
+    const [message, setMessage] = useState("");
 
     function fetchDay(date) {
         const url = `http://localhost:8000/users/${creds.username}/logs?day=${encodeURIComponent(date)}`;
@@ -95,12 +95,12 @@ function App() {
         return promise;
     }
 
-  const emotions = {
-    Happy: ['Joyful', 'Content', 'Grateful', 'Proud'],
-    Sad: ['Disappointed', 'Lonely', 'Hopeless', 'Regretful'],
-    Calm: ['Peaceful', 'Relaxed', 'Satisfied', 'Serene'],
-    Anxious: ['Worried', 'Nervous', 'Uneasy', 'Overwhelmed'],
-  };
+    const emotions = {
+        Happy: ["Joyful", "Content", "Grateful", "Proud"],
+        Sad: ["Disappointed", "Lonely", "Hopeless", "Regretful"],
+        Calm: ["Peaceful", "Relaxed", "Satisfied", "Serene"],
+        Anxious: ["Worried", "Nervous", "Uneasy", "Overwhelmed"]
+    };
 
     const handleMainEmotionClick = (emotion) => {
         setSelectedEmotion(emotion);
@@ -158,55 +158,60 @@ function App() {
         }
     }
 
-  return (
-    <Router>
-    <Navbar></Navbar>
-    <div className="app">
-      <Routes>
-        <Route
-          path="login"
-          element={<Login handleSubmit={loginUser} />}
-        />
-        <Route
-          path="/signup"
-          element={
-            <Login handleSubmit={signupUser} buttonLabel="Sign Up" />
-          }
-        />
-        <Route
-          path="/"
-          element={
-            <div className="main-screen">
-              <h1>Welcome to Inner Bloom</h1>
-              <button className="checkin-button" 
-              onClick={() => window.location.href = '/checkin'}>
-                Check In
-              </button>
-              <button
-                className="calendar-button"
-                onClick={() => (window.location.href = '/calendar')}
-              >
-                Calendar
-              </button>
+    return (
+        <Router>
+            <Navbar></Navbar>
+            <div className="app">
+                <Routes>
+                    <Route
+                        path="login"
+                        element={<Login handleSubmit={loginUser} />}
+                    />
+                    <Route
+                        path="/signup"
+                        element={
+                            <Login
+                                handleSubmit={signupUser}
+                                buttonLabel="Sign Up"
+                            />
+                        }
+                    />
+                    <Route
+                        path="/"
+                        element={
+                            <div className="main-screen">
+                                <h1>Welcome to Inner Bloom</h1>
+                                <button
+                                    className="checkin-button"
+                                    onClick={() =>
+                                        (window.location.href = "/checkin")
+                                    }>
+                                    Check In
+                                </button>
+                                <button
+                                    className="calendar-button"
+                                    onClick={() =>
+                                        (window.location.href = "/calendar")
+                                    }>
+                                    Calendar
+                                </button>
+                            </div>
+                        }
+                    />
+                    <Route
+                        path="/checkin"
+                        element={
+                            <Form onSubmit={handleSubmit} onBack={handleBack} />
+                        }
+                    />
+                    <Route
+                        path="/calendar"
+                        element={<LogCalendar fetchDay={fetchDay} />}
+                    />
+                </Routes>
             </div>
-          }
-        />
-        <Route
-          path="/checkin"
-          element = {<Form onSubmit={handleSubmit} onBack={handleBack} />}
-          
-        />
-        <Route
-            path="/calendar"
-            element={<LogCalendar fetchDay={fetchDay}/>}
-          />
-       
-      </Routes>
-    
-    </div>
-  </Router>
-
-  );
+        </Router>
+    );
 }
 
 export default App;
