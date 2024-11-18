@@ -16,5 +16,8 @@
     "license": "ISC",
     "devDependencies": {
         "prettier": "^3.3.3"
+    },
+    "dependencies": {
+        "bootstrap": "^5.3.3"
     }
 }

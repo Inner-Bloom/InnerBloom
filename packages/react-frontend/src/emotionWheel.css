@@ -1,0 +1,611 @@
+/* Overlay */
+.overlay {
+        position: fixed; /* Ensure it covers the entire screen */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+        z-index: 1000; /* Ensure it's above other elements */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      /* Popup container */
+      .popup {
+        background: #EFE2D0;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        max-height: 600px;
+        max-width: 600px;
+        position: relative;
+        width: 640px;
+        height: 450px;
+        text-align: center;
+        z-index: 1010; /* Higher than the overlay if needed */
+      }
+
+      .complete-checkin{
+        position: relative;
+        border-radius: 20px;
+        background: #7E8E65;
+        color: white;
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        font-size: 24px;
+        text-align: center;
+        line-height: 0px;
+        box-sizing: border-box;
+        width: 250px;
+        height: 50px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-125%, 550%); 
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 2px #ffffff; 
+                background: #64744b;
+            }
+        &:focus{
+                outline:none;
+            }
+      }
+
+      .close-overlay{
+        position: absolute;
+        border-radius: 20px;
+        background: #7E8E65;
+        color: white;
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        font-size: 32px;
+        text-align: center;
+        line-height: 0px;
+        box-sizing: border-box;
+        border-radius: 50%;
+        display: table-cell;
+        vertical-align: middle;
+        position: relative;
+        padding: 10px;
+        width: 40px;
+        height: 40px;
+        left: 50%;
+        transform: translate(280%, -330%);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 2px #ffffff; 
+                background: #64744b;
+            }
+        &:focus{
+                outline:none;
+            }
+      }
+
+      .date-header{
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        font-size: 32px;
+        text-align: center;
+        position: relative;
+        color: #563838;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -100%);
+      }
+
+      .sleep-time{
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        font-size: 24px;
+        text-align: center;
+        position: relative;
+        color: black;
+        background-color: white;
+        border-color: none;
+        border-radius: 20px;
+        width: 10%;
+        border: 0px;
+        outline: 0px;
+        scroll-behavior: smooth;
+        transform: translate(300%, -650%); 
+      }
+
+      .eat-amnt{
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        font-size: 24px;
+        text-align: center;
+        position: relative;
+        color: black;
+        background-color: white;
+        border-color: none;
+        border-radius: 20px;
+        width: 10%;
+        border: 0px;
+        outline: 0px;
+        scroll-behavior: smooth;
+        transform: translate(375%, -450%); 
+      }
+
+      .exercise-amnt{
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        font-size: 24px;
+        text-align: center;
+        position: relative;
+        color: black;
+        background-color: white;
+        border-color: none;
+        border-radius: 20px;
+        width: 10%;
+        border: 0px;
+        outline: 0px;
+        scroll-behavior: smooth;
+        transform: translate(20%, -250%); 
+      }
+
+      .question-1{
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        font-size: 32px;
+        position: relative;
+        color: #563838;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-66%, -200%);
+      }
+
+      .question-2{
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        font-size: 32px;
+        position: relative;
+        color: #563838;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-57.5%, -150%);
+      }
+
+      .question-3{
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        font-size: 32px;
+        position: relative;
+        color: #563838;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-70.5%, -100%);
+      }
+
+
+
+/* Emotion Wheel container */
+.emotion-wheel {
+        display: grid;
+        place-items: center;
+        position: relative;
+        width: 450px;
+        height: 450px;
+        border-radius: 50%;
+        transform: translate(-50%, -20%);
+        top: 50%;           
+        left: 50%; 
+      }
+
+      .sub-emotion-wheel {
+        display: grid;
+        place-items: center;
+        position: relative;
+        width: 450px;
+        height: 450px;
+        border-radius: 50%;
+        transform: translate(-50%, -20%);
+        top: 50%;           
+        left: 50%; 
+      }
+
+      .sub-cutout {
+        display: grid;
+        place-items: center;
+        position: relative;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        transform: translate(0%, -57%);
+        background: #EEE6DB;
+      }
+
+      .cutout {
+        display: grid;
+        place-items: center;
+        position: relative;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        transform: translate(0%, -60%);
+        background: #EEE6DB;
+      }
+
+      .centered-text-1 {
+        position: absolute;
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, 350%);
+        font-size: 24px; 
+        color: #333;
+        text-align: center;
+      }
+
+      .centered-text-2 {
+        position: absolute; 
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        top: 13%;
+        left: 50%;
+        transform: translate(-50%, 450%);
+        font-size: 24px; 
+        color: #333;
+        text-align: center;
+      }
+      
+      /* Anxious */
+      .emotion-button-0 { 
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        border-radius: 100% 0 0 0;
+        border: none;
+        color: black;
+        font-family: "Source Sans 3";
+        font-size: 24px; 
+        font-weight: 500;
+        cursor: pointer;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, #B13458, #C10A3F);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #c14266, #C10A3F);
+            }
+        &:focus{
+                outline:none;
+            }
+      }
+
+      /* Calm */
+      .emotion-button-1 {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        border-radius: 0 100% 0 0;
+        border: none;
+        color: black;
+        font-family: "Source Sans 3";
+        font-size: 24px; 
+        font-weight: 500;
+        cursor: pointer;
+        transform: translate(50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, #FEB773, #FF7D00);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #f8b87d, #FF7D00); 
+            }
+        &:focus{
+                outline:none;
+            }
+      }
+
+      /* Sad */
+      .emotion-button-2 {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        border-radius: 0 0 100% 0;
+        border: none;
+        color: black;
+        font-family: "Source Sans 3";
+        font-size: 24px; 
+        font-weight: 500;
+        cursor: pointer;
+        transform: translate(50%, 50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, #72B6F9, #5E81A4);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #80bbf5, #5E81A4);
+            }
+        &:focus{
+                outline:none;
+            }
+      }
+
+        /* Happy */      
+      .emotion-button-3 {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        border-radius: 0 0 0 100%;
+        border: none;
+        color: black;
+        font-family: "Source Sans 3";
+        font-size: 24px; 
+        font-weight: 500;
+        cursor: pointer;
+        transform: translate(-50%, 50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, #8be68b, #4FC54F);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #98eb98, #4FC54F);
+            }
+        &:focus{
+                outline:none;
+            }
+      }
+
+      .sub-emotion-button-0{ 
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        border-radius: 100% 0 0 0;
+        border: none;
+        color: black;
+        font-family: "Source Sans 3";
+        font-size: 24px; 
+        font-weight: 500;
+        cursor: pointer;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, #B13458, #C10A3F);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 2px #ffffff; 
+                background: radial-gradient(circle, #c14266, #C10A3F);
+            }
+        &:focus{
+                outline:none;
+            }
+      }
+
+
+      /* Calm */
+      .sub-emotion-button-1 {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        border-radius: 0 100% 0 0;
+        border: none;
+        color: black;
+        font-family: "Source Sans 3";
+        font-size: 24px; 
+        font-weight: 500;
+        cursor: pointer;
+        transform: translate(50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, #FEB773, #FF7D00);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 5px #ffffff;
+                background: radial-gradient(circle, #f8b87d, #FF7D00); 
+            }
+        &:focus{
+                outline:none;
+            }
+      }
+
+
+      /* Sad */
+      .sub-emotion-button-2 {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        border-radius: 0 0 100% 0;
+        border: none;
+        color: black;
+        font-family: "Source Sans 3";
+        font-size: 24px; 
+        font-weight: 500;
+        cursor: pointer;
+        transform: translate(50%, 50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, #72B6F9, #5E81A4);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #80bbf5, #5E81A4);
+            }
+        &:focus{
+                outline:none;
+            }
+      }
+
+        /* Happy */      
+      .sub-emotion-button-3 {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        border-radius: 0 0 0 100%;
+        border: none;
+        color: black;
+        font-family: "Source Sans 3";
+        font-size: 24px; 
+        font-weight: 500;
+        cursor: pointer;
+        transform: translate(-50%, 50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, #8be68b, #4FC54F);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #98eb98, #4FC54F);
+            }
+        &:focus{
+                outline:none;
+            }
+      }
+
+      /* Happy */
+
+      .Proud{
+        background: radial-gradient(circle, #8be68b, #4FC54F); 
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #98eb98, #4FC54F);
+            }
+      }
+
+      .Grateful{
+        background: radial-gradient(circle, #8be68b, #4FC54F);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #98eb98, #4FC54F);
+            }
+      }
+
+      .Joyful{
+        background: radial-gradient(circle, #8be68b, #4FC54F);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #98eb98, #4FC54F);
+            }
+      }
+
+      .Content{
+        background: radial-gradient(circle, #8be68b, #4FC54F);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #98eb98, #4FC54F);
+            }
+      }
+
+      /* Calm */
+
+      .Serene{
+        background: radial-gradient(circle, #FEB773, #FF7D00);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 5px #ffffff;
+                background: radial-gradient(circle, #f8b87d, #FF7D00); 
+            }
+      }
+
+      .Satisfied{
+        background: radial-gradient(circle, #FEB773, #FF7D00);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 5px #ffffff;
+                background: radial-gradient(circle, #f8b87d, #FF7D00); 
+            }
+      }
+
+      .Peaceful{
+        background: radial-gradient(circle, #FEB773, #FF7D00);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 5px #ffffff;
+                background: radial-gradient(circle, #f8b87d, #FF7D00); 
+            }
+      }
+
+      .Relaxed{
+        background: radial-gradient(circle, #FEB773, #FF7D00);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 5px #ffffff;
+                background: radial-gradient(circle, #f8b87d, #FF7D00); 
+            }
+      }
+
+      /* Sad */
+      .Lonely{
+        background: radial-gradient(circle, #72B6F9, #5E81A4);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #80bbf5, #5E81A4);
+            }
+      }
+
+      .Upset{
+        background: radial-gradient(circle, #72B6F9, #5E81A4);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #80bbf5, #5E81A4);
+            }
+      }
+
+      .Regretful{
+        background: radial-gradient(circle, #72B6F9, #5E81A4);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #80bbf5, #5E81A4);
+            }
+      }
+
+      .Hopeless{
+        background: radial-gradient(circle, #72B6F9, #5E81A4);
+        &:hover {
+                color: #ffffff;
+                background: radial-gradient(circle, #80bbf5, #5E81A4);
+            }
+      }
+
+        /* Anxious */
+
+      .Uneasy{
+        background: radial-gradient(circle, #B13458, #C10A3F);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 2px #ffffff; 
+                background: radial-gradient(circle, #c14266, #C10A3F);
+            }
+      }
+
+      .Nervous{
+        background: radial-gradient(circle, #B13458, #C10A3F);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 2px #ffffff; 
+                background: radial-gradient(circle, #c14266, #C10A3F);
+            }
+      }
+
+      .Overwhelmed{
+        background: radial-gradient(circle, #B13458, #C10A3F);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 2px #ffffff; 
+                background: radial-gradient(circle, #c14266, #C10A3F);
+            }
+      }
+
+      .Worried{
+        background: radial-gradient(circle, #B13458, #C10A3F);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 2px #ffffff; 
+                background: radial-gradient(circle, #c14266, #C10A3F);
+            }
+      }
+

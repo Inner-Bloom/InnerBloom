@@ -1,3 +1,5 @@
+
+
 #root {
     max-width: 1280px;
     margin: 0 auto;
@@ -5,133 +7,83 @@
     text-align: center;
 }
 
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
+h1 {
+
+font-size: 50px;
+font-family: "Source Sans 3";
+font-weight: 300;
+color: #563838;
+
 }
 
-@keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.back-button{
+        position: relative;
+        bottom: 25%;
+        font-size: 20px; 
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        color: #ffffff;
+        text-align: center;   
+        background-color: #7E8E65;
+        width: 100px;
+        height: 50px;
+        top: 50%;
+        transform: translate(0%, 1000%);
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 2px #ffffff; 
+                background: #64744b;
+            }
+        &:focus{
+                outline:none;
+            }
+        
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-        animation: logo-spin infinite 20s linear;
-    }
+.sub-back-button{
+        position: relative;
+        bottom: 25%;
+        transform: translate(-225%, 780%);
+        font-size: 20px; 
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        color: #ffffff;
+        text-align: center;   
+        background-color: #7E8E65;
+        width: 100px;
+        height: 50px;
+        top: 50%;
+        left: 50%;
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 2px #ffffff; 
+                background: #64744b;
+            }
+        &:focus{
+                outline:none;
+            }
+        
 }
 
-.card {
-    padding: 2em;
-}
-
-.read-the-docs {
-    color: #888;
-}
-
-.app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  flex-direction: column;
-  text-align: center;
-}
-
-.happy-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-
-.dialog-box {
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.sleep-input,
-.meals-input {
-  margin-top: 10px;
-  padding: 5px;
-  font-size: 14px;
-  width: 60px;
-}
-
-.sleep-range {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.exercise-checkbox {
-  margin-top: 10px;
-}
-
-.relationship-select {
-  margin-top: 10px;
-  padding: 5px;
-  font-size: 14px;
-}
-
-.dialog-box button {
-  margin-top: 10px;
-  padding: 5px 15px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.emotion-buttons,
-.sub-emotion-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px; /* Space between buttons */
-  margin-top: 20px;
-}
-
-.emotion-button,
-.sub-emotion-button {
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.emotion-button:hover,
-.sub-emotion-button:hover {
-  background-color: #0056b3;
-}
-
-.centered-text {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 32px; /* Increased font size */
-  font-weight: bold;
-  color: #333;
-  text-align: center;
+.checkin-button{
+        position: absolute;
+        bottom: 30%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+        font-family: "Source Sans 3";
+        font-weight: 300;
+        color: #ffffff;
+        text-align: center;   
+        background-color: #7E8E65;
+        width: 150px;
+        height: 50px;
+        &:hover {
+                color: #ffffff;
+                text-shadow: 0 0 2px #ffffff; 
+                background: #64744b;
+            }
+        &:focus{
+                outline:none;
+            }
+        
 }
