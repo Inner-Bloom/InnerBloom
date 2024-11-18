@@ -10,7 +10,8 @@ const LogSchema = new mongoose.Schema({
     eat: Number,
     exercise: Boolean,
     relationships: String,
-    time: Date
+    time: Date,
+    logEncrypted: String
 });
 
 export default LogSchema;
