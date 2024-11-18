@@ -1,10 +1,10 @@
 import userModel from "../models/user.js";
-import {createCipheriv, createDecipheriv} from  "crypto"
+import { createCipheriv, createDecipheriv } from "crypto";
 import dotenv from "dotenv";
 
 dotenv.config();
-const {LOG_KEY, LOG_IV} = process.env;
-const algorithm = 'aes256'; 
+const { LOG_KEY, LOG_IV } = process.env;
+const algorithm = "aes256";
 
 function getUsers(name) {
     let promise;
@@ -29,9 +29,11 @@ function addLog(log, userName) {
     if (user !== undefined) {
         return user.then((result) => {
             log.time = new Date();
-            const cipher = createCipheriv(algorithm, LOG_KEY, LOG_IV);  
-            const encrypted = cipher.update(JSON.stringify(log), 'utf8', 'hex') + cipher.final('hex');
-            log.logEncrypted = encrypted
+            const cipher = createCipheriv(algorithm, LOG_KEY, LOG_IV);
+            const encrypted =
+                cipher.update(JSON.stringify(log), "utf8", "hex") +
+                cipher.final("hex");
+            log.logEncrypted = encrypted;
 
             return userModel.findByIdAndUpdate(result[0]._id, {
                 logs: [...result[0].logs, log]
@@ -52,12 +54,19 @@ function getLogs(userName, day) {
         } else {
             return user.then((result) => {
                 return Array.from(result[0].logs, (log) => {
-                    if (log.logEncrypted != null) { //TODO Remove this branching once all logs are encrypted
-                        const decipher = createDecipheriv(algorithm, LOG_KEY, LOG_IV);
-                        var decrypted = decipher.update(log.logEncrypted, 'hex', 'utf8') + decipher.final('utf8');
+                    if (log.logEncrypted != null) {
+                        //TODO Remove this branching once all logs are encrypted
+                        const decipher = createDecipheriv(
+                            algorithm,
+                            LOG_KEY,
+                            LOG_IV
+                        );
+                        var decrypted =
+                            decipher.update(log.logEncrypted, "hex", "utf8") +
+                            decipher.final("utf8");
                         return JSON.parse(decrypted);
                     } else {
-                        return log
+                        return log;
                     }
                 });
             });
