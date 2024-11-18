@@ -11,7 +11,7 @@ import Form from './LogForm';
 import './App.css';
 import Login from "./login";
 import LogCalendar from './LogCalendar'; 
-
+import Navbar from "./Navbar";
 
 function App() {
   const INVALID_TOKEN = "INVALID_TOKEN";
@@ -160,6 +160,7 @@ function App() {
 
   return (
     <Router>
+    <Navbar></Navbar>
     <div className="app">
       <Routes>
         <Route
