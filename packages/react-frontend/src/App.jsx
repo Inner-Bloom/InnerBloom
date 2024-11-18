@@ -15,6 +15,7 @@ import Navbar from "./Navbar";
 
 import About from "./About";
 import Support from "./Support";
+import flower from './assets/botanical-flowers.png'
 
 function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
@@ -107,12 +108,6 @@ function App() {
         return promise;
     }
 
-    const emotions = {
-        Happy: ["Joyful", "Content", "Grateful", "Proud"],
-        Sad: ["Disappointed", "Lonely", "Hopeless", "Regretful"],
-        Calm: ["Peaceful", "Relaxed", "Satisfied", "Serene"],
-        Anxious: ["Worried", "Nervous", "Uneasy", "Overwhelmed"]
-    };
 
     const handleMainEmotionClick = (emotion) => {
         setSelectedEmotion(emotion);
@@ -198,15 +193,16 @@ function App() {
                                     onClick={() =>
                                         (window.location.href = "/checkin")
                                     }>
-                                    Check In
+                                    Check-In
                                 </button>
-                                <button
+                                {/*<img src={flower} className = "flower"/>*/}
+                                {/*<button
                                     className="calendar-button"
                                     onClick={() =>
                                         (window.location.href = "/calendar")
                                     }>
                                     Calendar
-                                </button>
+                                </button>*/}
                             </div>
                         }
                     />
@@ -214,6 +210,7 @@ function App() {
                         path="/checkin"
                         element={
                             <Form onSubmit={handleSubmit} onBack={handleBack} />
+                            /*<EmotionWheel />*/
                         }
                     />
                     <Route
