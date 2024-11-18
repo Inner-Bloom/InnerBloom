@@ -10,6 +10,11 @@ import React from "react";
 import Form from "./LogForm";
 import "./App.css";
 import Login from "./login";
+import LogCalendar from "./LogCalendar";
+import Navbar from "./Navbar";
+
+import About from "./About";
+import Support from "./Support";
 
 function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
@@ -138,10 +143,6 @@ function App() {
 
     function postLog(logData) {
         const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
-        const storedToken = localStorage.getItem("authToken");
-        console.log("stored", storedToken);
-        console.log(savedCreds);
-        console.log(token);
         const promise = fetch(
             `http://localhost:8000/users/${savedCreds.username}/logs`,
             {
@@ -171,6 +172,7 @@ function App() {
 
     return (
         <Router>
+            <Navbar></Navbar>
             <div className="app">
                 <Routes>
                     <Route
@@ -186,13 +188,41 @@ function App() {
                             />
                         }
                     />
-
+                    <Route
+                        path="/"
+                        element={
+                            <div className="main-screen">
+                                <h1>Welcome to Inner Bloom</h1>
+                                <button
+                                    className="checkin-button"
+                                    onClick={() =>
+                                        (window.location.href = "/checkin")
+                                    }>
+                                    Check In
+                                </button>
+                                <button
+                                    className="calendar-button"
+                                    onClick={() =>
+                                        (window.location.href = "/calendar")
+                                    }>
+                                    Calendar
+                                </button>
+                            </div>
+                        }
+                    />
                     <Route
                         path="/checkin"
                         element={
                             <Form onSubmit={handleSubmit} onBack={handleBack} />
                         }
                     />
+                    <Route
+                        path="/calendar"
+                        element={<LogCalendar fetchDay={fetchDay} />}
+                    />
+
+                    <Route path="/about" element={<About />}></Route>
+                    <Route path="/support" element={<Support />}></Route>
                 </Routes>
             </div>
         </Router>
