@@ -5,14 +5,13 @@
 
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: #EEE6DB;
+    background-color: #eee6db;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 
 body {
     margin: 0;
@@ -22,10 +21,10 @@ body {
     min-height: 100vh;
 }
 
-h1 {   
-font-family: "brown-sugar";
-color: #563838;
-font-weight: 300;
+h1 {
+    font-family: "brown-sugar";
+    color: #563838;
+    font-weight: 300;
     font-size: 3.3em;
     line-height: 1.1;
 }
@@ -34,21 +33,21 @@ button {
     border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
-    font-family: 'Source Sans 3';
+    font-family: "Source Sans 3";
     font-size: 1em;
     font-weight: 300;
     font-family: inherit;
-    background-color: #7E8E65;
+    background-color: #7e8e65;
     cursor: pointer;
     transition: text-shadow 0.25s;
     &:hover {
-                color: #ffffff;
-                text-shadow: 0 0 2px #ffffff; 
-                background: #64744b;
-            }
-        &:focus{
-                outline:none;
-            }
+        color: #ffffff;
+        text-shadow: 0 0 2px #ffffff;
+        background: #64744b;
+    }
+    &:focus {
+        outline: none;
+    }
 }
 
 @media (prefers-color-scheme: light) {

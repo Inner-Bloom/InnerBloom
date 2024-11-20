@@ -1,12 +1,9 @@
-
-
-
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #EEE6DB;
+    background-color: #eee6db;
     position: fixed;
     top: 0;
     left: 0;
@@ -17,7 +14,7 @@
 }
 
 .navbar-logo {
-font-family: 'Brown-Sugar';
+    font-family: "Brown-Sugar";
     font-size: 1.5rem;
     font-weight: bold;
     color: #563838;
@@ -73,7 +70,7 @@ font-family: 'Brown-Sugar';
     position: absolute;
     top: 35px;
     right: 0;
-    background-color: #EFE2D0;
+    background-color: #efe2d0;
     border: 1px solid #c0b9b2;
     border-radius: 4px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -92,8 +89,8 @@ font-family: 'Brown-Sugar';
 }
 
 .dropdown-menu li:hover {
-    background-color: #EFE2D0;
-    text-shadow: 0 0 1px #f7ecec; 
+    background-color: #efe2d0;
+    text-shadow: 0 0 1px #f7ecec;
 }
 
 .dropdown-menu a {

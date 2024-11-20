@@ -1,9 +1,9 @@
 @font-face {
-        font-family: 'Brown-Sugar';
-        src: url(./fonts/brown-sugar.ttf) format('truetype');
-        /* other formats include: 'woff2', 'truetype, 'opentype',
+    font-family: "Brown-Sugar";
+    src: url(./fonts/brown-sugar.ttf) format("truetype");
+    /* other formats include: 'woff2', 'truetype, 'opentype',
                                   'embedded-opentype', and 'svg' */
-      }
+}
 
 #root {
     max-width: 1280px;

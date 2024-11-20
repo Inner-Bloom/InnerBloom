@@ -15,7 +15,7 @@ import Navbar from "./Navbar";
 
 import About from "./About";
 import Support from "./Support";
-import flower from './assets/botanical-flowers.png'
+import flower from "./assets/botanical-flowers.png";
 
 function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
@@ -107,15 +107,6 @@ function App() {
 
         return promise;
     }
-
-
-    const handleMainEmotionClick = (emotion) => {
-        setSelectedEmotion(emotion);
-    };
-
-    const handleSubEmotionClick = () => {
-        setIsVisible(true);
-    };
 
     const handleSubmit = (logData) => {
         console.log("Mood Log:", logData);
