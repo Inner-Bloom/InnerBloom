@@ -41,8 +41,8 @@ export function loginUser(req, res) {
             // invalid username
             res.status(401).send("Unauthorized");
         } else {
-            console.log("Input pwd", pwd);
-            console.log("Retrieved User", retrievedUser[0]["pwd"]);
+            // console.log("Input pwd", pwd);
+            // console.log("Retrieved User", retrievedUser[0]["pwd"]);
             bcrypt
                 .compare(pwd, retrievedUser[0]["pwd"])
                 .then((matched) => {

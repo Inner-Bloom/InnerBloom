@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userService from "./services/user-service.js";
 import { registerUser, authenticateUser, loginUser } from "./auth.js";
+import path from "path";
 
 dotenv.config();
 const { MONGO_CONNECTION_STRING } = process.env;
@@ -111,6 +112,41 @@ app.delete("/users/:username", authenticateUser, (req, res) => {
             console.log(error);
         });
 });
+
+//new endpoint to run analytics on the logs
+app.get("/analytics", (req, res) => {
+    console.log("running analytics");
+    userService
+        .getAnalytics()
+        .then((result) => {
+            if (result === undefined) {
+                res.status(404).send("Resource not found.");
+            } else {
+                console.log(result);
+                res.sendFile(path.resolve("figure.html"));
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).send("Error running analytics");
+        });
+});
+
+// app.get("/users/:username/logs/analytics", authenticateUser, (req, res) => {
+//     const username = req.params.username;
+//     userService
+//         .getAnalytics(username)
+//         .then((result) => {
+//             if (result === undefined) {
+//                 res.status(404).send("Resource not found.");
+//             } else {
+//                 res.send(result);
+//             }
+//         })
+//         .catch((error) => {
+//             console.log(error);
+//         });
+// });
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

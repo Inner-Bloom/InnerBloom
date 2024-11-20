@@ -228,7 +228,10 @@ function Form({ onSubmit, onBack }) {
                             </select>
                         </div>
 
-                        <button className="complete-checkin" type="submit">
+                        <button
+                            className="complete-checkin"
+                            type="submit"
+                            onClick={() => navigate("/")}>
                             Complete Check-in
                         </button>
                     </div>

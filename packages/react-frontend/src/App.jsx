@@ -16,6 +16,7 @@ import Navbar from "./Navbar";
 import About from "./About";
 import Support from "./Support";
 import flower from "./assets/botanical-flowers.png";
+import Analytics from "./Analytics";
 
 function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
@@ -211,6 +212,7 @@ function App() {
 
                     <Route path="/about" element={<About />}></Route>
                     <Route path="/support" element={<Support />}></Route>
+                    <Route path="/analytics" element={<Analytics />}></Route>
                 </Routes>
             </div>
         </Router>
