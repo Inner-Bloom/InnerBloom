@@ -32,24 +32,33 @@ function App() {
     }, [token]);
 
     function fetchDay(date) {
-        const url = `http://localhost:8000/users/${creds.username}/logs?day=${encodeURIComponent(date)}`;
+        const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
+        const url = `http://localhost:8000/users/${savedCreds.username}/logs?day=${encodeURIComponent(date)}`;
+        console.log("Full URL:", url);
 
+        console.log("Fetching logs for date:", date); // Use the correct variable name here
+    
         return fetch(url, {
             method: "GET",
             headers: addAuthHeader({
                 "Content-Type": "application/json"
             })
         })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .catch((error) => {
-                console.error("Error fetching day logs:", error);
-            });
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log("Response data:", data); // Log full response
+            return data;
+        })
+        .catch((error) => {
+            console.error("Error fetching day logs:", error);
+        });
     }
+    
 
     async function loginUser(creds) {
         const promise = fetch(`http://localhost:8000/login`, {
