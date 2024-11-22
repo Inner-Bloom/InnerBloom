@@ -9,7 +9,8 @@ const LogSchema = new mongoose.Schema({
     logEncrypted: {
         type: String,
         required: true
-    }
+    },
+    time: Date
 });
 
 export default LogSchema;
