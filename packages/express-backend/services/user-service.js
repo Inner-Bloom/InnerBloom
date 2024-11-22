@@ -50,26 +50,31 @@ function getLogs(userName, day) {
     if (user !== undefined) {
         if (day !== undefined) {
             return user.then((result) => {
-                return result[0].logs.filter((log) => {
+                const logs = result[0].logs.filter((log) => {
                     return log.time.toLocaleDateString() === day;
                 });
+                return _decryptLogs(logs)
             });
         } else {
             return user.then((result) => {
-                return Array.from(result[0].logs, (log) => {
-                    const decipher = createDecipheriv(
-                        algorithm,
-                        LOG_KEY,
-                        LOG_IV
-                    );
-                    var decrypted =
-                        decipher.update(log.logEncrypted, "hex", "utf8") +
-                        decipher.final("utf8");
-                    return JSON.parse(decrypted);
-                });
+                return _decryptLogs(result[0].logs)
             });
         }
     }
+}
+
+function _decryptLogs(encryptLogs) {
+    return Array.from(encryptLogs, (log) => {
+        const decipher = createDecipheriv(
+            algorithm,
+            LOG_KEY,
+            LOG_IV
+        );
+        var decrypted =
+            decipher.update(log.logEncrypted, "hex", "utf8") +
+            decipher.final("utf8");
+        return JSON.parse(decrypted);
+    });
 }
 
 function findUserByUsername(name) {
