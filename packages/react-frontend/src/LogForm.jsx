@@ -228,10 +228,7 @@ function Form({ onSubmit, onBack }) {
                             </select>
                         </div>
 
-                        <button
-                            className="complete-checkin"
-                            type="submit"
-                           >
+                        <button className="complete-checkin" type="submit">
                             Complete Check-in
                         </button>
                     </div>
