@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "echo \"WARN: no test specified\" && exit 0",
+        "lint": "prettier './**/*.{js,jsx,ts,tsx,css,md,json}' --check . && npm run -w react-frontend lint && npm run -w express-backend lint ",
         "start": "npm run -w react-frontend dev",
         "backend": "npm run -w express-backend dev",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
