@@ -15,6 +15,8 @@ import Navbar from "./Navbar";
 
 import About from "./About";
 import Support from "./Support";
+import flower from "./assets/botanical-flowers.png";
+import Analytics from "./Analytics";
 
 function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
@@ -30,7 +32,11 @@ function App() {
     }, [token]);
 
     function fetchDay(date) {
-        const url = `http://localhost:8000/users/${creds.username}/logs?day=${encodeURIComponent(date)}`;
+        const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
+        const url = `http://localhost:8000/users/${savedCreds.username}/logs?day=${encodeURIComponent(date)}`;
+        console.log("Full URL:", url);
+
+        console.log("Fetching logs for date:", date); // Use the correct variable name here
 
         return fetch(url, {
             method: "GET",
@@ -43,6 +49,10 @@ function App() {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 return response.json();
+            })
+            .then((data) => {
+                console.log("Response data:", data); // Log full response
+                return data;
             })
             .catch((error) => {
                 console.error("Error fetching day logs:", error);
@@ -106,21 +116,6 @@ function App() {
 
         return promise;
     }
-
-    const emotions = {
-        Happy: ["Joyful", "Content", "Grateful", "Proud"],
-        Sad: ["Disappointed", "Lonely", "Hopeless", "Regretful"],
-        Calm: ["Peaceful", "Relaxed", "Satisfied", "Serene"],
-        Anxious: ["Worried", "Nervous", "Uneasy", "Overwhelmed"]
-    };
-
-    const handleMainEmotionClick = (emotion) => {
-        setSelectedEmotion(emotion);
-    };
-
-    const handleSubEmotionClick = () => {
-        setIsVisible(true);
-    };
 
     const handleSubmit = (logData) => {
         console.log("Mood Log:", logData);
@@ -198,15 +193,16 @@ function App() {
                                     onClick={() =>
                                         (window.location.href = "/checkin")
                                     }>
-                                    Check In
+                                    Check-In
                                 </button>
-                                <button
+                                {/*<img src={flower} className = "flower"/>*/}
+                                {/*<button
                                     className="calendar-button"
                                     onClick={() =>
                                         (window.location.href = "/calendar")
                                     }>
                                     Calendar
-                                </button>
+                                </button>*/}
                             </div>
                         }
                     />
@@ -214,6 +210,7 @@ function App() {
                         path="/checkin"
                         element={
                             <Form onSubmit={handleSubmit} onBack={handleBack} />
+                            /*<EmotionWheel />*/
                         }
                     />
                     <Route
@@ -223,6 +220,7 @@ function App() {
 
                     <Route path="/about" element={<About />}></Route>
                     <Route path="/support" element={<Support />}></Route>
+                    <Route path="/analytics" element={<Analytics />}></Route>
                 </Routes>
             </div>
         </Router>

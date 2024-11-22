@@ -1,12 +1,42 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./emotionWheel.css";
 
 function Form({ onSubmit, onBack }) {
     // Define the emotions and their subemotions within the Form component
-    const emotions = {
-        Happy: ["Excited", "Joyful", "Proud", "Content"],
-        Sad: ["Down", "Depressed", "Lonely", "Unhappy"],
-        Calm: ["Relaxed", "Serene", "Peaceful", "Balanced"],
-        Anxious: ["Nervous", "Stressed", "Worried", "Unsettled"]
+
+    const emotions = [
+        { label: "Anxious" },
+        { label: "Calm" },
+        { label: "Sad" },
+        { label: "Happy" }
+    ];
+
+    const subEmotions = {
+        Happy: [
+            { label: "Proud" },
+            { label: "Grateful" },
+            { label: "Joyful" },
+            { label: "Content" }
+        ],
+        Calm: [
+            { label: "Serene" },
+            { label: "Satisfied" },
+            { label: "Relaxed" },
+            { label: "Peaceful" }
+        ],
+        Sad: [
+            { label: "Lonely" },
+            { label: "Upset" },
+            { label: "Hopeless" },
+            { label: "Regretful" }
+        ],
+        Anxious: [
+            { label: "Uneasy" },
+            { label: "Nervous" },
+            { label: "Overwhelmed" },
+            { label: "Worried" }
+        ]
     };
 
     const [selectedEmotion, setSelectedEmotion] = useState(null);
@@ -28,8 +58,15 @@ function Form({ onSubmit, onBack }) {
         setIsVisible(true); // Show the dialog box after subemotion selection
     };
 
-    const handleEnter = (event) => {
+    const handleCloseOverlay = () => {
+        setIsVisible(false);
+    };
+
+    const navigate = useNavigate();
+
+    const handleSubmit = (event) => {
         event.preventDefault(); // Prevent default form submission
+        navigate("/");
 
         const logData = {
             mood: selectedSubEmotion, // Selected subemotion as the mood
@@ -44,120 +81,159 @@ function Form({ onSubmit, onBack }) {
         setIsVisible(false); // Hide the dialog after submission
     };
 
+    const currentDate = new Date().toDateString();
+    const currentTime = new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
     return (
-        <form onSubmit={handleEnter}>
-            <div className="centered-text">How are you feeling?</div>
+        <form onSubmit={handleSubmit}>
+            {/* Button to go back */}
+            <button
+                type="button"
+                className="back-button"
+                onClick={() => navigate("/")}>
+                Back
+            </button>
 
-            {/* Display main emotions as buttons */}
-            <div className="emotion-buttons">
-                {Object.keys(emotions).map((emotion) => (
-                    <button
-                        type="button"
-                        key={emotion}
-                        className="emotion-button"
-                        onClick={() => handleEmotionClick(emotion)} // Set selected emotion
-                    >
-                        {emotion}
-                    </button>
-                ))}
-            </div>
-
-            {/* Display subemotions if an emotion is selected */}
-            {selectedEmotion && (
-                <div className="sub-emotion-buttons">
-                    {emotions[selectedEmotion].map((subEmotion) => (
+            {selectedEmotion ? (
+                <div className="sub-emotion-wheel">
+                    {subEmotions[selectedEmotion].map((subEmotion, index) => (
                         <button
                             type="button"
-                            key={subEmotion}
-                            className="sub-emotion-button"
-                            onClick={() => handleSubEmotionClick(subEmotion)} // Handle subemotion click
-                        >
-                            {subEmotion}
+                            key={index}
+                            className={`sub-emotion-button-${index} ${subEmotion.label}`}
+                            onClick={() =>
+                                handleSubEmotionClick(subEmotion.label)
+                            }>
+                            {subEmotion.label}
                         </button>
                     ))}
+                    <button
+                        type="button"
+                        className="sub-back-button"
+                        onClick={() => setSelectedEmotion(null)}>
+                        Back
+                    </button>
+                    <div className="sub-cutout"></div>
+                    <div className="centered-text-1">How are</div>
+                    <div className="centered-text-2">you feeling?</div>
+                </div>
+            ) : (
+                <div className="emotion-wheel">
+                    <h3>How are you feeling?</h3>
+                    {emotions.map((emotion, index) => (
+                        <button
+                            type="button"
+                            key={index}
+                            className={"emotion-button-" + index}
+                            onClick={() => handleEmotionClick(emotion.label)}>
+                            {emotion.label}
+                        </button>
+                    ))}
+                    <div className="cutout"></div>
+                    <div className="centered-text-1">How are</div>
+                    <div className="centered-text-2">you feeling?</div>
                 </div>
             )}
 
             {/* Dialog box with extra input fields if a subemotion is selected */}
             {isVisible && (
-                <div className="dialog-box">
-                    <div>
-                        <label>How many hours did you sleep?</label>
-                        <input
-                            type="range"
-                            min="1"
-                            max="24"
-                            value={sleepHours}
-                            onChange={(e) =>
-                                setSleepHours(parseInt(e.target.value))
-                            }
-                            className="sleep-range"
-                        />
-                        <p>{`Hours of sleep: ${sleepHours} hours`}</p>
-                    </div>
+                <div className="overlay">
+                    <div className="popup">
+                        <h3 className="date-header">
+                            {currentDate} | {currentTime}
+                        </h3>
+                        <button
+                            className="close-overlay"
+                            type="button"
+                            onClick={handleCloseOverlay}>
+                            x
+                        </button>
+                        <div className="sleep-time">
+                            <label>How many hours did you sleep?</label>
+                            <input
+                                type="range"
+                                min="1"
+                                max="24"
+                                value={sleepHours}
+                                onChange={(e) =>
+                                    setSleepHours(parseInt(e.target.value))
+                                }
+                                className="sleep-range"
+                            />
+                            <p>{`Hours of sleep: ${sleepHours} hours`}</p>
+                        </div>
 
-                    <div>
-                        <label>Minutes of Sleep (10-min increments):</label>
-                        <input
-                            type="range"
-                            min="0"
-                            max="50"
-                            step="10"
-                            value={sleepMinutes}
-                            onChange={(e) =>
-                                setSleepMinutes(parseInt(e.target.value))
-                            }
-                            className="sleep-range"
-                        />
-                        <p>{`Total sleep: ${sleepHours} hours ${sleepMinutes} minutes`}</p>
-                    </div>
+                        <div className="sleep-time">
+                            <label>Minutes of Sleep (10-min increments):</label>
+                            <input
+                                type="range"
+                                min="0"
+                                max="50"
+                                step="10"
+                                value={sleepMinutes}
+                                onChange={(e) =>
+                                    setSleepMinutes(parseInt(e.target.value))
+                                }
+                                className="sleep-range"
+                            />
+                            <p>{`Total sleep: ${sleepHours} hours ${sleepMinutes} minutes`}</p>
+                        </div>
 
-                    <div>
-                        <label>How much did you eat? (Number of meals):</label>
-                        <input
-                            type="number"
-                            value={meals}
-                            onChange={(e) =>
-                                setMeals(Math.max(0, parseInt(e.target.value)))
-                            }
-                            min="0"
-                            className="meals-input"
-                        />
-                    </div>
+                        <div className="eat-amnt">
+                            <label>
+                                How much did you eat? (Number of meals):
+                            </label>
+                            <input
+                                type="number"
+                                value={meals}
+                                onChange={(e) =>
+                                    setMeals(
+                                        Math.max(0, parseInt(e.target.value))
+                                    )
+                                }
+                                min="0"
+                                className="meals-input"
+                            />
+                        </div>
 
-                    <div>
-                        <label>Did you exercise today?</label>
-                        <input
-                            type="checkbox"
-                            checked={exercise}
-                            onChange={(e) => setExercise(e.target.checked)}
-                            className="exercise-checkbox"
-                        />
-                    </div>
+                        <div className="exercise-amnt">
+                            <label>Did you exercise today?</label>
+                            <input
+                                type="checkbox"
+                                checked={exercise}
+                                onChange={(e) => setExercise(e.target.checked)}
+                                className="exercise-checkbox"
+                            />
+                        </div>
 
-                    <div>
-                        <label>Relationships:</label>
-                        <select
-                            value={relationship}
-                            onChange={(e) => setRelationship(e.target.value)}
-                            className="relationship-select">
-                            <option value="By yourself">By yourself</option>
-                            <option value="With co-workers">
-                                With co-workers
-                            </option>
-                            <option value="With friends">With friends</option>
-                            <option value="With family">With family</option>
-                        </select>
-                    </div>
+                        <div className="relationship-ln">
+                            <label>Who are you with?</label>
+                            <select
+                                value={relationship}
+                                onChange={(e) =>
+                                    setRelationship(e.target.value)
+                                }
+                                className="relationship-select">
+                                <option value="By yourself">By yourself</option>
+                                <option value="With co-workers">
+                                    With co-workers
+                                </option>
+                                <option value="With friends">
+                                    With friends
+                                </option>
+                                <option value="With family">With family</option>
+                            </select>
+                        </div>
 
-                    <button type="submit">Enter</button>
+                        <button className="complete-checkin" type="submit">
+                            Complete Check-in
+                        </button>
+                    </div>
                 </div>
             )}
-
-            {/* Button to go back */}
-            <button type="button" className="back-button" onClick={onBack}>
-                Back
-            </button>
         </form>
     );
 }
