@@ -6,11 +6,19 @@ const LogSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    sleep: Number,
-    eat: Number,
-    exercise: Boolean,
-    relationships: String,
-    time: Date
+    logEncrypted: {
+        type: String,
+        required: true
+    }
 });
 
 export default LogSchema;
+
+/**
+ *  --Encrypted Schema--
+ *   sleep: Number,
+ *   eat: Number,
+ *   exercise: Boolean,
+ *   relationships: String,
+ *   time: Date
+ */
