@@ -1,3 +1,4 @@
 /node_modules
 .env
 package-lock.json
+/packages/express_backend/figure.html
