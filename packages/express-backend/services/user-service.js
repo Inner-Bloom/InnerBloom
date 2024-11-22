@@ -30,14 +30,16 @@ function addLog(log, userName) {
     if (user !== undefined) {
         return user.then((result) => {
             log.time = new Date();
+
             const cipher = createCipheriv(algorithm, LOG_KEY, LOG_IV);
             const encrypted =
                 cipher.update(JSON.stringify(log), "utf8", "hex") +
                 cipher.final("hex");
-            log.logEncrypted = encrypted;
+
+            const sentLog = { time: log.time, logEncrypted: encrypted };
 
             return userModel.findByIdAndUpdate(result[0]._id, {
-                logs: [...result[0].logs, log]
+                logs: [...result[0].logs, sentLog]
             });
         });
     }
@@ -55,20 +57,15 @@ function getLogs(userName, day) {
         } else {
             return user.then((result) => {
                 return Array.from(result[0].logs, (log) => {
-                    if (log.logEncrypted != null) {
-                        //TODO Remove this branching once all logs are encrypted
-                        const decipher = createDecipheriv(
-                            algorithm,
-                            LOG_KEY,
-                            LOG_IV
-                        );
-                        var decrypted =
-                            decipher.update(log.logEncrypted, "hex", "utf8") +
-                            decipher.final("utf8");
-                        return JSON.parse(decrypted);
-                    } else {
-                        return log;
-                    }
+                    const decipher = createDecipheriv(
+                        algorithm,
+                        LOG_KEY,
+                        LOG_IV
+                    );
+                    var decrypted =
+                        decipher.update(log.logEncrypted, "hex", "utf8") +
+                        decipher.final("utf8");
+                    return JSON.parse(decrypted);
                 });
             });
         }
