@@ -37,28 +37,27 @@ function App() {
         console.log("Full URL:", url);
 
         console.log("Fetching logs for date:", date); // Use the correct variable name here
-    
+
         return fetch(url, {
             method: "GET",
             headers: addAuthHeader({
                 "Content-Type": "application/json"
             })
         })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log("Response data:", data); // Log full response
-            return data;
-        })
-        .catch((error) => {
-            console.error("Error fetching day logs:", error);
-        });
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log("Response data:", data); // Log full response
+                return data;
+            })
+            .catch((error) => {
+                console.error("Error fetching day logs:", error);
+            });
     }
-    
 
     async function loginUser(creds) {
         const promise = fetch(`http://localhost:8000/login`, {

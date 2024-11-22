@@ -37,12 +37,31 @@ const LogCalendar = ({ fetchDay }) => {
                 <h2>Logs for {selectedDate.toDateString()}</h2>
                 {logData.map((log, index) => (
                     <div key={index} className="log-entry">
-                        <p><strong>Mood:</strong> {log.mood || "Not provided"}</p>
-                        <p><strong>Sleep:</strong> {log.sleep ? `${log.sleep} hours` : "Not provided"}</p>
-                        <p><strong>Eat:</strong> {log.eat ? `${log.eat} meals` : "Not provided"}</p>
-                        <p><strong>Exercise:</strong> {log.exercise ? "Yes" : "No"}</p>
-                        <p><strong>Relationships:</strong> {log.relationships || "Not provided"}</p>
-                        <p><strong>Time:</strong> {log.time ? new Date(log.time).toLocaleString() : "Not provided"}</p>
+                        <p>
+                            <strong>Mood:</strong> {log.mood || "Not provided"}
+                        </p>
+                        <p>
+                            <strong>Sleep:</strong>{" "}
+                            {log.sleep ? `${log.sleep} hours` : "Not provided"}
+                        </p>
+                        <p>
+                            <strong>Eat:</strong>{" "}
+                            {log.eat ? `${log.eat} meals` : "Not provided"}
+                        </p>
+                        <p>
+                            <strong>Exercise:</strong>{" "}
+                            {log.exercise ? "Yes" : "No"}
+                        </p>
+                        <p>
+                            <strong>Relationships:</strong>{" "}
+                            {log.relationships || "Not provided"}
+                        </p>
+                        <p>
+                            <strong>Time:</strong>{" "}
+                            {log.time
+                                ? new Date(log.time).toLocaleString()
+                                : "Not provided"}
+                        </p>
                         <hr />
                     </div>
                 ))}
