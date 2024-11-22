@@ -4,7 +4,7 @@ const About = () => {
     return (
         <div
             style={{
-                backgroundColor: "#eee6db",
+                backgroundColor: "#EEE6DB",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -15,15 +15,17 @@ const About = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 padding: 200,
-                fontFamily: "Source Sans 3"
+                fontFamily: "Source Sans 3",
+                color: "#563838",
+                
             }}>
             <div
                 style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    backgroundColor: "#EEE6DB",
                     maxWidth: "800px",
                     padding: "20px",
                     borderRadius: "10px",
-                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                    boxShadow: "0 4px 8px #5C4033",
                     lineHeight: "1.6",
                     textAlign: "center"
                 }}>
