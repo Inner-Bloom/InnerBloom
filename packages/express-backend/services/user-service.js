@@ -7,7 +7,6 @@ dotenv.config();
 const { LOG_KEY, LOG_IV } = process.env;
 const algorithm = "aes256";
 
-
 function getUsers(name) {
     let promise;
 
