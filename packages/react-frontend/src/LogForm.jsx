@@ -64,8 +64,9 @@ function Form({ onSubmit, onBack }) {
 
     const navigate = useNavigate();
 
-    const handleEnter = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault(); // Prevent default form submission
+        navigate("/");
 
         const logData = {
             mood: selectedSubEmotion, // Selected subemotion as the mood
@@ -87,7 +88,7 @@ function Form({ onSubmit, onBack }) {
     });
 
     return (
-        <form onSubmit={handleEnter}>
+        <form onSubmit={handleSubmit}>
             {/* Button to go back */}
             <button
                 type="button"
@@ -100,6 +101,7 @@ function Form({ onSubmit, onBack }) {
                 <div className="sub-emotion-wheel">
                     {subEmotions[selectedEmotion].map((subEmotion, index) => (
                         <button
+                            type="button"
                             key={index}
                             className={`sub-emotion-button-${index} ${subEmotion.label}`}
                             onClick={() =>
@@ -109,6 +111,7 @@ function Form({ onSubmit, onBack }) {
                         </button>
                     ))}
                     <button
+                        type="button"
                         className="sub-back-button"
                         onClick={() => setSelectedEmotion(null)}>
                         Back
@@ -122,6 +125,7 @@ function Form({ onSubmit, onBack }) {
                     <h3>How are you feeling?</h3>
                     {emotions.map((emotion, index) => (
                         <button
+                            type="button"
                             key={index}
                             className={"emotion-button-" + index}
                             onClick={() => handleEmotionClick(emotion.label)}>
@@ -227,7 +231,7 @@ function Form({ onSubmit, onBack }) {
                         <button
                             className="complete-checkin"
                             type="submit"
-                            onClick={() => navigate("/")}>
+                           >
                             Complete Check-in
                         </button>
                     </div>

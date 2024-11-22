@@ -109,14 +109,6 @@ function App() {
         return promise;
     }
 
-    const handleMainEmotionClick = (emotion) => {
-        setSelectedEmotion(emotion);
-    };
-
-    const handleSubEmotionClick = () => {
-        setIsVisible(true);
-    };
-
     const handleSubmit = (logData) => {
         console.log("Mood Log:", logData);
         postLog(logData)
