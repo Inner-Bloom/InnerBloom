@@ -18,6 +18,8 @@ import Support from "./Support";
 import flower from "./assets/botanical-flowers.png";
 import Analytics from "./Analytics";
 
+const API_PATH = "http://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net" //Enable For Remote Backend
+//const API_PATH = "http://localhost:8000" //Enable For Local Backend
 function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
     const [token, setToken] = useState(INVALID_TOKEN);
@@ -33,7 +35,7 @@ function App() {
 
     function fetchDay(date) {
         const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
-        const url = `http://localhost:8000/users/${savedCreds.username}/logs?day=${encodeURIComponent(date)}`;
+        const url = `${API_PATH}/users/${savedCreds.username}/logs?day=${encodeURIComponent(date)}`;
         console.log("Full URL:", url);
 
         console.log("Fetching logs for date:", date); // Use the correct variable name here
@@ -60,7 +62,7 @@ function App() {
     }
 
     async function loginUser(creds) {
-        const promise = fetch(`http://localhost:8000/login`, {
+        const promise = fetch(`${API_PATH}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -90,7 +92,7 @@ function App() {
     }
 
     function signupUser(creds) {
-        const promise = fetch(`http://localhost:8000/signup`, {
+        const promise = fetch(`${API_PATH}/signup`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -139,7 +141,7 @@ function App() {
     function postLog(logData) {
         const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
         const promise = fetch(
-            `http://localhost:8000/users/${savedCreds.username}/logs`,
+            `${API_PATH}/users/${savedCreds.username}/logs`,
             {
                 method: "POST",
                 headers: addAuthHeader({
