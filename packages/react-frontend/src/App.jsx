@@ -18,7 +18,8 @@ import Support from "./Support";
 import flower from "./assets/botanical-flowers.png";
 import Analytics from "./Analytics";
 
-const API_PATH = "http://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net" //Enable For Remote Backend
+const API_PATH =
+    "http://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net"; //Enable For Remote Backend
 //const API_PATH = "http://localhost:8000" //Enable For Local Backend
 function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
@@ -140,16 +141,13 @@ function App() {
 
     function postLog(logData) {
         const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
-        const promise = fetch(
-            `${API_PATH}/users/${savedCreds.username}/logs`,
-            {
-                method: "POST",
-                headers: addAuthHeader({
-                    "Content-Type": "application/json"
-                }),
-                body: JSON.stringify(logData)
-            }
-        );
+        const promise = fetch(`${API_PATH}/users/${savedCreds.username}/logs`, {
+            method: "POST",
+            headers: addAuthHeader({
+                "Content-Type": "application/json"
+            }),
+            body: JSON.stringify(logData)
+        });
         return promise;
     }
 
