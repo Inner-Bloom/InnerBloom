@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
+import "./Calendar.css";
 import { useNavigate } from "react-router-dom";
 
 const LogCalendar = ({ fetchDay }) => {
@@ -29,7 +30,7 @@ const LogCalendar = ({ fetchDay }) => {
 
     const renderLogData = () => {
         if (!logData || logData.length === 0) {
-            return <p>No logs found for this date.</p>;
+            return <p className="no-logs">No logs found for this date.</p>;
         }
 
         return (
@@ -41,11 +42,13 @@ const LogCalendar = ({ fetchDay }) => {
                             <strong>Mood:</strong> {log.mood || "Not provided"}
                         </p>
                         <p>
-                            <strong>Sleep:</strong>{" "}
-                            {log.sleep ? `${log.sleep} hours` : "Not provided"}
+                            <strong>Slept:</strong>{" "}
+                            {log.sleep
+                                ? `${Math.round(log.sleep * 100) / 100} hours`
+                                : "Not provided"}
                         </p>
                         <p>
-                            <strong>Eat:</strong>{" "}
+                            <strong>Times Eaten:</strong>{" "}
                             {log.eat ? `${log.eat} meals` : "Not provided"}
                         </p>
                         <p>
@@ -53,11 +56,11 @@ const LogCalendar = ({ fetchDay }) => {
                             {log.exercise ? "Yes" : "No"}
                         </p>
                         <p>
-                            <strong>Relationships:</strong>{" "}
+                            <strong>Who you were with:</strong>{" "}
                             {log.relationships || "Not provided"}
                         </p>
                         <p>
-                            <strong>Time:</strong>{" "}
+                            <strong>Date:</strong>{" "}
                             {log.time
                                 ? new Date(log.time).toLocaleString()
                                 : "Not provided"}
@@ -73,13 +76,17 @@ const LogCalendar = ({ fetchDay }) => {
         <div className="calendar-container">
             <h1>Log Calendar</h1>
             <Calendar onChange={handleDateClick} value={selectedDate} />
-            <p>Selected date: {selectedDate.toDateString()}</p>
+            <p className="calendar-date">
+                Selected date: {selectedDate.toDateString()}
+            </p>
 
             {/* Render log data if available */}
             {renderLogData()}
 
-            <button className="back-button" onClick={() => navigate("/")}>
-                Back to Main Page
+            <button
+                className="back-button-calendar"
+                onClick={() => navigate("/")}>
+                Back
             </button>
         </div>
     );

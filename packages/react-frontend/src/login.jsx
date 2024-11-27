@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./login.css";
 
 function Login(props) {
     const [creds, setCreds] = useState({
@@ -12,8 +13,9 @@ function Login(props) {
             <form className="login-form">
                 <h2>{props.buttonLabel === "Sign Up" ? "Sign Up" : "Login"}</h2>
 
-                <label htmlFor="username">Username</label>
                 <input
+                    className="inputbox"
+                    placeholder="Username"
                     type="text"
                     name="username"
                     id="username"
@@ -21,8 +23,9 @@ function Login(props) {
                     onChange={handleChange}
                 />
 
-                <label htmlFor="password">Password</label>
                 <input
+                    className="inputbox"
+                    placeholder="Password"
                     type="password"
                     name="pwd"
                     id="password"
