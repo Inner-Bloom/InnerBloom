@@ -1,12 +1,12 @@
-/* Overlay */
+/* Overlay for check-in questions, darkens background */
 .overlay {
     position: fixed; /* Ensure it covers the entire screen */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
-    z-index: 1000; /* Ensure it's above other elements */
+    background: rgba(0, 0, 0, 0.3); 
+    z-index: 1000; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,7 +28,7 @@
     width: 640px;
     height: 700px;
     text-align: center;
-    z-index: 1010; /* Higher than the overlay if needed */
+    z-index: 1010; 
 }
 
 @keyframes fadeIn {
@@ -76,6 +76,7 @@
     }
 }
 
+/* Complete check-in button */
 .complete-checkin {
     position: relative;
     border-radius: 20px;
@@ -102,7 +103,8 @@
     }
 }
 
-.close-overlay {
+/* Closes popup X button */
+.close-popup {
     position: absolute;
     border-radius: 20px;
     background: #7e8e65;
@@ -132,6 +134,7 @@
     }
 }
 
+/* Date & Time in Popup */
 .date-header {
     font-family: "Source Sans 3";
     font-weight: 300;
@@ -144,6 +147,7 @@
     transform: translate(-50%, -800%);
 }
 
+/* Text design for Sleep questions */
 .sleep-time {
     font-family: "Source Sans 3";
     font-weight: 300;
@@ -160,6 +164,14 @@
     transform: translate(0%, -70%);
 }
 
+/* Set slider size */
+.sleep-range {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+
+/* Text design for Eat question */
 .eat-amnt {
     font-family: "Source Sans 3";
     font-weight: 300;
@@ -176,6 +188,7 @@
     transform: translate(0%, -200%);
 }
 
+/* Input design for Eat question */
 .meals-input {
     background-color: white;
     font-family: "Source Sans 3";
@@ -192,6 +205,7 @@
     }
 }
 
+/* Text design for Exercise question */
 .exercise-amnt {
     font-family: "Source Sans 3";
     font-weight: 300;
@@ -208,7 +222,9 @@
     transform: translate(0%, -150%);
 }
 
+/* Input design for Exercise question */
 .exercise-checkbox {
+    margin-top: 10px;
     background-color: white;
     font-family: "Source Sans 3";
     font-weight: 500;
@@ -222,6 +238,7 @@
     }
 }
 
+/* Text design for Relationship question */
 .relationship-ln {
     font-family: "Source Sans 3";
     font-weight: 300;
@@ -238,22 +255,27 @@
     transform: translate(0%, -100%);
 }
 
+/* Input design for Relationship question */
 .relationship-select {
-    background-color: white;
-    font-family: "Source Sans 3";
-    font-weight: 500;
-    color: #563838;
-    position: relative;
-    border: #333;
-    border-radius: 10px;
-    transform: translate(5%, 0%);
-    width: 200px;
-    height: 50px;
-    &:focus {
-        outline: none;
+        margin-top: 10px;
+        padding: 5px;
+        font-size: 14px;
+        background-color: white;
+        font-family: "Source Sans 3";
+        font-weight: 500;
+        color: #563838;
+        position: relative;
+        border: #333;
+        border-radius: 10px;
+        transform: translate(5%, 0%);
+        width: 200px;
+        height: 50px;
+        &:focus {
+                outline: none;
     }
 }
 
+/* Back button design for Initial Emotion Wheel */
 .back-button {
     position: relative;
     bottom: 25%;
@@ -277,6 +299,7 @@
     }
 }
 
+/* Back button design for Sub Emotion Wheels */
 .sub-back-button {
     position: relative;
     bottom: 25%;
@@ -319,6 +342,19 @@
     left: 50%;
 }
 
+/* Emotion Wheel cutout */
+.cutout {
+        display: grid;
+        place-items: center;
+        position: relative;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        transform: translate(0%, -60%);
+        background: #eee6db;
+    }
+
+/* Sub Emotion Wheel container */
 .sub-emotion-wheel {
     display: grid;
     place-items: center;
@@ -331,6 +367,7 @@
     left: 50%;
 }
 
+/* Sub Emotion Wheel cutout */
 .sub-cutout {
     display: grid;
     place-items: center;
@@ -342,17 +379,7 @@
     background: #eee6db;
 }
 
-.cutout {
-    display: grid;
-    place-items: center;
-    position: relative;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    transform: translate(0%, -60%);
-    background: #eee6db;
-}
-
+/* "How are"  in Emotion Wheels */
 .centered-text-1 {
     position: absolute;
     font-family: "Source Sans 3";
@@ -365,6 +392,7 @@
     text-align: center;
 }
 
+/* "you feeling?"  in Emotion Wheels */
 .centered-text-2 {
     position: absolute;
     font-family: "Source Sans 3";
@@ -481,6 +509,7 @@
     }
 }
 
+/* Anxious */
 .sub-emotion-button-0 {
     position: absolute;
     width: 50%;
@@ -526,7 +555,7 @@
     background: radial-gradient(circle, #feb773, #ff7d00);
     &:hover {
         color: #ffffff;
-        text-shadow: 0 0 5px #ffffff;
+        text-shadow: 0 0 2px #ffffff;
         background: radial-gradient(circle, #f8b87d, #ff7d00);
     }
     &:focus {

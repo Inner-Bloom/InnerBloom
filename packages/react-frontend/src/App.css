@@ -1,23 +1,10 @@
-@font-face {
-    font-family: "Brown-Sugar";
-    src: url(./fonts/brown-sugar.ttf) format("truetype");
-    /* other formats include: 'woff2', 'truetype, 'opentype',
-                                  'embedded-opentype', and 'svg' */
-}
+
 
 #root {
     max-width: 1280px;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
-}
-
-.card {
-    padding: 2em;
-}
-
-.read-the-docs {
-    color: #888;
 }
 
 .app {
@@ -29,131 +16,58 @@
     text-align: center;
 }
 
-.dialog-box {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+.main-screen{
+        animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+    -o-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
 }
 
-.sleep-input,
-.meals-input {
-    margin-top: 10px;
-    padding: 5px;
-    font-size: 14px;
-    width: 60px;
-}
-
-.sleep-range {
-    width: 100%;
-    margin-top: 10px;
-}
-
-.exercise-checkbox {
-    margin-top: 10px;
-}
-
-.relationship-select {
-    margin-top: 10px;
-    padding: 5px;
-    font-size: 14px;
-}
-
-.centered-text {
-    position: absolute;
-    top: 13%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 32px; /* Increased font size */
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-}
-
-/* Container for the login page */
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f0f2f5;
-    padding: 2rem;
-}
-
-/* Styling for the login form */
-.login-form {
-    max-width: 400px;
-    width: 100%;
-    padding: 2rem;
-    background-color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
-}
-
-/* Form header */
-.login-form h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-/* Input fields */
-.login-form input[type="text"],
-.login-form input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
-}
-
-.login-form input[type="text"]:focus,
-.login-form input[type="password"]:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-/* Button styles */
-.login-form input[type="button"] {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.login-form input[type="button"]:hover {
-    background-color: #0056b3;
-}
-
-/* Sign-up link styling */
-.login-form .signup-link {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #333;
-}
-
-.login-form .signup-link a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.login-form .signup-link a:hover {
-    color: #0056b3;
-}
+@keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @-moz-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @-webkit-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @-o-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @-ms-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
 
 /* Responsive design for smaller screens */
 @media (max-width: 500px) {

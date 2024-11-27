@@ -58,7 +58,7 @@ function Form({ onSubmit, onBack }) {
         setIsVisible(true); // Show the dialog box after subemotion selection
     };
 
-    const handleCloseOverlay = () => {
+    const handleClosePopup = () => {
         setIsVisible(false);
     };
 
@@ -146,9 +146,9 @@ function Form({ onSubmit, onBack }) {
                             {currentDate} | {currentTime}
                         </h3>
                         <button
-                            className="close-overlay"
+                            className="close-popup"
                             type="button"
-                            onClick={handleCloseOverlay}>
+                            onClick={handleClosePopup}>
                             x
                         </button>
                         <div className="sleep-time">
