@@ -198,11 +198,18 @@
     border: #333;
     transform: translate(10%, -5%);
     border-radius: 10px;
-    width: 25px;
-    height: 25px;
+    text-align: center;
+    width: 50px;
+    height: 30px;
     &:focus {
         outline: none;
     }
+}
+
+input[type='number']::-webkit-inner-spin-button, 
+input[type='number']::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Text design for Exercise question */
