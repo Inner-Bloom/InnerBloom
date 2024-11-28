@@ -13,11 +13,11 @@ const About = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "flex-start",
+                paddingTop: "300px",
                 padding: 200,
                 fontFamily: "Source Sans 3",
-                color: "#563838",
-                
+                color: "#563838"
             }}>
             <div
                 style={{
@@ -25,7 +25,7 @@ const About = () => {
                     maxWidth: "800px",
                     padding: "20px",
                     borderRadius: "10px",
-                    boxShadow: "0 4px 8px #5C4033",
+                    boxShadow: "0 8px 16px #5C4033",
                     lineHeight: "1.6",
                     textAlign: "center"
                 }}>
