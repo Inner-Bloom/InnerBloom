@@ -114,23 +114,23 @@ app.delete("/users/:username", authenticateUser, (req, res) => {
 });
 
 //new endpoint to run analytics on the logs
-app.get("/analytics", (req, res) => {
-    console.log("running analytics");
-    userService
-        .getAnalytics()
-        .then((result) => {
-            if (result === undefined) {
-                res.status(404).send("Resource not found.");
-            } else {
-                console.log(result);
-                res.sendFile(path.resolve("figure.html"));
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-            res.status(500).send("Error running analytics");
-        });
-});
+// app.get("/analytics", (req, res) => {
+//     console.log("running analytics");
+//     userService
+//         .getAnalytics()
+//         .then((result) => {
+//             if (result === undefined) {
+//                 res.status(404).send("Resource not found.");
+//             } else {
+//                 console.log(result);
+//                 res.sendFile(path.resolve("figure.html"));
+//             }
+//         })
+//         .catch((error) => {
+//             console.error(error);
+//             res.status(500).send("Error running analytics");
+//         });
+// });
 
 // app.get("/users/:username/logs/analytics", authenticateUser, (req, res) => {
 //     const username = req.params.username;
