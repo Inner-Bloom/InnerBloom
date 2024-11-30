@@ -1,0 +1,12 @@
+[
+    {"date":"2024-11-20","mood":"Happy","sleep_hours":7},
+    {"date":"2024-11-21","mood":"Anxious","sleep_hours":5},
+    {"date":"2024-11-22","mood":"Calm","sleep_hours":8},
+    {"date":"2024-11-23","mood":"Tired","sleep_hours":6},
+    {"date":"2024-11-24","mood":"Happy","sleep_hours":9},
+    {"date":"2024-11-25","mood":"Stressed","sleep_hours":4},
+    {"date":"2024-11-26","mood":"Happy","sleep_hours":7},
+    {"date":"2024-11-27","mood":"Sad","sleep_hours":6},
+    {"date":"2024-11-28","mood":"Calm","sleep_hours":8},
+    {"date":"2024-11-29","mood":"Anxious","sleep_hours":5}
+]
