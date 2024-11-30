@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from 'react';
 /*
 Todo: Fetch user data from the backend (api call; json format) and display it in a graph in this component.
 1. python script that fetches the data from the database and processes it into a simple to read dataframe
@@ -10,21 +10,49 @@ Todo: Fetch user data from the backend (api call; json format) and display it in
 */
 
 const Analytics = () => {
+    // useEffect(() => {
+    //     // Function to inject a script tag
+    //     const loadScript = (src, callback) => {
+    //       const script = document.createElement('script');
+    //       script.src = src;
+    //       script.async = true;
+    //       script.onload = callback;
+    //       document.body.appendChild(script);
+    //     };
+    
+    //     // Inject the external script first
+    //     loadScript('https://cdn.jsdelivr.net/npm/chart.js', () => {
+    //         console.log('Chart.js loaded');
+    //       // Inject your custom script after the external one (relative to index.html)
+    //         loadScript('/src/script.js', () => {
+    //             console.log('Custom script loaded');
+    //             });
+    //     });
+
+        
+    
+    //     // Cleanup: Remove the scripts on unmount
+    //     return () => {
+    //       const scripts = document.querySelectorAll(
+    //         `script[src="https://cdn.jsdelivr.net/npm/chart.js"], script[src="/src/script.js"]`
+    //       );
+    //       scripts.forEach((script) => document.body.removeChild(script));
+    //     };
+    // }, []);
+
     return (
         <div>
             <h1>Analytics Zamn</h1> 
             <div className="chart">
                 <div className="chart_types">
-                    <button onClick={() => console.log('line')}>Line</button>
+                    <button onClick={() => createChart("line")}>Line</button>
                     <button onClick={() => console.log("Clicked Bars")}>Bars</button>
                     <button onClick={() => console.log('doughnut')}>Doughnut</button>
                     <button onClick={() => console.log('polarArea')}>PolarArea</button>
                     <button onClick={() => console.log('radar')}>Radar</button>
                 </div>
-                <canvas id="myChart"></canvas>
+                <canvas id="myChart" width="300" height="150" style={{margin: "15px auto", border: '1px solid black'}}></canvas>
             </div>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script src="script.js"></script>
         </div>
     );
 };

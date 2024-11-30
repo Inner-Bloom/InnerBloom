@@ -1,11 +1,13 @@
+console.log('Script loaded')
 let ctx = document.getElementById('myChart');
 let myChart;
 let Jsondata;
 
-fetch("./sample_data/Mood_and_Sleep_Data.json")
+fetch("Mood_and_Sleep_Data.json")
 .then(function(response){
    if(response.status == 200){
       console.log("Data fetched successfully");
+	  console.log(response);
       return response.json();
    }
    else{
