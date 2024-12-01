@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn, onLogout }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -36,9 +36,19 @@ const Navbar = () => {
                             <li>
                                 <a href="/calendar">Calendar</a>
                             </li>
-                            <li>
-                                <a href="/login">Login</a>
-                            </li>
+                            {!isLoggedIn ? ( 
+                                <li>
+                                    <a href="/login">Login</a>
+                                </li>
+                            ) : (
+                                <li>
+                                    <button
+                                        className="logout-button"
+                                        onClick={onLogout}>
+                                        Logout
+                                    </button>
+                                </li>
+                            )}
                         </ul>
                     )}
                 </li>

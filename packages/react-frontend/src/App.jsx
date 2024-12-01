@@ -18,8 +18,8 @@ import Support from "./Support";
 import flower from "./assets/botanical-flowers.png";
 import Analytics from "./Analytics";
 
-const API_PATH = "http://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net" //Enable For Remote Backend
-//const API_PATH = "http://localhost:8000" //Enable For Local Backend
+//const API_PATH = "http://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net" //Enable For Remote Backend
+const API_PATH = "http://localhost:8000" //Enable For Local Backend
 function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
     const [token, setToken] = useState(INVALID_TOKEN);
@@ -27,11 +27,31 @@ function App() {
     //const [userCreds, setUserCreds] = useState(null);
 
     useEffect(() => {
+        console.log("Current token:", token);
+        console.log("Is logged in:", token !== INVALID_TOKEN);
+    }, [token]);
+
+    useEffect(() => {
         if (token && token !== INVALID_TOKEN) {
             console.log("Token updated:", token);
             // Perform any action dependent on the token here
         }
     }, [token]);
+
+    const AuthWrapper = ({ children }) => {
+        if (localStorage.getItem("authToken") === INVALID_TOKEN) {
+            return <Navigate to="/login" replace />;
+        }
+        return <>{children}</>;
+    };
+
+    const handleLogout = () => {
+        setToken(INVALID_TOKEN);
+        localStorage.setItem("authToken", "INVALID_TOKEN");
+        localStorage.removeItem("userCreds");
+        setMessage("Logged out successfully.");
+        window.location.href = "/"; // Redirect to the homepage
+    };
 
     function fetchDay(date) {
         const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
@@ -77,7 +97,7 @@ function App() {
                     localStorage.setItem("userCreds", JSON.stringify(creds));
 
                     setMessage(`Login successful; auth token saved`);
-                    window.location.href = "/checkin";
+                    window.location.href = "/";
                 } else {
                     setMessage(
                         `Login Error ${response.status}: ${response.data}`
@@ -169,7 +189,10 @@ function App() {
 
     return (
         <Router>
-            <Navbar></Navbar>
+            <Navbar
+                isLoggedIn={localStorage.getItem("authToken") !== INVALID_TOKEN}
+                onLogout={handleLogout}
+            />
             <div className="app">
                 <Routes>
                     <Route
@@ -188,24 +211,26 @@ function App() {
                     <Route
                         path="/"
                         element={
-                            <div className="main-screen">
-                                <h1>Welcome to Inner Bloom</h1>
-                                <button
-                                    className="checkin-button"
-                                    onClick={() =>
-                                        (window.location.href = "/checkin")
-                                    }>
-                                    Check-In
-                                </button>
-                                {/*<img src={flower} className = "flower"/>*/}
-                                {/*<button
-                                    className="calendar-button"
-                                    onClick={() =>
-                                        (window.location.href = "/calendar")
-                                    }>
-                                    Calendar
-                                </button>*/}
-                            </div>
+                            <AuthWrapper>
+                                <div className="main-screen">
+                                    <h1>Welcome to Inner Bloom</h1>
+                                    <button
+                                        className="checkin-button"
+                                        onClick={() =>
+                                            (window.location.href = "/checkin")
+                                        }>
+                                        Check-In
+                                    </button>
+                                    {/*<img src={flower} className = "flower"/>*/}
+                                    {/*<button
+                                        className="calendar-button"
+                                        onClick={() =>
+                                            (window.location.href = "/calendar")
+                                        }>
+                                        Calendar
+                                    </button>*/}
+                                </div>
+                            </AuthWrapper>
                         }
                     />
                     <Route
