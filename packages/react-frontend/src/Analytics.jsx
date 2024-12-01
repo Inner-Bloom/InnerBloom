@@ -1,4 +1,78 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import Chart from 'chart.js/auto';
+
+const Analytics = () => {
+    const chartRef = useRef(null);
+    const chartInstanceRef = useRef(null);
+
+    useEffect(() => {
+        // Fetch the JSON data
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/src/sample_data/Mood_and_Sleep_Data.json');
+                if (response.ok) {
+                    const jsonData = await response.json();
+                    console.log(jsonData);
+
+                    const ctx = chartRef.current.getContext('2d');
+                    console.log(ctx);
+
+                    // Destroy the previous chart instance if it exists
+                    if (chartInstanceRef.current) {
+                        chartInstanceRef.current.destroy();
+                    }
+
+                    // Create a new chart instance
+                    chartInstanceRef.current = new Chart(ctx, {
+                        type: 'bar', // Change this to 'line', 'doughnut', etc. for different chart types
+                        data: {
+                            labels: jsonData.map(row => row.date),
+                            datasets: [{
+                                label: 'Hours of Sleep',
+                                data: jsonData.map(row => row.sleep_hours),
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            },
+                            responsive: true,
+                            maintainAspectRatio: false,
+                        }
+                    });
+                } else {
+                    console.error('Network response was not ok');
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+
+        // Cleanup function to destroy the chart on unmount
+        return () => {
+            if (chartInstanceRef.current) {
+                chartInstanceRef.current.destroy();
+            }
+        };
+    }, []);
+
+    return (
+        <div style={{ width: 400, height: 400}}>
+            <h1>Analytics</h1>
+            <canvas ref={chartRef}></canvas>
+        </div>
+    );
+};
+
+export default Analytics;
+
 /*
 Todo: Fetch user data from the backend (api call; json format) and display it in a graph in this component.
 1. python script that fetches the data from the database and processes it into a simple to read dataframe
@@ -8,176 +82,3 @@ Todo: Fetch user data from the backend (api call; json format) and display it in
 2. chart.js to display the dataframe column in a graph
 2.a. use pandas dataframe column as the data passed to the chart.js
 */
-
-const Analytics = () => {
-    // useEffect(() => {
-    //     // Function to inject a script tag
-    //     const loadScript = (src, callback) => {
-    //       const script = document.createElement('script');
-    //       script.src = src;
-    //       script.async = true;
-    //       script.onload = callback;
-    //       document.body.appendChild(script);
-    //     };
-    
-    //     // Inject the external script first
-    //     loadScript('https://cdn.jsdelivr.net/npm/chart.js', () => {
-    //         console.log('Chart.js loaded');
-    //       // Inject your custom script after the external one (relative to index.html)
-    //         loadScript('/src/script.js', () => {
-    //             console.log('Custom script loaded');
-    //             });
-    //     });
-
-        
-    
-    //     // Cleanup: Remove the scripts on unmount
-    //     return () => {
-    //       const scripts = document.querySelectorAll(
-    //         `script[src="https://cdn.jsdelivr.net/npm/chart.js"], script[src="/src/script.js"]`
-    //       );
-    //       scripts.forEach((script) => document.body.removeChild(script));
-    //     };
-    // }, []);
-
-    return (
-        <div>
-            <h1>Analytics Zamn</h1> 
-            <div className="chart">
-                <div className="chart_types">
-                    <button onClick={() => createChart("line")}>Line</button>
-                    <button onClick={() => console.log("Clicked Bars")}>Bars</button>
-                    <button onClick={() => console.log('doughnut')}>Doughnut</button>
-                    <button onClick={() => console.log('polarArea')}>PolarArea</button>
-                    <button onClick={() => console.log('radar')}>Radar</button>
-                </div>
-                <canvas id="myChart" width="300" height="150" style={{margin: "15px auto", border: '1px solid black'}}></canvas>
-            </div>
-        </div>
-    );
-};
-
-export default Analytics;
-
-
-    // return (
-    //     <div
-    //         style={{
-    //             backgroundColor: "#eee6db",
-    //             backgroundSize: "cover",
-    //             backgroundPosition: "center",
-    //             backgroundRepeat: "no-repeat",
-    //             minHeight: "100vh",
-    //             width: "100%",
-    //             display: "flex",
-    //             flexDirection: "column",
-    //             alignItems: "center",
-    //             justifyContent: "center",
-    //             padding: 200,
-    //             fontFamily: "Source Sans 3"
-    //         }}>
-    //         <div
-    //             style={{
-    //                 backgroundColor: "rgba(255, 255, 255, 0.8)",
-    //                 maxWidth: "800px",
-    //                 padding: "20px",
-    //                 borderRadius: "10px",
-    //                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    //                 lineHeight: "1.6",
-    //                 textAlign: "center"
-    //             }}>
-    //             <header style={{ marginBottom: "40px" }}>
-    //                 <h1 style={{ fontSize: "2.5em" }}>Analytics</h1>
-    //                 <p style={{ fontSize: "1.2em" }}>
-    //                     Your personal mental health and wellness tracker
-    //                 </p>
-    //             </header>
-
-    //             <section style={{ marginBottom: "30px" }}>
-    //                 <h2 style={{ fontSize: "1.8em", marginBottom: "10px" }}>
-    //                     What is Inner Bloom?
-    //                 </h2>
-    //                 <p>
-    //                     Inner Bloom is a wellness tracker designed to help you
-    //                     understand and improve your mental health and daily
-    //                     habits. Whether you're looking to manage your emotions,
-    //                     improve your sleep patterns, or monitor your overall
-    //                     well-being, Inner Bloom is here to support you.
-    //                 </p>
-    //             </section>
-
-    //             <section style={{ marginBottom: "30px" }}>
-    //                 <h2 style={{ fontSize: "1.8em", marginBottom: "10px" }}>
-    //                     Key Features
-    //                 </h2>
-    //                 <ul
-    //                     style={{
-    //                         listStyleType: "circle",
-    //                         margin: "15px auto",
-    //                         textAlign: "left",
-    //                         maxWidth: "400px"
-    //                     }}>
-    //                     <li>Track your mood, thoughts, and feelings</li>
-    //                     <li>
-    //                         Monitor your sleeping habits with detailed insights
-    //                     </li>
-    //                     <li>
-    //                         Log daily activities and their impact on your mental
-    //                         health
-    //                     </li>
-    //                     <li>
-    //                         Gain awareness of patterns in your emotional and
-    //                         physical health
-    //                     </li>
-    //                 </ul>
-    //             </section>
-
-    //             <section>
-    //                 <h2 style={{ fontSize: "1.8em", marginBottom: "10px" }}>
-    //                     Why Choose Inner Bloom?
-    //                 </h2>
-    //                 <p>
-    //                     Inner Bloom stands out by focusing on both mental health
-    //                     and sleeping habits, allowing users to connect the dots
-    //                     between their lifestyle choices and their emotional
-    //                     well-being. With an easy-to-use interface, it's perfect
-    //                     for anyone looking to prioritize their mental health in
-    //                     a structured and meaningful way.
-    //                 </p>
-    //             </section>
-    //         </div>
-    //     </div>
-    // );
-
-
-// const Analytics = () => {
-//     const [graph, setGraph] = useState(null);
-
-//     useEffect(() => {
-//         fetch("http://localhost:8000/analytics")
-//             .then((response) => {
-//                 console.log("Response:", response);
-//                 return response.text();
-//             })
-//             .then((data) => {
-//                 console.log("Data:", data);
-//                 setGraph(data);
-//             })
-//             .catch((error) => {
-//                 console.error("There was an error fetching the graph!", error);
-//             });
-//     }, []);
-
-//     return (
-//         <div>
-//             <h1>Analytics Page</h1>
-//             {graph ? (
-//                 <div dangerouslySetInnerHTML={{ __html: graph }} />
-//             ) : (
-//                 <p>Loading...</p>
-//             )}
-//         </div>
-//     );
-// };
-
-// export default Analytics;
