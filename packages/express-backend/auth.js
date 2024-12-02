@@ -9,10 +9,9 @@ export function registerUser(req, res) {
         res.status(400).send("Bad request: Invalid input data.");
     }
     userService.getUsers(username).then((user) => {
-        if(!Array.isArray(user)){
+        if (!Array.isArray(user)) {
             res.status(500).send("Server Error");
-        }
-        else if (user.length >= 1) {
+        } else if (user.length >= 1) {
             res.status(409).send("Username already taken");
         } else {
             bcrypt
