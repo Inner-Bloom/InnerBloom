@@ -12,6 +12,9 @@ const Analytics = () => {
     const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
     const user = savedCreds.username;
     const INVALID_TOKEN = "INVALID_TOKEN";
+    // const API_PATH = "https://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net"; 
+    const API_PATH = "http://localhost:8000"; 
+
 
     function addAuthHeader(otherHeaders = {}) {
         const storedToken = localStorage.getItem("authToken");
@@ -55,9 +58,11 @@ const Analytics = () => {
             const filteredData = formattedData.filter((row) => {
                 const rowDate = new Date(row.time);
                 const currentDate = new Date();
+                console.log("rowDate:", rowDate.toDateString());
+                console.log("currentDate:", currentDate.toDateString());
                 if (scope === "day") {
                     return (
-                        rowDate.toDateString() === currentDate.toDateString()
+                        rowDate === (currentDate.getDate() - 1)
                     );
                 } else if (scope === "week") {
                     const oneWeekAgo = new Date();
@@ -143,9 +148,11 @@ const Analytics = () => {
         const fetchUserLogs = async () => {
             try {
                 const test_url = `/src/sample_data/Mood_and_Sleep_Data.json`; // might be used for demo
-                const user_url = `http://localhost:8000/users/${user}/logs`;
+                const url = `${API_PATH}/users/${user}/logs`; // Use the user_url for deployment
+                // const user_url = `http://localhost:8000/users/${user}/logs`;
+                console.log("URL:", url);
                 const headers = addAuthHeader();
-                const response = await fetch(test_url, { headers }); // Use the user_url for deployment
+                const response = await fetch(url, { headers }); // Use the user_url for deployment
                 if (response.ok) {
                     const jsonData = await response.json();
                     return jsonData;

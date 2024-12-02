@@ -16,7 +16,7 @@ const LogCalendar = ({ fetchDay }) => {
         const month = date.getMonth() + 1; // getMonth() returns 0-based month, so add 1
         const day = date.getDate();
         const year = date.getFullYear();
-        const formattedDate = `${month < 10 ? `0${month}` : month}/${day < 10 ? `0${day}` : day}/${year}`;
+        const formattedDate = `${month}/${day}/${year}`;
 
         console.log("Fetching logs for date:", formattedDate);
         try {

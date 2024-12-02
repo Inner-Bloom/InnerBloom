@@ -19,35 +19,6 @@ const port = 8000;
 app.use(cors());
 app.use(express.json());
 
-// DEBUG FUNCTION ONLY, REMOVE IN REAL CODE
-app.get("/users", (req, res) => {
-    const name = req.query.name;
-    userService
-        .getUsers(name)
-        .then((users) => {
-            if (users === undefined) {
-                res.status(404).send("Resource not found.");
-            } else {
-                res.send(users);
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-});
-// DEBUG FUNCTION ONLY, REMOVE IN REAL CODE
-app.post("/users", (req, res) => {
-    const userToAdd = req.body;
-    userService
-        .addUser(userToAdd)
-        .then((user) => {
-            res.status(201).send(user);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-});
-
 app.post("/signup", registerUser);
 app.post("/login", loginUser);
 

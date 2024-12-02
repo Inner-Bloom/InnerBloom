@@ -1,26 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Support = () => {
+    const [openQuestion, setOpenQuestion] = useState(null);
+
+    const toggleQuestion = (questionIndex) => {
+        setOpenQuestion(openQuestion === questionIndex ? null : questionIndex);
+    };
+
+    const faqData = [
+        {
+            question: "How do I track my daily mood?",
+            answer: "You can track your daily mood using the 'Check-In' feature on the home page. Simply select the emotions you're feeling and add any relevant notes or details."
+        },
+        {
+            question: "How can I reset my password?",
+            answer: "If you've forgotten your password, click on the 'Forgot Password' link on the login page. Follow the instructions to reset your password via email."
+        },
+        {
+            question: "How do I view my previous wellness logs?",
+            answer: "To view your previous wellness logs, go to the 'History' section in the app. Here, you can review all your past entries, including mood, sleep, and activity logs."
+        }
+    ];
+
     return (
         <div
             style={{
-                backgroundColor: "#eee6db",
+                backgroundColor: "#EEE6DB",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 minHeight: "100vh",
                 width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
                 padding: 200,
-                fontFamily: "Source Sans 3"
+                fontFamily: "Source Sans 3",
+                color: "#563838"
             }}>
             <div
                 style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    backgroundColor: "#EEE6DB",
                     maxWidth: "800px",
-                    margin: "0 auto",
                     padding: "20px",
                     borderRadius: "10px",
-                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                    boxShadow: "0 12px 16px #5C4033",
                     lineHeight: "1.6",
                     textAlign: "center"
                 }}>
@@ -46,43 +71,64 @@ const Support = () => {
                     <h2 style={{ fontSize: "1.8em", marginBottom: "10px" }}>
                         Frequently Asked Questions
                     </h2>
-                    <ul
+                    <div
                         style={{
-                            listStyleType: "circle",
-                            margin: "15px auto",
                             textAlign: "left",
-                            maxWidth: "400px"
+                            maxWidth: "400px",
+                            margin: "0 auto"
                         }}>
-                        <li>
-                            <strong>How do I track my daily mood?</strong>
-                            <p>
-                                You can track your daily mood using the
-                                "Check-In" feature on the home page. Simply
-                                select the emotions you're feeling and add any
-                                relevant notes or details.
-                            </p>
-                        </li>
-                        <li>
-                            <strong>How can I reset my password?</strong>
-                            <p>
-                                If you've forgotten your password, click on the
-                                "Forgot Password" link on the login page. Follow
-                                the instructions to reset your password via
-                                email.
-                            </p>
-                        </li>
-                        <li>
-                            <strong>
-                                How do I view my previous wellness logs?
-                            </strong>
-                            <p>
-                                To view your previous wellness logs, go to the
-                                "History" section in the app. Here, you can
-                                review all your past entries, including mood,
-                                sleep, and activity logs.
-                            </p>
-                        </li>
-                    </ul>
+                        {faqData.map((faq, index) => (
+                            <div
+                                key={index}
+                                style={{
+                                    marginBottom: "15px",
+                                    border: "1px solid #5C4033",
+                                    borderRadius: "8px",
+                                    padding: "10px",
+                                    backgroundColor: "#FFF"
+                                }}>
+                                <button
+                                    onClick={() => toggleQuestion(index)}
+                                    style={{
+                                        background: "none",
+                                        border: "none",
+                                        textAlign: "left",
+                                        width: "100%",
+                                        padding: "10px",
+                                        fontSize: "1rem",
+                                        fontWeight: "bold",
+                                        color: "#563838",
+                                        cursor: "pointer",
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        alignItems: "center"
+                                    }}>
+                                    {faq.question}
+                                    <span
+                                        style={{
+                                            fontSize: "1.2rem",
+                                            transform:
+                                                openQuestion === index
+                                                    ? "rotate(180deg)"
+                                                    : "rotate(0deg)",
+                                            transition: "transform 0.2s ease"
+                                        }}>
+                                        ▼
+                                    </span>
+                                </button>
+                                {openQuestion === index && (
+                                    <p
+                                        style={{
+                                            margin: "0",
+                                            padding: "10px",
+                                            color: "#563838"
+                                        }}>
+                                        {faq.answer}
+                                    </p>
+                                )}
+                            </div>
+                        ))}
+                    </div>
                 </section>
             </div>
         </div>
