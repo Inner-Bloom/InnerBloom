@@ -4,47 +4,62 @@ import Chart from 'chart.js/auto';
 const Analytics = () => {
     const chartRef = useRef(null);
     const chartInstanceRef = useRef(null);
+    const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
+    const user = savedCreds.username;
 
     useEffect(() => {
-        // Fetch the JSON data
-        const fetchData = async () => {
+        // Fetch the JSON data from the backend API
+        const displayData = (userData) => {
+            const ctx = chartRef.current.getContext('2d');
+            console.log(ctx);
+            console.log("Data:", userData)
+
+            // Destroy the previous chart instance if it exists
+            if (chartInstanceRef.current) {
+                chartInstanceRef.current.destroy();
+            }
+
+            // Format the time to only include year, month, and day
+            const formattedData = userData.map(row => ({
+                ...row,
+                time: new Date(row.time).toISOString().split('T')[0]
+            }));
+
+            // Create a new chart instance
+            chartInstanceRef.current = new Chart(ctx, {
+                type: 'line', // Change this to 'line', 'doughnut', etc. for different chart types
+                data: {
+                    labels: formattedData.map(row => row.time),
+                    datasets: [{
+                        label: 'Hours of Sleep',
+                        data: formattedData.map(row => row.sleep),
+                        backgroundColor: 'black', // last digit is opacity
+                        borderColor: 'black',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+        };
+
+        // Fetch all logs from user
+        const fetchUserLogs = async () => {
             try {
-                const response = await fetch('/src/sample_data/Mood_and_Sleep_Data.json');
+                const url = `http://localhost:8000/users/${user}/logs`;
+                const testurl = "/src/sample_data/Mood_and_Sleep_Data.json";
+                const response = await fetch(testurl);
                 if (response.ok) {
                     const jsonData = await response.json();
-                    console.log(jsonData);
-
-                    const ctx = chartRef.current.getContext('2d');
-                    console.log(ctx);
-
-                    // Destroy the previous chart instance if it exists
-                    if (chartInstanceRef.current) {
-                        chartInstanceRef.current.destroy();
-                    }
-
-                    // Create a new chart instance
-                    chartInstanceRef.current = new Chart(ctx, {
-                        type: 'bar', // Change this to 'line', 'doughnut', etc. for different chart types
-                        data: {
-                            labels: jsonData.map(row => row.date),
-                            datasets: [{
-                                label: 'Hours of Sleep',
-                                data: jsonData.map(row => row.sleep_hours),
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            },
-                            responsive: true,
-                            maintainAspectRatio: false,
-                        }
-                    });
+                    // console.log(jsonData);
+                    return jsonData;
                 } else {
                     console.error('Network response was not ok');
                 }
@@ -53,7 +68,15 @@ const Analytics = () => {
             }
         };
 
-        fetchData();
+        const getUserData = async () => {
+            const userData = await fetchUserLogs();
+            // console.log(userData);
+            if (userData) {
+                displayData(userData);
+            }
+        };
+
+        getUserData();
 
         // Cleanup function to destroy the chart on unmount
         return () => {
@@ -61,10 +84,10 @@ const Analytics = () => {
                 chartInstanceRef.current.destroy();
             }
         };
-    }, []);
+    }, [user]);
 
     return (
-        <div style={{ width: 400, height: 400}}>
+        <div style={{ width: 400, height: 400 }}>
             <h1>Analytics</h1>
             <canvas ref={chartRef}></canvas>
         </div>
