@@ -5,12 +5,13 @@ import userService from "./services/user-service.js";
 export function registerUser(req, res) {
     const { username, pwd } = req.body; // from form
     const userToAdd = req.body;
-    console.log("User to add:", userToAdd);
     if (!username || !pwd) {
         res.status(400).send("Bad request: Invalid input data.");
     }
     userService.getUsers(username).then((user) => {
-        if (username === user) {
+        if (!Array.isArray(user)) {
+            res.status(500).send("Server Error");
+        } else if (user.length >= 1) {
             res.status(409).send("Username already taken");
         } else {
             bcrypt
@@ -35,14 +36,12 @@ export function registerUser(req, res) {
 }
 
 export function loginUser(req, res) {
-    const { username, pwd } = req.body; // from form
+    const { username, pwd } = req.body; //from form
     userService.getUsers(username).then((retrievedUser) => {
         if (!retrievedUser) {
             // invalid username
             res.status(401).send("Unauthorized");
         } else {
-            // console.log("Input pwd", pwd);
-            // console.log("Retrieved User", retrievedUser[0]["pwd"]);
             bcrypt
                 .compare(pwd, retrievedUser[0]["pwd"])
                 .then((matched) => {
@@ -57,7 +56,7 @@ export function loginUser(req, res) {
                 })
                 .catch((error) => {
                     // error
-                    res.status(401).send("Unauthorized");
+                    res.status(500).send("Server Error");
                 });
         }
     });
@@ -66,8 +65,6 @@ export function loginUser(req, res) {
 export function authenticateUser(req, res, next) {
     const authHeader = req.headers["authorization"];
     const username = req.params.username;
-    //Getting the 2nd part of the auth header (the token)
-    //const token = authHeader && authHeader.split(" ")[1];
     const token = authHeader;
 
     if (!token) {
