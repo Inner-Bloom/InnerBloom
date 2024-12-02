@@ -60,7 +60,7 @@ const Analytics = () => {
                 const currentDate = new Date();
                 console.log("rowDate:", rowDate.toDateString());
                 console.log("currentDate:", currentDate.toDateString());
-                if (scope === "day") {
+                if (scope === "day") { // not working
                     return (
                         rowDate === (currentDate.getDate() - 1)
                     );
