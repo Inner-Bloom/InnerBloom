@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import "./Navbar.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
@@ -57,4 +58,8 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
     );
 };
 
+Navbar.propTypes = {
+    isLoggedIn: PropTypes.bool.isRequired,
+    onLogout: PropTypes.func.isRequired
+};
 export default Navbar;

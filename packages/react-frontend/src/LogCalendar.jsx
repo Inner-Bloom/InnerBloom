@@ -2,6 +2,7 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 import "./Calendar.css";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const LogCalendar = ({ fetchDay }) => {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -90,6 +91,10 @@ const LogCalendar = ({ fetchDay }) => {
             </button>
         </div>
     );
+};
+
+LogCalendar.propTypes = {
+    fetchDay: PropTypes.func.isRequired
 };
 
 export default LogCalendar;

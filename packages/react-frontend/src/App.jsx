@@ -6,7 +6,7 @@ import {
     Navigate
 } from "react-router-dom";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import Form from "./LogForm";
 import "./App.css";
 import Login from "./login";
@@ -44,9 +44,9 @@ function App() {
         }
         return <>{children}</>;
     };
-    
+
     AuthWrapper.propTypes = {
-        children: PropTypes.node.isRequired,
+        children: PropTypes.node.isRequired
     };
 
     const handleLogout = () => {
@@ -231,11 +231,11 @@ function App() {
                                         Calendar
                                     </button>*/}
                                     {/* Display the message below the action (button) */}
-                        {message && (
-                            <div className="action-message">
-                                {message}
-                            </div>
-                        )}
+                                    {message && (
+                                        <div className="action-message">
+                                            {message}
+                                        </div>
+                                    )}
                                 </div>
                             </AuthWrapper>
                         }
