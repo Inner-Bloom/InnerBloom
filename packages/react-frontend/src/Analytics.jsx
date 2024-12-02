@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
 
 const Analytics = () => {
@@ -10,6 +10,8 @@ const Analytics = () => {
     const chartInstanceRef3 = useRef(null);
     const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
     const user = savedCreds.username;
+
+    const [scope, setScope] = useState("week"); // Default scope is 'week'
 
     useEffect(() => {
         const displayData = (
@@ -33,18 +35,38 @@ const Analytics = () => {
                 time: new Date(row.time).toISOString().split("T")[0]
             }));
 
+            // Filter data based on the selected scope
+            const filteredData = formattedData.filter((row) => {
+                const rowDate = new Date(row.time);
+                const currentDate = new Date();
+                if (scope === "day") {
+                    return (
+                        rowDate.toDateString() === currentDate.toDateString()
+                    );
+                } else if (scope === "week") {
+                    const oneWeekAgo = new Date();
+                    oneWeekAgo.setDate(currentDate.getDate() - 7);
+                    return rowDate >= oneWeekAgo && rowDate <= currentDate;
+                } else if (scope === "month") {
+                    const oneMonthAgo = new Date();
+                    oneMonthAgo.setMonth(currentDate.getMonth() - 1);
+                    return rowDate >= oneMonthAgo && rowDate <= currentDate;
+                }
+                return true;
+            });
+
             let labels, data;
             if (chartType === "doughnut") {
                 // Count the occurrences of each mood
-                const moodCounts = formattedData.reduce((acc, row) => {
+                const moodCounts = filteredData.reduce((acc, row) => {
                     acc[row.mood] = (acc[row.mood] || 0) + 1;
                     return acc;
                 }, {});
                 labels = Object.keys(moodCounts);
                 data = Object.values(moodCounts);
             } else {
-                labels = formattedData.map((row) => row[labelAttribute]);
-                data = formattedData.map((row) => row.sleep);
+                labels = filteredData.map((row) => row[labelAttribute]);
+                data = filteredData.map((row) => row.sleep);
             }
 
             // Create a new chart instance
@@ -122,13 +144,6 @@ const Analytics = () => {
             if (userData) {
                 displayData(
                     userData,
-                    chartRef1,
-                    chartInstanceRef1,
-                    "bar",
-                    "time"
-                );
-                displayData(
-                    userData,
                     chartRef2,
                     chartInstanceRef2,
                     "line",
@@ -158,14 +173,38 @@ const Analytics = () => {
                 chartInstanceRef3.current.destroy();
             }
         };
-    }, [user]);
+    }, [user, scope]); // re-run the effect when the user  or scope changes (different user login)
 
+    const containerStyle = {
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center",
+        flexWrap: "wrap"
+    };
+
+    const canvasStyle = {
+        width: "300px",
+        height: "300px",
+        margin: "20px"
+    };
+
+    // note: canvas tags should have a ref instead of id and should never contain styling inside the tag
     return (
-        <div style={{ width: 400, height: 400 }}>
+        <div>
             <h1>Analytics</h1>
-            <canvas ref={chartRef1}></canvas>
-            <canvas ref={chartRef2}></canvas>
-            <canvas ref={chartRef3}></canvas>
+            <div>
+                <button onClick={() => setScope("day")}>Day</button>
+                <button onClick={() => setScope("week")}>Week</button>
+                <button onClick={() => setScope("month")}>Month</button>
+            </div>
+            <div style={containerStyle}>
+                <div style={canvasStyle}>
+                    <canvas ref={chartRef2}></canvas>
+                </div>
+                <div style={canvasStyle}>
+                    <canvas ref={chartRef3}></canvas>
+                </div>
+            </div>
         </div>
     );
 };
