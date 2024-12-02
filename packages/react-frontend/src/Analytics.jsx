@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
+import "./Analytics.css";
 
 const Analytics = () => {
     const chartRef1 = useRef(null);
@@ -10,6 +11,21 @@ const Analytics = () => {
     const chartInstanceRef3 = useRef(null);
     const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
     const user = savedCreds.username;
+    const INVALID_TOKEN = "INVALID_TOKEN";
+
+    function addAuthHeader(otherHeaders = {}) {
+        const storedToken = localStorage.getItem("authToken");
+        console.log("authy", storedToken);
+        if (storedToken === INVALID_TOKEN) {
+            return otherHeaders;
+        } else {
+            console.log("here");
+            return {
+                ...otherHeaders,
+                authorization: storedToken
+            };
+        }
+    }
 
     const [scope, setScope] = useState("week"); // Default scope is 'week'
 
@@ -51,6 +67,8 @@ const Analytics = () => {
                     const oneMonthAgo = new Date();
                     oneMonthAgo.setMonth(currentDate.getMonth() - 1);
                     return rowDate >= oneMonthAgo && rowDate <= currentDate;
+                } else if (scope === "All-Time") {
+                    return rowDate;
                 }
                 return true;
             });
@@ -126,7 +144,8 @@ const Analytics = () => {
             try {
                 const test_url = `/src/sample_data/Mood_and_Sleep_Data.json`; // might be used for demo
                 const user_url = `http://localhost:8000/users/${user}/logs`;
-                const response = await fetch(test_url); // Use the user_url for deployment
+                const headers = addAuthHeader();
+                const response = await fetch(test_url, { headers }); // Use the user_url for deployment
                 if (response.ok) {
                     const jsonData = await response.json();
                     return jsonData;
@@ -163,9 +182,9 @@ const Analytics = () => {
 
         // Cleanup function to destroy the charts on unmount
         return () => {
-            if (chartInstanceRef1.current) {
-                chartInstanceRef1.current.destroy();
-            }
+            // if (chartInstanceRef1.current) {
+            //     chartInstanceRef1.current.destroy();
+            // }
             if (chartInstanceRef2.current) {
                 chartInstanceRef2.current.destroy();
             }
@@ -175,33 +194,21 @@ const Analytics = () => {
         };
     }, [user, scope]); // re-run the effect when the user  or scope changes (different user login)
 
-    const containerStyle = {
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center",
-        flexWrap: "wrap"
-    };
-
-    const canvasStyle = {
-        width: "300px",
-        height: "300px",
-        margin: "20px"
-    };
-
     // note: canvas tags should have a ref instead of id and should never contain styling inside the tag
     return (
         <div>
             <h1>Analytics</h1>
-            <div>
+            <div className="button-container">
                 <button onClick={() => setScope("day")}>Day</button>
                 <button onClick={() => setScope("week")}>Week</button>
                 <button onClick={() => setScope("month")}>Month</button>
+                <button onClick={() => setScope("All-Time")}>All-Time</button>
             </div>
-            <div style={containerStyle}>
-                <div style={canvasStyle}>
+            <div className="analytics-container">
+                <div className="canvas-container">
                     <canvas ref={chartRef2}></canvas>
                 </div>
-                <div style={canvasStyle}>
+                <div className="canvas-container">
                     <canvas ref={chartRef3}></canvas>
                 </div>
             </div>

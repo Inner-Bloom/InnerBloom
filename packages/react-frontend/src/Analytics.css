@@ -1,0 +1,24 @@
+/* Analytics.css */
+.analytics-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.canvas-container {
+    width: 400px;
+    height: 400px;
+    margin: 80px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adjust the gap value to spread out the buttons more */
+}
+
+.button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+}

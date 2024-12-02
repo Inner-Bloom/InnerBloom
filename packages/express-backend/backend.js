@@ -66,7 +66,7 @@ app.get("/users/:username", authenticateUser, (req, res) => {
             console.log(error);
         });
 });
-app.get("/users/:username/logs", (req, res) => {
+app.get("/users/:username/logs", authenticateUser, (req, res) => {
     // remember to add authenticateUser
     const username = req.params.username;
     const day = req.query.day;
