@@ -36,7 +36,7 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
                             <li>
                                 <a href="/calendar">Calendar</a>
                             </li>
-                            {!isLoggedIn ? ( 
+                            {!isLoggedIn ? (
                                 <li>
                                     <a href="/login">Login</a>
                                 </li>

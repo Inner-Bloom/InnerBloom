@@ -31,7 +31,7 @@
 }
 
 .calendar-container {
-        animation: fadeIn 1s;
+    animation: fadeIn 1s;
     -webkit-animation: fadeIn 1s;
     -moz-animation: fadeIn 1s;
     -o-animation: fadeIn 1s;
@@ -41,8 +41,8 @@
     height: 90%;
 }
 
-.back-button-calendar{
-        border-radius: 8px;
+.back-button-calendar {
+    border-radius: 8px;
     border: 1px solid transparent;
     margin: 15px;
     padding: 0.6em 1.2em;
@@ -234,46 +234,46 @@
 }
 
 @keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+    0% {
+        opacity: 0;
     }
-    
-    @-moz-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+    100% {
+        opacity: 1;
     }
-    
-    @-webkit-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
-    
-    @-o-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+    100% {
+        opacity: 1;
     }
-    
-    @-ms-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
