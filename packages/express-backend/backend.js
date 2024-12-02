@@ -51,7 +51,7 @@ app.post("/users", (req, res) => {
 app.post("/signup", registerUser);
 app.post("/login", loginUser);
 
-app.get("/users/:username", authenticateUser, (req, res) => { 
+app.get("/users/:username", authenticateUser, (req, res) => {
     const username = req.params.username;
     userService
         .findUserByUsername(username)
@@ -66,7 +66,8 @@ app.get("/users/:username", authenticateUser, (req, res) => {
             console.log(error);
         });
 });
-app.get("/users/:username/logs", (req, res) => { // remember to add authenticateUser
+app.get("/users/:username/logs", (req, res) => {
+    // remember to add authenticateUser
     const username = req.params.username;
     const day = req.query.day;
     userService

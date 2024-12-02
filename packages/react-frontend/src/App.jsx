@@ -20,7 +20,7 @@ import Analytics from "./Analytics";
 
 // const API_PATH =
 //     "http://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net"; //Enable For Remote Backend
-const API_PATH = "http://localhost:8000" //Enable For Local Backend
+const API_PATH = "http://localhost:8000"; //Enable For Local Backend
 function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
     const [token, setToken] = useState(INVALID_TOKEN);
