@@ -39,6 +39,33 @@ function Form({ onSubmit, onBack }) {
         ]
     };
 
+    const subEmotion_Desc = {
+        Happy: [
+            { label: "pleased with your own achievements or those of someone close to you"}, // Proud
+            { label: "appreciative of something or someone"}, // Grateful
+            { label: "feeling pleasure and in high spirits" }, // Joyful
+            { label: "feeling complete and like you are enough" } // Content
+        ],
+        Calm: [
+            { label: "calm, peaceful, and untroubled" }, // Serene 
+            { label: "pleased with what you have or with something you did" }, // Satisfied
+            { label: "feeling casual and restful in body and mind" }, // Relaxed
+            { label: "quiet and calm; free from disturbance" } // Peaceful
+        ],
+        Sad: [
+            { label: "feeling sad because you are alone or disconnected" }, // Lonely
+            { label: "feeling disturbed or agitated" }, // Upset
+            { label: "feel completely defeated and in despair about the future" }, // Hopeless
+            { label: "feeling bad when you do something that you wish you hadn't" } // Regretful
+        ],
+        Anxious: [
+            { label: "vague sense that something is wrong" }, // Uneasy
+            { label: "easily agitated or alarmed" }, // Nervous
+            { label: "feeling like you have been taken over by strong feelings" }, // Overwhelmed 
+            { label: "troubled about actual or potential problems" } // Worried
+        ]
+    };
+
     const [selectedEmotion, setSelectedEmotion] = useState(null);
     const [selectedSubEmotion, setSelectedSubEmotion] = useState(null);
     const [sleepHours, setSleepHours] = useState(8);
@@ -108,7 +135,7 @@ function Form({ onSubmit, onBack }) {
                                 handleSubEmotionClick(subEmotion.label)
                             }>
                             {subEmotion.label}
-                        </button>
+                        </button> 
                     ))}
                     <button
                         type="button"
