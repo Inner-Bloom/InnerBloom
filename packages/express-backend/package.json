@@ -4,7 +4,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 0",
+        "test": "npm run lint",
         "dev": "npx nodemon backend.js",
         "lint": "npx eslint .",
         "start": "node backend.js"
