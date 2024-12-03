@@ -26,6 +26,7 @@ function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
     const [token, setToken] = useState(INVALID_TOKEN);
     const [message, setMessage] = useState("");
+    const [signupError, setSignupError] = useState("");
     const [isError, setIsError] = useState(false);
 
     //const [userCreds, setUserCreds] = useState(null);
@@ -105,13 +106,13 @@ function App() {
                 } else {
                     setIsError(true);
                     setMessage(
-                        `Login Error wrong username or password`
+                        `Login Error: wrong username or password`
                     );
                 }
             })
             .catch((error) => {
                 setIsError(true);
-                setMessage(`Login Error wrong username or password`);
+                setMessage(`Login Error: wrong username or password`);
             });
 
         return promise;
@@ -129,21 +130,20 @@ function App() {
                 if (response.status === 201) {
                     response.json().then((payload) => setToken(payload.token));
                     setIsError(false);
-                    setMessage(
+                    setSignupError(
                         `Signup successful for user: ${creds.username}`
                     );
                     window.location.href = "/login";
                 } else {
                     setIsError(true);
-
-                    setMessage(
+                    setSignupError(
                         `Signup Error: username already exists.`
                     );
                 }
             })
             .catch((error) => {
                 setIsError(true);
-                setMessage(`Signup Error: ${error}`);
+                setSignupError(`Signup Error: ${error}`);
             });
 
         return promise;
@@ -207,7 +207,8 @@ function App() {
                         element={
                             <Login
                                 handleSubmit={loginUser} 
-                                message={message}
+                                errorMessage={message}
+                                error={isError}
                             />
                         }
                     />
@@ -217,6 +218,8 @@ function App() {
                             <Login
                                 handleSubmit={signupUser}
                                 buttonLabel="Sign Up"
+                                errorMessage={signupError}
+                                error={isError}
                             />
                         }
                     />

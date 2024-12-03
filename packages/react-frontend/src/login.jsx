@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
 
@@ -8,6 +8,7 @@ function Login(props) {
         pwd: ""
     });
 
+    
     return (
         <div className="login-container">
             <form className="login-form">
@@ -38,6 +39,11 @@ function Login(props) {
                     value={props.buttonLabel || "Log In"}
                     onClick={submitForm}
                 />
+
+                {props.errorMessage && (
+                    <p style={{ color: props.error ? "red" : "green" }}>{props.errorMessage}</p>
+                )}
+
 
                 {props.buttonLabel !== "Sign Up" && (
                     <div className="signup-link">
