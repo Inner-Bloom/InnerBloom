@@ -38,7 +38,7 @@ export function registerUser(req, res) {
 export function loginUser(req, res) {
     const { username, pwd } = req.body; //from form
     userService.getUsers(username).then((retrievedUser) => {
-        if (!retrievedUser) {
+        if (!retrievedUser || retrievedUser.length === 0) {
             // invalid username
             res.status(401).send("Unauthorized");
         } else {
