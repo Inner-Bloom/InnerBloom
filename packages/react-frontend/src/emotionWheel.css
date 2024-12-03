@@ -1,6 +1,6 @@
 /* Overlay for check-in questions, darkens background */
 .overlay {
-    position: fixed; /* Ensure it covers the entire screen */
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
@@ -31,50 +31,6 @@
     z-index: 1010;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-o-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-ms-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 
 /* Complete check-in button */
 .complete-checkin {
@@ -197,11 +153,18 @@
     border: #333;
     transform: translate(10%, -5%);
     border-radius: 10px;
-    width: 25px;
-    height: 25px;
+    text-align: center;
+    width: 50px;
+    height: 30px;
     &:focus {
         outline: none;
     }
+}
+
+input[type='number']::-webkit-inner-spin-button, 
+input[type='number']::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Text design for Exercise question */
@@ -402,6 +365,61 @@
     font-size: 24px;
     color: #333;
     text-align: center;
+}
+
+/* Box for the Emotion Description on Hover */
+.emotion-box-label{
+        animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+    -o-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
+        background: #EFE2D0;
+        color: black;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translate(65%, 0%);
+    position: relative;
+    right: 50%;
+    width: 350px;
+    height: 80px;
+    text-align: center;
+    opacity: 1;
+}
+
+/* Styling for sub emotions in Happy */
+.emotion-label-Happy{
+        color: #5EA15E;
+        font-size: 24px;
+        font-family: "Source Sans 3";
+}
+
+/* Styling for sub emotions in Anxious */
+.emotion-label-Anxious{
+        color: #c10a3f;
+        font-size: 24px;
+        font-family: "Source Sans 3";
+}
+
+/* Styling for sub emotions in Sad */
+.emotion-label-Sad{
+        color: #5e81a4;
+        font-size: 24px;
+        font-family: "Source Sans 3";
+}
+
+/* Styling for sub emotions in Calm */
+.emotion-label-Calm{
+        color: #ff7d00;
+        font-size: 24px;
+        font-family: "Source Sans 3";
+}
+
+/* Styling for description of sub emotion */
+.emotion-desc{
+        font-size: 20px;
+        font-family: "Source Sans 3";
 }
 
 /* Anxious */
@@ -756,3 +774,57 @@
         background: radial-gradient(circle, #c14266, #c10a3f);
     }
 }
+
+@keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes fadeOut {
+            100% {
+                opacity: 1;
+            }
+            0% {
+                opacity: 0;
+            }
+        }
+    
+    @-moz-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @-webkit-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @-o-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @-ms-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
