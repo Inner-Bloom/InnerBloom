@@ -38,6 +38,7 @@ app.get("/users/:username", authenticateUser, (req, res) => {
         });
 });
 app.get("/users/:username/logs", authenticateUser, (req, res) => {
+    // remember to add authenticateUser
     const username = req.params.username;
     const day = req.query.day;
     userService
@@ -83,41 +84,6 @@ app.delete("/users/:username", authenticateUser, (req, res) => {
             console.log(error);
         });
 });
-
-//new endpoint to run analytics on the logs
-app.get("/analytics", (req, res) => {
-    console.log("running analytics");
-    userService
-        .getAnalytics()
-        .then((result) => {
-            if (result === undefined) {
-                res.status(404).send("Resource not found.");
-            } else {
-                console.log(result);
-                res.sendFile(path.resolve("figure.html"));
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-            res.status(500).send("Error running analytics");
-        });
-});
-
-// app.get("/users/:username/logs/analytics", authenticateUser, (req, res) => {
-//     const username = req.params.username;
-//     userService
-//         .getAnalytics(username)
-//         .then((result) => {
-//             if (result === undefined) {
-//                 res.status(404).send("Resource not found.");
-//             } else {
-//                 res.send(result);
-//             }
-//         })
-//         .catch((error) => {
-//             console.log(error);
-//         });
-// });
 
 app.listen(process.env.PORT || port, () => {
     console.log(`REST API is listening at port:${port}`);
