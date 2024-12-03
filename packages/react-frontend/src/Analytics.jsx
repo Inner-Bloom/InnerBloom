@@ -87,7 +87,8 @@ const Analytics = () => {
                 labels = Object.keys(moodCounts);
                 data = Object.values(moodCounts);
             } else {
-                labels = filteredData.map((row) => row[labelAttribute]);
+                // exclude the year from the time
+                labels = filteredData.map((row) => row[labelAttribute].slice(5));
                 data = filteredData.map((row) => row.sleep);
             }
 
@@ -139,7 +140,9 @@ const Analytics = () => {
                               }
                             : {},
                     responsive: true,
-                    maintainAspectRatio: false
+                    maintainAspectRatio: false,
+                    tension: 0.3,
+                    fill: true
                 }
             });
         };
