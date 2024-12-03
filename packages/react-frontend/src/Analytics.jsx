@@ -12,8 +12,8 @@ const Analytics = () => {
     const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
     const user = savedCreds.username;
     const INVALID_TOKEN = "INVALID_TOKEN";
-    // const API_PATH = "https://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net";
-    const API_PATH = "http://localhost:8000";
+    const API_PATH = "https://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net";
+    //const API_PATH = "http://localhost:8000";
 
     function addAuthHeader(otherHeaders = {}) {
         const storedToken = localStorage.getItem("authToken");
