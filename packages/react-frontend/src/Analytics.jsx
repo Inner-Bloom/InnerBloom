@@ -57,12 +57,11 @@ const Analytics = () => {
             // Filter data based on the selected scope
             const filteredData = formattedData.filter((row) => {
                 const rowDate = new Date(row.time);
+                rowDate.setDate(rowDate.getDate() + 1);
                 const currentDate = new Date();
-                console.log("rowDate:", rowDate.toDateString());
-                console.log("currentDate:", currentDate.toDateString());
                 if (scope === "day") { // not working
                     return (
-                        rowDate === (currentDate.getDate() - 1)
+                        rowDate.toDateString() === currentDate.toDateString()
                     );
                 } else if (scope === "week") {
                     const oneWeekAgo = new Date();
