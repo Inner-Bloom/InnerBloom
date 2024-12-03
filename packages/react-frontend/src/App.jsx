@@ -6,7 +6,7 @@ import {
     Navigate
 } from "react-router-dom";
 
-import React from "react";
+import PropTypes from "prop-types";
 import Form from "./LogForm";
 import "./App.css";
 import Login from "./login";
@@ -15,7 +15,6 @@ import Navbar from "./Navbar";
 
 import About from "./About";
 import Support from "./Support";
-import flower from "./assets/botanical-flowers.png";
 import Analytics from "./Analytics";
 
 const API_PATH =
@@ -45,6 +44,10 @@ function App() {
             return <Navigate to="/login" replace />;
         }
         return <>{children}</>;
+    };
+
+    AuthWrapper.propTypes = {
+        children: PropTypes.node.isRequired
     };
 
     const handleLogout = () => {
@@ -228,6 +231,12 @@ function App() {
                                         }>
                                         Calendar
                                     </button>*/}
+                                    {/* Display the message below the action (button) */}
+                                    {message && (
+                                        <div className="action-message">
+                                            {message}
+                                        </div>
+                                    )}
                                 </div>
                             </AuthWrapper>
                         }
