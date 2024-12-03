@@ -12,9 +12,8 @@ const Analytics = () => {
     const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
     const user = savedCreds.username;
     const INVALID_TOKEN = "INVALID_TOKEN";
-    // const API_PATH = "https://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net"; 
-    const API_PATH = "http://localhost:8000"; 
-
+    // const API_PATH = "https://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net";
+    const API_PATH = "http://localhost:8000";
 
     function addAuthHeader(otherHeaders = {}) {
         const storedToken = localStorage.getItem("authToken");
@@ -59,7 +58,8 @@ const Analytics = () => {
                 const rowDate = new Date(row.time);
                 rowDate.setDate(rowDate.getDate() + 1);
                 const currentDate = new Date();
-                if (scope === "day") { // not working
+                if (scope === "day") {
+                    // not working
                     return (
                         rowDate.toDateString() === currentDate.toDateString()
                     );
@@ -88,7 +88,9 @@ const Analytics = () => {
                 data = Object.values(moodCounts);
             } else {
                 // exclude the year from the time
-                labels = filteredData.map((row) => row[labelAttribute].slice(5));
+                labels = filteredData.map((row) =>
+                    row[labelAttribute].slice(5)
+                );
                 data = filteredData.map((row) => row.sleep);
             }
 
