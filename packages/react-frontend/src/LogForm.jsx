@@ -7,10 +7,10 @@ function Form({ onSubmit, onBack }) {
     // Define the emotions and their subemotions within the Form component
 
     const emotions = [
-        { label: "Anxious" },
-        { label: "Calm" },
-        { label: "Sad" },
-        { label: "Happy" }
+        { label: "Anxious", desc: "worried and uneasy about an uncertain outcome"},
+        { label: "Calm", desc: "feeling free of stress, agitation, and worry"},
+        { label: "Sad", desc: "feeling unhappy about something"},
+        { label: "Happy", desc:  "very pleased and filled with joy"}
     ];
 
     const subEmotions = {
@@ -42,7 +42,7 @@ function Form({ onSubmit, onBack }) {
 
     const [selectedEmotion, setSelectedEmotion] = useState(null);
     const [selectedSubEmotion, setSelectedSubEmotion] = useState(null);
-    const [hoveredSubEmotion, setHoveredSubEmotion] = useState({label: null, desc: null});
+    const [hoveredEmotion, setHoveredEmotion] = useState({label: null, desc: null});
     const [showEmotionDesc, setEmotionDesc] = useState(false);
     const [sleepHours, setSleepHours] = useState(8);
     const [sleepMinutes, setSleepMinutes] = useState(0);
@@ -62,12 +62,12 @@ function Form({ onSubmit, onBack }) {
     };
 
     const handleMouseEnter = (label, desc) => {
-        setHoveredSubEmotion({ label, desc }); // Store both label and description
+        setHoveredEmotion({ label, desc }); // Store both label and description
         setEmotionDesc(true);
     };
 
     const handleMouseLeave = () => {
-        setHoveredSubEmotion({ label: null, desc: null }); // Reset on mouse leave
+        setHoveredEmotion({ label: null, desc: null }); // Reset on mouse leave
         setEmotionDesc(false);
     };
 
@@ -144,6 +144,11 @@ function Form({ onSubmit, onBack }) {
                     <h3>How are you feeling?</h3>
                     {emotions.map((emotion, index) => (
                         <button
+                        onMouseEnter={() =>
+                                        handleMouseEnter(emotion.label, emotion.desc)
+                                        
+                                        }
+                        onMouseLeave={handleMouseLeave} 
                             type="button"
                             key={index}
                             className={"emotion-button-" + index}
@@ -157,12 +162,12 @@ function Form({ onSubmit, onBack }) {
                 </div>
             )}
 
-            {/* Emotion description box on hover of subEmotion */}
+            {/* Emotion description box on hover of Emotion */}
             {showEmotionDesc && (
                 <div className="emotion-box-label">
 
-                <div className={`emotion-label-${selectedEmotion}`}> {hoveredSubEmotion.label} </div>
-                <div className="emotion-desc"> {hoveredSubEmotion.desc} </div>
+                <div className={`emotion-label-${hoveredEmotion.label}`}> {hoveredEmotion.label} </div>
+                <div className="emotion-desc"> {hoveredEmotion.desc} </div>
 
                 </div>
 
