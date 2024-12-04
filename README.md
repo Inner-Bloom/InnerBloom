@@ -22,6 +22,16 @@ View the [InnerBloom UI Prototype](https://www.figma.com/design/i86zDoKPZDMtxl1l
 
 ---
 
+## Documentation
+
+- [Architecture Documentation](docs/architecture.md): Overview of the monorepo structure, technology stack, and UML Class Diagram.
+- [UML Class Diagram (Data Model)](docs/InnerBloom.drawio.png): Visual representation of the system design (last updated: [12/04/2024]).
+- [UML Class Diagram (User Authentication)](docs/UserAuth.drawio.png): Visual representation of User Authentication (last updated: [11/15/2024])
+
+- [Slides Presentation](https://docs.google.com/presentation/d/1w8UG2EFibk0wWt7E41UOsfpP_yYTB2kqIYL9UrPCBpI/edit?usp=sharing)
+
+
+
 ## Setting Up the Development Environment
 
 Follow these steps to get your development environment up and running.
