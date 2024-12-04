@@ -22,6 +22,41 @@
     -ms-animation: fadeIn 1s;
 }
 
+.check-in-complete{
+        animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+    -o-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
+        color: #563838;
+        height: 50px;
+        width: 300px;
+        border-radius: 8px;
+        background-color: #EFE2D0;
+    font-family: "Source Sans 3";
+    font-size: 32px;
+    font-weight: 300;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: text-shadow 0.25s;
+    transform: translate(60%, -450%);
+}
+
+#hideMe {
+        -webkit-animation: cssAnimation 5s forwards; 
+        animation: cssAnimation 5s forwards;
+    }
+    @keyframes cssAnimation {
+        0%   {opacity: 1;}
+        90%  {opacity: 1;}
+        100% {opacity: 0;}
+    }
+    @-webkit-keyframes cssAnimation {
+        0%   {opacity: 1;}
+        90%  {opacity: 1;}
+        100% {opacity: 0;}
+    }
+
 @keyframes fadeIn {
     0% {
         opacity: 0;

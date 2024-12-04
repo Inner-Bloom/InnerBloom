@@ -27,6 +27,7 @@ function App() {
     const [message, setMessage] = useState("");
     const [signupError, setSignupError] = useState("");
     const [isError, setIsError] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
     //const [userCreds, setUserCreds] = useState(null);
 
@@ -166,6 +167,7 @@ function App() {
             .catch((error) => {
                 console.log(error);
             });
+            setIsVisible(true)
     };
 
     const handleBack = () => {
@@ -254,6 +256,11 @@ function App() {
                                             {message}
                                         </div>
                                     )}
+                                    {isVisible && (
+                                        <div id = "hideMe" className="check-in-complete"> 
+                                        Check-In Completed!
+                                        </div>
+                                    )}
                                 </div>
                             </AuthWrapper>
                         }
@@ -262,7 +269,6 @@ function App() {
                         path="/checkin"
                         element={
                             <Form onSubmit={handleSubmit} onBack={handleBack} />
-                            /*<EmotionWheel />*/
                         }
                     />
                     <Route
