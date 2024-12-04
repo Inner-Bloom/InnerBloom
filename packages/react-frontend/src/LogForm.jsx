@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./emotionWheel.css";
 
-function Form({ onSubmit, onBack }) {
+function Form({ onSubmit }) {
     // Define the emotions and their subemotions within the Form component
 
     const emotions = [
@@ -299,5 +300,9 @@ function Form({ onSubmit, onBack }) {
         </form>
     );
 }
+
+Form.propTypes = {
+    onSubmit: PropTypes.func.isRequired
+};
 
 export default Form;

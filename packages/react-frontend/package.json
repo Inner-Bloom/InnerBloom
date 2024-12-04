@@ -4,6 +4,7 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
+        "test":"npm run lint",
         "dev": "vite",
         "build": "vite build",
         "lint": "eslint .",

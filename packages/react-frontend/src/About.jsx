@@ -1,5 +1,3 @@
-import React from "react";
-
 const About = () => {
     return (
         <div
@@ -43,9 +41,9 @@ const About = () => {
                     <p>
                         Inner Bloom is a wellness tracker designed to help you
                         understand and improve your mental health and daily
-                        habits. Whether you're looking to manage your emotions,
-                        improve your sleep patterns, or monitor your overall
-                        well-being, Inner Bloom is here to support you.
+                        habits. Whether you&#39;re looking to manage your
+                        emotions, improve your sleep patterns, or monitor your
+                        overall well-being, Inner Bloom is here to support you.
                     </p>
                 </section>
 
@@ -83,9 +81,9 @@ const About = () => {
                         Inner Bloom stands out by focusing on both mental health
                         and sleeping habits, allowing users to connect the dots
                         between their lifestyle choices and their emotional
-                        well-being. With an easy-to-use interface, it's perfect
-                        for anyone looking to prioritize their mental health in
-                        a structured and meaningful way.
+                        well-being. With an easy-to-use interface, it&#39;s
+                        perfect for anyone looking to prioritize their mental
+                        health in a structured and meaningful way.
                     </p>
                 </section>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Support = () => {
     const [openQuestion, setOpenQuestion] = useState(null);
@@ -14,7 +14,7 @@ const Support = () => {
         },
         {
             question: "How can I reset my password?",
-            answer: "If you've forgotten your password, click on the 'Forgot Password' link on the login page. Follow the instructions to reset your password via email."
+            answer: "If you have forgotten your password, click on the 'Forgot Password' link on the login page. Follow the instructions to reset your password via email."
         },
         {
             question: "How do I view my previous wellness logs?",
@@ -52,7 +52,7 @@ const Support = () => {
                 <header style={{ marginBottom: "40px" }}>
                     <h1 style={{ fontSize: "2.5em" }}>Support</h1>
                     <p style={{ fontSize: "1.2em" }}>
-                        We're here to help you on your journey
+                        We&#39;re here to help you on your journey
                     </p>
                 </header>
 
