@@ -50,10 +50,7 @@ cd your-project-name
 
 ### 2. Install Dependencies
 ```bash
-npm install chart.js
-npm install react-calendar
-npm install @mui/icons-material @emotion/react @emotion/styled
-npm install --msvs_version=2022
+npm install
 ```
 
 ### 3. Running Inner Bloom
