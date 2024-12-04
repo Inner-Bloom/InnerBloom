@@ -121,7 +121,7 @@ function App() {
         return promise;
     }
 
-    function signupUser(creds) {
+    async function signupUser(creds) {
         const promise = fetch(`${API_PATH}/signup`, {
             method: "POST",
             headers: {
@@ -129,14 +129,16 @@ function App() {
             },
             body: JSON.stringify(creds)
         })
-            .then((response) => {
+            .then(async (response) => {
                 if (response.status === 201) {
-                    response.json().then((payload) => setToken(payload.token));
+                    const payload = await response.json();
                     setIsError(false);
+                    localStorage.setItem("authToken", payload.token); // Save token to localStorage
+                    localStorage.setItem("userCreds", JSON.stringify(creds));
                     setSignupError(
                         `Signup successful for user: ${creds.username}`
                     );
-                    window.location.href = "/login";
+                    window.location.href = "/";
                 } else {
                     setIsError(true);
                     setSignupError(
@@ -153,7 +155,6 @@ function App() {
     }
 
     const handleSubmit = (logData) => {
-        console.log("Mood Log:", logData);
         postLog(logData)
             .then((response) => {
                 if (response.status === 201) {
