@@ -1,0 +1,13 @@
+[
+    { "time": "2023-11-29", "mood": "Zamn", "sleep": 5 },
+    { "time": "2024-11-20", "mood": "Happy", "sleep": 7 },
+    { "time": "2024-11-21", "mood": "Sad", "sleep": 5 },
+    { "time": "2024-11-22", "mood": "Sad", "sleep": 8 },
+    { "time": "2024-11-23", "mood": "Sad", "sleep": 6 },
+    { "time": "2024-11-24", "mood": "Happy", "sleep": 9 },
+    { "time": "2024-11-25", "mood": "Happy", "sleep": 4 },
+    { "time": "2024-11-26", "mood": "Happy", "sleep": 7 },
+    { "time": "2024-11-27", "mood": "Content", "sleep": 6 },
+    { "time": "2024-11-28", "mood": "Happy", "sleep": 8 },
+    { "time": "2024-11-29", "mood": "Happy", "sleep": 5 }
+]

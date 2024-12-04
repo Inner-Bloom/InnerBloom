@@ -4,6 +4,7 @@ import "./Calendar.css";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
+//fetchday is a function passed as a prop to LogCalendar component
 const LogCalendar = ({ fetchDay }) => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [logData, setLogData] = useState([]);
