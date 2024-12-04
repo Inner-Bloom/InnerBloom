@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./emotionWheel.css";
 
-function Form({ onSubmit, onBack }) {
+function Form({ onSubmit }) {
     // Define the emotions and their subemotions within the Form component
 
     const emotions = [
@@ -14,34 +15,64 @@ function Form({ onSubmit, onBack }) {
 
     const subEmotions = {
         Happy: [
-            { label: "Proud", desc: "pleased with your own achievements or those of someone close to you" },
-            { label: "Grateful", desc: "appreciative of something or someone"},
-            { label: "Joyful", desc: "feeling pleasure and in high spirits"},
-            { label: "Content", desc: "feeling complete and like you are enough"}
+            {
+                label: "Proud",
+                desc: "pleased with your own achievements or those of someone close to you"
+            },
+            { label: "Grateful", desc: "appreciative of something or someone" },
+            { label: "Joyful", desc: "feeling pleasure and in high spirits" },
+            {
+                label: "Content",
+                desc: "feeling complete and like you are enough"
+            }
         ],
         Calm: [
             { label: "Serene", desc: "calm, peaceful, and untroubled" },
-            { label: "Satisfied", desc: "pleased with what you have or with something you did" },
-            { label: "Relaxed", desc: "feeling casual and restful in body and mind" },
+            {
+                label: "Satisfied",
+                desc: "pleased with what you have or with something you did"
+            },
+            {
+                label: "Relaxed",
+                desc: "feeling casual and restful in body and mind"
+            },
             { label: "Peaceful", desc: "quiet and calm; free from disturbance" }
         ],
         Sad: [
-            { label: "Lonely", desc:  "feeling sad because you are alone or disconnected" },
+            {
+                label: "Lonely",
+                desc: "feeling sad because you are alone or disconnected"
+            },
             { label: "Upset", desc: "feeling disturbed or agitated" },
-            { label: "Hopeless", desc: "feel completely defeated and in despair about the future" },
-            { label: "Regretful", desc:  "feeling bad when you do something that you wish you hadn't" }
+            {
+                label: "Hopeless",
+                desc: "feel completely defeated and in despair about the future"
+            },
+            {
+                label: "Regretful",
+                desc: "feeling bad when you do something that you wish you hadn't"
+            }
         ],
         Anxious: [
-            { label: "Uneasy", desc:  "vague sense that something is wrong"},
+            { label: "Uneasy", desc: "vague sense that something is wrong" },
             { label: "Nervous", desc: "easily agitated or alarmed" },
-            { label: "Overwhelmed", desc: "feeling like you have been taken over by strong feelings"  },
-            { label: "Worried", desc:  "troubled about actual or potential problems" }
+            {
+                label: "Overwhelmed",
+                desc: "feeling like you have been taken over by strong feelings"
+            },
+            {
+                label: "Worried",
+                desc: "troubled about actual or potential problems"
+            }
         ]
     };
 
     const [selectedEmotion, setSelectedEmotion] = useState(null);
     const [selectedSubEmotion, setSelectedSubEmotion] = useState(null);
-    const [hoveredSubEmotion, setHoveredSubEmotion] = useState({label: null, desc: null});
+    const [hoveredSubEmotion, setHoveredSubEmotion] = useState({
+        label: null,
+        desc: null
+    });
     const [showEmotionDesc, setEmotionDesc] = useState(false);
     const [sleepHours, setSleepHours] = useState(8);
     const [sleepMinutes, setSleepMinutes] = useState(0);
@@ -113,20 +144,21 @@ function Form({ onSubmit, onBack }) {
                 <div className="sub-emotion-wheel">
                     {subEmotions[selectedEmotion].map((subEmotion, index) => (
                         <button
-
-                        onMouseEnter={() =>
-                                        handleMouseEnter(subEmotion.label, subEmotion.desc)
-                                        }
-                        onMouseLeave={handleMouseLeave} 
+                            onMouseEnter={() =>
+                                handleMouseEnter(
+                                    subEmotion.label,
+                                    subEmotion.desc
+                                )
+                            }
+                            onMouseLeave={handleMouseLeave}
                             type="button"
                             key={index}
                             className={`sub-emotion-button-${index} ${subEmotion.label}`}
                             onClick={() =>
                                 handleSubEmotionClick(subEmotion.label)
                             }>
-
                             {subEmotion.label}
-                        </button> 
+                        </button>
                     ))}
                     <button
                         type="button"
@@ -159,14 +191,15 @@ function Form({ onSubmit, onBack }) {
             {/* Emotion description box on hover of subEmotion */}
             {showEmotionDesc && (
                 <div className="emotion-box-label">
-
-                <div className={`emotion-label-${selectedEmotion}`}> {hoveredSubEmotion.label} </div>
-                <div className="emotion-desc"> {hoveredSubEmotion.desc} </div>
-
+                    <div className={`emotion-label-${selectedEmotion}`}>
+                        {" "}
+                        {hoveredSubEmotion.label}{" "}
+                    </div>
+                    <div className="emotion-desc">
+                        {" "}
+                        {hoveredSubEmotion.desc}{" "}
+                    </div>
                 </div>
-
-
-
             )}
             {/* Dialog box with extra input fields if a subemotion is selected */}
             {isVisible && (
@@ -267,5 +300,9 @@ function Form({ onSubmit, onBack }) {
         </form>
     );
 }
+
+Form.propTypes = {
+    onSubmit: PropTypes.func.isRequired
+};
 
 export default Form;

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./login.css";
 
 function Login(props) {
@@ -47,7 +49,7 @@ function Login(props) {
 
                 {props.buttonLabel !== "Sign Up" && (
                     <div className="signup-link">
-                        Don't have an account?{" "}
+                        Don&#39;t have an account?{" "}
                         <Link to="/signup">Sign up here</Link>
                     </div>
                 )}
@@ -65,5 +67,10 @@ function Login(props) {
         setCreds({ username: "", pwd: "" });
     }
 }
+
+Login.propTypes = {
+    buttonLabel: PropTypes.string,
+    handleSubmit: PropTypes.func.isRequired
+};
 
 export default Login;
