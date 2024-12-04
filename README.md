@@ -22,6 +22,12 @@ View the [InnerBloom UI Prototype](https://www.figma.com/design/i86zDoKPZDMtxl1l
 
 ---
 
+## Documentation
+
+- [Architecture Documentation](docs/architecture.md): Overview of the monorepo structure, technology stack, and UML Class Diagram.
+- [UML Class Diagram](docs/UML-diagram.png): Visual representation of the system design (last updated: [Insert Date Here]).
+
+
 ## Setting Up the Development Environment
 
 Follow these steps to get your development environment up and running.
