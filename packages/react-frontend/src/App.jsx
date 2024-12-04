@@ -17,12 +17,17 @@ import About from "./About";
 import Support from "./Support";
 import Analytics from "./Analytics";
 
+
 const API_PATH = "https://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net"; //Enable For Remote Backend
 //const API_PATH = "http://localhost:8000"; //Enable For Local Backend
+
 function App() {
     const INVALID_TOKEN = "INVALID_TOKEN";
     const [token, setToken] = useState(INVALID_TOKEN);
     const [message, setMessage] = useState("");
+    const [signupError, setSignupError] = useState("");
+    const [isError, setIsError] = useState(false);
+
     //const [userCreds, setUserCreds] = useState(null);
 
     useEffect(() => {
@@ -98,17 +103,19 @@ function App() {
                     setToken(payload.token); // Set the token in state
                     localStorage.setItem("authToken", payload.token); // Save token to localStorage
                     localStorage.setItem("userCreds", JSON.stringify(creds));
-
-                    setMessage(`Login successful; auth token saved`);
+                    setIsError(false);
+                    setMessage(`Login successful!`);
                     window.location.href = "/";
                 } else {
+                    setIsError(true);
                     setMessage(
-                        `Login Error ${response.status}: ${response.data}`
+                        `Login Error: wrong username or password`
                     );
                 }
             })
             .catch((error) => {
-                setMessage(`Login Error: ${error}`);
+                setIsError(true);
+                setMessage(`Login Error: wrong username or password`);
             });
 
         return promise;
@@ -125,18 +132,21 @@ function App() {
             .then((response) => {
                 if (response.status === 201) {
                     response.json().then((payload) => setToken(payload.token));
-                    setMessage(
-                        `Signup successful for user: ${creds.username}; auth token saved`
+                    setIsError(false);
+                    setSignupError(
+                        `Signup successful for user: ${creds.username}`
                     );
                     window.location.href = "/login";
                 } else {
-                    setMessage(
-                        `Signup Error ${response.status}: ${response.data}`
+                    setIsError(true);
+                    setSignupError(
+                        `Signup Error: username already exists.`
                     );
                 }
             })
             .catch((error) => {
-                setMessage(`Signup Error: ${error}`);
+                setIsError(true);
+                setSignupError(`Signup Error: ${error}`);
             });
 
         return promise;
@@ -197,7 +207,13 @@ function App() {
                 <Routes>
                     <Route
                         path="login"
-                        element={<Login handleSubmit={loginUser} />}
+                        element={
+                            <Login
+                                handleSubmit={loginUser} 
+                                errorMessage={message}
+                                error={isError}
+                            />
+                        }
                     />
                     <Route
                         path="/signup"
@@ -205,6 +221,8 @@ function App() {
                             <Login
                                 handleSubmit={signupUser}
                                 buttonLabel="Sign Up"
+                                errorMessage={signupError}
+                                error={isError}
                             />
                         }
                     />
