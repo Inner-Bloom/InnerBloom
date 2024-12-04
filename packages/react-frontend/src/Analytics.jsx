@@ -14,7 +14,7 @@ const Analytics = () => {
     const user = savedCreds.username;
     const INVALID_TOKEN = "INVALID_TOKEN";
     const API_PATH = "https://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net";
-    //const API_PATH = "http://localhost:8000";
+    // const API_PATH = "http://localhost:8000";
 
     function addAuthHeader(otherHeaders = {}) {
         const storedToken = localStorage.getItem("authToken");
@@ -67,11 +67,11 @@ const Analytics = () => {
                 } else if (scope === "week") {
                     const oneWeekAgo = new Date();
                     oneWeekAgo.setDate(currentDate.getDate() - 7);
-                    return rowDate >= oneWeekAgo && rowDate <= currentDate;
+                    return rowDate >= oneWeekAgo;
                 } else if (scope === "month") {
                     const oneMonthAgo = new Date();
                     oneMonthAgo.setMonth(currentDate.getMonth() - 1);
-                    return rowDate >= oneMonthAgo && rowDate <= currentDate;
+                    return rowDate >= oneMonthAgo;
                 } else if (scope === "All-Time") {
                     return rowDate;
                 }
