@@ -68,7 +68,10 @@ The codebase is structured as a monorepo that contains both the frontend and bac
 ## 5. UML Class Diagram
 *Note: The actual schema for logs is just the timestamp and a string of the encrypted version of the log. This is so we are never storing health data as plain text in our database.*
 
-![UML Class Diagram](path-to-your-uml-diagram.png)
+![UML Class Diagram (Data Model)](InnerBloom.drawio.png)
 
-_Last Updated: [Insert Date Here]_
+_Last Updated: [12/04/2024]_
 
+![UML Class Diagram (User Authentication)](UserAuth.drawio.png)
+
+_Last Updated: [11/15/2024]_
