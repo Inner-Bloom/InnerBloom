@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - run: npm ci
+      - run: npm install
       - run: npm run -w express-backend test
       - run: npm run -w react-frontend test
       - run: npm run -w react-frontend build

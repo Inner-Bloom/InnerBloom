@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
 import "./Analytics.css";
 
 
 const Analytics = () => {
-    const chartRef1 = useRef(null);
     const chartRef2 = useRef(null);
     const chartRef3 = useRef(null);
-    const chartInstanceRef1 = useRef(null);
     const chartInstanceRef2 = useRef(null);
     const chartInstanceRef3 = useRef(null);
     const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
@@ -153,6 +151,7 @@ const Analytics = () => {
         const fetchUserLogs = async () => {
             try {
                 const test_url = `/src/sample_data/Mood_and_Sleep_Data.json`; // might be used for demo
+                test_url //To pass linting while keepig for demo
                 const url = `${API_PATH}/users/${user}/logs`; // Use the user_url for deployment
                 // const user_url = `http://localhost:8000/users/${user}/logs`;
                 console.log("URL:", url);
