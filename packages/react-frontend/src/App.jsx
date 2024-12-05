@@ -114,7 +114,7 @@ function App() {
                     );
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 setIsError(true);
                 setMessage(`Login Error: wrong username or password`);
             });
