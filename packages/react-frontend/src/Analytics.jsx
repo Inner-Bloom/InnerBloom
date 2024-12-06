@@ -55,8 +55,10 @@ const Analytics = () => {
             // Filter data based on the selected scope
             const filteredData = formattedData.filter((row) => {
                 const rowDate = new Date(row.time);
-                rowDate.setDate(rowDate.getDate());
+                rowDate.setDate(rowDate.getDate() + 1);
                 const currentDate = new Date();
+                console.log("Row Date:", rowDate.toDateString());
+                console.log("Current Date:", currentDate.toDateString());
                 if (scope === "day") {
                     // not working
                     return (
@@ -91,7 +93,7 @@ const Analytics = () => {
                 // exclude the year from the time
                 labels = filteredData.map((row) => {
                     const date = new Date(row[labelAttribute]);
-                    date.setDate(date.getDate() - 1);
+                    date.setDate(date.getDate());
                     return date.toISOString().split("T")[0].slice(5);
                 });
                 data = filteredData.map((row) => row.sleep);
