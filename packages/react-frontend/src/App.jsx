@@ -15,6 +15,11 @@ import Navbar from "./Navbar";
 
 import About from "./About";
 import Support from "./Support";
+import flower_anxious_cutout from "./assets/botanical-flowers-anxious-cutout.png";
+import flower_sad_cutout from "./assets/botanical-flowers-sad-cutout.png";
+import flower_happy_cutout from "./assets/botanical-flowers-happy-cutout.png";
+import flower_calm_cutout from "./assets/botanical-flowers-calm-cutout.png";
+import flower_stem from "./assets/botanical-flowers-stem.png"
 import Analytics from "./Analytics";
 
 
@@ -200,6 +205,33 @@ function App() {
         }
     }
 
+    const images = [flower_anxious_cutout, flower_sad_cutout, flower_happy_cutout, flower_calm_cutout]
+
+    const Flowers = () => {
+        const [currentIndex, setCurrentIndex] = useState(0);
+        const [fadeClass, setFadeClass] = useState("fade-in");
+    
+        useEffect(() => {
+            const intervalId = setInterval(() => {
+                setFadeClass("fade-out"); // Trigger fade-out
+                setTimeout(() => {
+                    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+                    setFadeClass("fade-in"); // Trigger fade-in
+                }, 1000); // Match duration of fade-out
+            }, 5000);
+    
+            return () => clearInterval(intervalId);
+        }, []);
+    
+        return <div> 
+        <img src={flower_stem} className="flower"></img>
+        <img src={flower_stem} className="flower2"></img>
+        <img src={images[currentIndex]} alt="flower" className={`flower ${fadeClass}`} />
+        <img src={images[currentIndex]} alt="flower" className={`flower2 ${fadeClass}`} />
+        </div>
+        ;
+    };
+
     return (
         <Router>
             <Navbar
@@ -242,7 +274,10 @@ function App() {
                                         }>
                                         Check-In
                                     </button>
-                                    {/*<img src={flower} className = "flower"/>*/}
+                                    <Flowers />
+                                    {/* <img src={flower} className = "flower"/> */}
+                                    {/* <img src={flower_anxious} className = "flower"/> */}
+                                    
                                     {/*<button
                                         className="calendar-button"
                                         onClick={() =>
@@ -262,6 +297,9 @@ function App() {
                                         </div>
                                     )}
                                 </div>
+                                {/* <div> 
+                                    <img src={images[currentIndex]} className = "flower"/>
+                                    </div> */}
                             </AuthWrapper>
                         }
                     />

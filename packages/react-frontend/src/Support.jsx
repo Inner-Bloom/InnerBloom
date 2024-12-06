@@ -18,7 +18,7 @@ const Support = () => {
         },
         {
             question: "How do I view my previous wellness logs?",
-            answer: "To view your previous wellness logs, go to the 'History' section in the app. Here, you can review all your past entries, including mood, sleep, and activity logs."
+            answer: "To view your previous wellness logs, go to the 'Calendar' section in the app. Here, you can review all your past entries, including mood, sleep, and activity logs."
         },
         {
             question: "How do I delete my account?",
