@@ -56,7 +56,7 @@
     }
     
     .fade-out {
-        opacity: 0; /* Fully transparent */
+        opacity: 0.3; /* Fully transparent */
     }
 
 @keyframes fadeIn {

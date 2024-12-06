@@ -15,10 +15,11 @@ import Navbar from "./Navbar";
 
 import About from "./About";
 import Support from "./Support";
-import flower_anxious from "./assets/botanical-flowers-anxious.png";
-import flower_sad from "./assets/botanical-flowers-sad.png";
-import flower_happy from "./assets/botanical-flowers-happy.png";
-import flower_calm from "./assets/botanical-flowers-calm.png";
+import flower_anxious_cutout from "./assets/botanical-flowers-anxious-cutout.png";
+import flower_sad_cutout from "./assets/botanical-flowers-sad-cutout.png";
+import flower_happy_cutout from "./assets/botanical-flowers-happy-cutout.png";
+import flower_calm_cutout from "./assets/botanical-flowers-calm-cutout.png";
+import flower_stem from "./assets/botanical-flowers-stem.png"
 import Analytics from "./Analytics";
 
 const API_PATH =
@@ -189,7 +190,7 @@ function App() {
         }
     }
 
-    const images = [flower_anxious, flower_sad, flower_happy, flower_calm]
+    const images = [flower_anxious_cutout, flower_sad_cutout, flower_happy_cutout, flower_calm_cutout]
 
     const Flowers = () => {
         const [currentIndex, setCurrentIndex] = useState(0);
@@ -201,13 +202,15 @@ function App() {
                 setTimeout(() => {
                     setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
                     setFadeClass("fade-in"); // Trigger fade-in
-                }, 1500); // Match duration of fade-out
-            }, 10000);
+                }, 1000); // Match duration of fade-out
+            }, 5000);
     
             return () => clearInterval(intervalId);
         }, []);
     
         return <div> 
+        <img src={flower_stem} className="flower"></img>
+        <img src={flower_stem} className="flower2"></img>
         <img src={images[currentIndex]} alt="flower" className={`flower ${fadeClass}`} />
         <img src={images[currentIndex]} alt="flower" className={`flower2 ${fadeClass}`} />
         </div>

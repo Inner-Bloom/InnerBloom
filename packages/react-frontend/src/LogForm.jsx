@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./App.jsx";
 import "./emotionWheel.css";
+
+import flower_anxious_cutout from "./assets/botanical-flowers-anxious-cutout.png";
+import flower_sad_cutout from "./assets/botanical-flowers-sad-cutout.png";
+import flower_happy_cutout from "./assets/botanical-flowers-happy-cutout.png";
+import flower_calm_cutout from "./assets/botanical-flowers-calm-cutout.png";
+import flower_multi_cutout from "./assets/botanical-flowers-multi-cutout.png";
+import flower_stem from "./assets/botanical-flowers-stem.png"
 
 function Form({ onSubmit, onBack }) {
     // Define the emotions and their subemotions within the Form component
 
     const emotions = [
-        { label: "Anxious", desc: "worried and uneasy about an uncertain outcome"},
-        { label: "Calm", desc: "feeling free of stress, agitation, and worry"},
-        { label: "Sad", desc: "feeling unhappy about something"},
-        { label: "Happy", desc:  "very pleased and filled with joy"}
+        { label: "Anxious", desc: "worried and uneasy about an uncertain outcome", flower: <img src={flower_anxious_cutout} className="flower"></img>, flower2: <img src={flower_anxious_cutout} className="flower2"></img>},
+        { label: "Calm", desc: "feeling free of stress, agitation, and worry", flower: <img src={flower_calm_cutout} className="flower"></img>, flower2: <img src={flower_calm_cutout} className="flower2"></img>},
+        { label: "Sad", desc: "feeling unhappy about something", flower: <img src={flower_sad_cutout} className="flower" ></img>, flower2: <img src={flower_sad_cutout} className="flower2" ></img>},
+        { label: "Happy", desc:  "very pleased and filled with joy", flower: <img src={flower_happy_cutout} className="flower"></img>, flower2: <img src={flower_happy_cutout} className="flower2"></img> } 
     ];
 
     const subEmotions = {
@@ -41,8 +47,9 @@ function Form({ onSubmit, onBack }) {
     };
 
     const [selectedEmotion, setSelectedEmotion] = useState(null);
+    const [selectedEmotionObject, setSelectedEmotionObject] = useState(null);
     const [selectedSubEmotion, setSelectedSubEmotion] = useState(null);
-    const [hoveredEmotion, setHoveredEmotion] = useState({label: null, desc: null});
+    const [hoveredEmotion, setHoveredEmotion] = useState({label: null, desc: null, flower: <img src={flower_multi_cutout} className="flower" />, flower2: <img src={flower_multi_cutout} className="flower2" />});
     const [showEmotionDesc, setEmotionDesc] = useState(false);
     const [sleepHours, setSleepHours] = useState(8);
     const [sleepMinutes, setSleepMinutes] = useState(0);
@@ -53,7 +60,8 @@ function Form({ onSubmit, onBack }) {
 
     const handleEmotionClick = (emotion) => {
         setSelectedSubEmotion(null); // Reset subemotion selection
-        setSelectedEmotion(emotion); // Set the selected emotion
+        setSelectedEmotion(emotion.label); // Set the selected emotion
+        setSelectedEmotionObject(emotion); // Store the full emotion object
     };
 
     const handleSubEmotionClick = (subEmotion) => {
@@ -61,13 +69,13 @@ function Form({ onSubmit, onBack }) {
         setIsVisible(true); // Show the dialog box after subemotion selection
     };
 
-    const handleMouseEnter = (label, desc) => {
-        setHoveredEmotion({ label, desc }); // Store both label and description
+    const handleMouseEnter = (label, desc, flower, flower2) => {
+        setHoveredEmotion({ label, desc, flower, flower2}); // Store both label, description, flower
         setEmotionDesc(true);
     };
 
     const handleMouseLeave = () => {
-        setHoveredEmotion({ label: null, desc: null }); // Reset on mouse leave
+        setHoveredEmotion({ label: null, desc: null, flower: <img src={flower_multi_cutout} className="flower"/>, flower2: <img src={flower_multi_cutout} className="flower2"/>}); // Reset on mouse leave
         setEmotionDesc(false);
     };
 
@@ -110,13 +118,30 @@ function Form({ onSubmit, onBack }) {
                 Back
             </button>
 
+            <div>
+  {selectedEmotionObject
+    ? selectedEmotionObject.flower
+    : hoveredEmotion.flower}
+</div>
+<div>
+  {selectedEmotionObject
+    ? selectedEmotionObject.flower2
+    : hoveredEmotion.flower2}
+</div>
+<div>
+  <img src={flower_stem} className="flower" />
+</div>
+<div>
+  <img src={flower_stem} className="flower2" />
+</div>
+
             {selectedEmotion ? (
                 <div className="sub-emotion-wheel">
                     {subEmotions[selectedEmotion].map((subEmotion, index) => (
                         <button
 
                         onMouseEnter={() =>
-                                        handleMouseEnter(subEmotion.label, subEmotion.desc)
+                                        handleMouseEnter(subEmotion.label, subEmotion.desc, selectedEmotionObject.flower, selectedEmotionObject.flower2)
                                         }
                         onMouseLeave={handleMouseLeave} 
                             type="button"
@@ -132,7 +157,10 @@ function Form({ onSubmit, onBack }) {
                     <button
                         type="button"
                         className="sub-back-button"
-                        onClick={() => setSelectedEmotion(null)}>
+                        onClick={() => {
+                                setSelectedEmotion(null);
+                                setSelectedEmotionObject(null); // Reset the selected emotion object
+                                } }>
                         Back
                     </button>
                     <div className="sub-cutout"></div>
@@ -145,14 +173,14 @@ function Form({ onSubmit, onBack }) {
                     {emotions.map((emotion, index) => (
                         <button
                         onMouseEnter={() =>
-                                        handleMouseEnter(emotion.label, emotion.desc)
+                                        handleMouseEnter(emotion.label, emotion.desc, emotion.flower, emotion.flower2)
                                         
                                         }
                         onMouseLeave={handleMouseLeave} 
                             type="button"
                             key={index}
                             className={"emotion-button-" + index}
-                            onClick={() => handleEmotionClick(emotion.label)}>
+                            onClick={() => handleEmotionClick(emotion)}>
                             {emotion.label}
                         </button>
                     ))}
@@ -160,6 +188,7 @@ function Form({ onSubmit, onBack }) {
                     <div className="centered-text-1">How are</div>
                     <div className="centered-text-2">you feeling?</div>
                 </div>
+                
             )}
 
             {/* Emotion description box on hover of Emotion */}
@@ -168,7 +197,6 @@ function Form({ onSubmit, onBack }) {
 
                 <div className={`emotion-label-${hoveredEmotion.label}`}> {hoveredEmotion.label} </div>
                 <div className="emotion-desc"> {hoveredEmotion.desc} </div>
-
                 </div>
 
 
