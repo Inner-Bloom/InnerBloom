@@ -16,11 +16,11 @@ const Analytics = () => {
 
     function addAuthHeader(otherHeaders = {}) {
         const storedToken = localStorage.getItem("authToken");
-        console.log("authy", storedToken);
+        // console.log("authy", storedToken);
         if (storedToken === INVALID_TOKEN) {
             return otherHeaders;
         } else {
-            console.log("here");
+            // console.log("here");
             return {
                 ...otherHeaders,
                 authorization: storedToken
@@ -39,7 +39,7 @@ const Analytics = () => {
             labelAttribute
         ) => {
             const ctx = chartRef.current.getContext("2d");
-            console.log("Data:", userData);
+            // console.log("Data:", userData);
 
             // Destroy the previous chart instance if it exists
             if (chartInstanceRef.current) {
@@ -55,7 +55,7 @@ const Analytics = () => {
             // Filter data based on the selected scope
             const filteredData = formattedData.filter((row) => {
                 const rowDate = new Date(row.time);
-                rowDate.setDate(rowDate.getDate() + 1);
+                rowDate.setDate(rowDate.getDate());
                 const currentDate = new Date();
                 if (scope === "day") {
                     // not working
@@ -64,17 +64,19 @@ const Analytics = () => {
                     );
                 } else if (scope === "week") {
                     const oneWeekAgo = new Date();
-                    oneWeekAgo.setDate(currentDate.getDate() - 7);
+                    oneWeekAgo.setDate(currentDate.getDate() - currentDate.getDay());
                     return rowDate >= oneWeekAgo;
                 } else if (scope === "month") {
-                    const oneMonthAgo = new Date();
-                    oneMonthAgo.setMonth(currentDate.getMonth() - 1);
+                    const oneMonthAgo = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+                    // oneMonthAgo.setMonth(currentDate.getFullYear(), currentDate.getMonth(), 1); // Start of the current month);
                     return rowDate >= oneMonthAgo;
                 } else if (scope === "All-Time") {
                     return rowDate;
                 }
                 return true;
             });
+            // console.log("Row Date:", filteredData.toDateString());
+            // console.log("Current Date:", currentDate.toDateString());
 
             let labels, data;
             if (chartType === "doughnut") {
@@ -87,12 +89,16 @@ const Analytics = () => {
                 data = Object.values(moodCounts);
             } else {
                 // exclude the year from the time
-                labels = filteredData.map((row) =>
-                    row[labelAttribute].slice(5)
-                );
+                labels = filteredData.map((row) => {
+                    const date = new Date(row[labelAttribute]);
+                    date.setDate(date.getDate() - 1);
+                    return date.toISOString().split("T")[0].slice(5);
+                });
                 data = filteredData.map((row) => row.sleep);
             }
 
+            // Calculate the maximum value in the data
+            const maxDataValue = Math.max(...data);
             // Create a new chart instance
             chartInstanceRef.current = new Chart(ctx, {
                 type: chartType, // Use the chartType parameter
@@ -136,7 +142,8 @@ const Analytics = () => {
                         chartType !== "doughnut"
                             ? {
                                   y: {
-                                      beginAtZero: true
+                                      beginAtZero: true,
+                                      max: maxDataValue + 2
                                   }
                               }
                             : {},
@@ -154,7 +161,7 @@ const Analytics = () => {
                 test_url //To pass linting while keepig for demo
                 const url = `${API_PATH}/users/${user}/logs`; // Use the user_url for deployment
                 // const user_url = `http://localhost:8000/users/${user}/logs`;
-                console.log("URL:", url);
+                // console.log("URL:", url);
                 const headers = addAuthHeader();
                 const response = await fetch(url, { headers }); // Use the user_url for deployment
                 if (response.ok) {
@@ -170,7 +177,7 @@ const Analytics = () => {
 
         const getUserData = async () => {
             const userData = await fetchUserLogs();
-            console.log("Data: ", userData);
+            // console.log("Data: ", userData);
             if (userData) {
                 displayData(
                     userData,
