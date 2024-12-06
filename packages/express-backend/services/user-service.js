@@ -81,29 +81,6 @@ function deleteUserByUsername(name) {
     return userModel.findAndDelete({ username: name });
 }
 
-//calling analytics.py to run the analytics
-// function getAnalytics() {
-//     return new Promise((resolve, reject) => {
-//         const pyProg = spawn("python", ["analytics.py"]);
-
-//         // pyProg.stdout.on('data', (data) => {
-//         //     console.log(`Output: ${data.toString()}`);
-//         // });
-
-//         // pyProg.stderr.on('data', (data) => {
-//         //     console.error(`Error: ${data.toString()}`);
-//         // });
-
-//         pyProg.on("close", (code) => {
-//             if (code === 0) {
-//                 resolve("Analytics is running");
-//             } else {
-//                 reject(`Process exited with code ${code}`);
-//             }
-//         });
-//     });
-// }
-
 export default {
     addUser,
     getUsers,
