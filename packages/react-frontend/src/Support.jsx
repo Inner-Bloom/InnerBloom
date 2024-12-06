@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Support = () => {
     const [openQuestion, setOpenQuestion] = useState(null);
@@ -14,11 +14,15 @@ const Support = () => {
         },
         {
             question: "How can I reset my password?",
-            answer: "If you've forgotten your password, click on the 'Forgot Password' link on the login page. Follow the instructions to reset your password via email."
+            answer: "If you have forgotten your password, click on the 'Forgot Password' link on the login page. Follow the instructions to reset your password via email."
         },
         {
             question: "How do I view my previous wellness logs?",
             answer: "To view your previous wellness logs, go to the 'Calendar' section in the app. Here, you can review all your past entries, including mood, sleep, and activity logs."
+        },
+        {
+            question: "How do I delete my account?",
+            answer: "To delete your account, please email clngo654@gmail.com with the subject line 'Account Deletion Request.' Make sure to include your registered email address and confirm that you'd like to delete your account. Our support team will process your request and notify you once the deletion is complete."
         }
     ];
 
@@ -52,7 +56,7 @@ const Support = () => {
                 <header style={{ marginBottom: "40px" }}>
                     <h1 style={{ fontSize: "2.5em" }}>Support</h1>
                     <p style={{ fontSize: "1.2em" }}>
-                        We're here to help you on your journey
+                        We&#39;re here to help you on your journey
                     </p>
                 </header>
 

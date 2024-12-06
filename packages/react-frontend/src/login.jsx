@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./login.css";
 
 function Login(props) {
@@ -8,6 +10,7 @@ function Login(props) {
         pwd: ""
     });
 
+    
     return (
         <div className="login-container">
             <form className="login-form">
@@ -39,9 +42,14 @@ function Login(props) {
                     onClick={submitForm}
                 />
 
+                {props.errorMessage && (
+                    <p style={{ color: props.error ? "red" : "green" }}>{props.errorMessage}</p>
+                )}
+
+
                 {props.buttonLabel !== "Sign Up" && (
                     <div className="signup-link">
-                        Don't have an account?{" "}
+                        Don&#39;t have an account?{" "}
                         <Link to="/signup">Sign up here</Link>
                     </div>
                 )}
@@ -59,5 +67,10 @@ function Login(props) {
         setCreds({ username: "", pwd: "" });
     }
 }
+
+Login.propTypes = {
+    buttonLabel: PropTypes.string,
+    handleSubmit: PropTypes.func.isRequired
+};
 
 export default Login;

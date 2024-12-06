@@ -1,6 +1,6 @@
 /* Overlay for check-in questions, darkens background */
 .overlay {
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -30,7 +30,6 @@
     text-align: center;
     z-index: 1010;
 }
-
 
 /* Complete check-in button */
 .complete-checkin {
@@ -161,8 +160,8 @@
     }
 }
 
-input[type='number']::-webkit-inner-spin-button, 
-input[type='number']::-webkit-outer-spin-button { 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -368,14 +367,14 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 /* Box for the Emotion Description on Hover */
-.emotion-box-label{
-        animation: fadeIn 1s;
+.emotion-box-label {
+    animation: fadeIn 1s;
     -webkit-animation: fadeIn 1s;
     -moz-animation: fadeIn 1s;
     -o-animation: fadeIn 1s;
     -ms-animation: fadeIn 1s;
-        background: #EFE2D0;
-        color: black;
+    background: #efe2d0;
+    color: black;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -437,9 +436,9 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 /* Styling for description of sub emotion */
-.emotion-desc{
-        font-size: 20px;
-        font-family: "Source Sans 3";
+.emotion-desc {
+    font-size: 20px;
+    font-family: "Source Sans 3";
 }
 
 /* Anxious */
@@ -796,55 +795,55 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 @keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+    0% {
+        opacity: 0;
     }
-    
-    @keyframes fadeOut {
-            100% {
-                opacity: 1;
-            }
-            0% {
-                opacity: 0;
-            }
-        }
-    
-    @-moz-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+    100% {
+        opacity: 1;
     }
-    
-    @-webkit-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+}
+
+@keyframes fadeOut {
+    100% {
+        opacity: 1;
     }
-    
-    @-o-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+    0% {
+        opacity: 0;
     }
-    
-    @-ms-keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
