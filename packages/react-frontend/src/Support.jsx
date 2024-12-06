@@ -19,6 +19,10 @@ const Support = () => {
         {
             question: "How do I view my previous wellness logs?",
             answer: "To view your previous wellness logs, go to the 'History' section in the app. Here, you can review all your past entries, including mood, sleep, and activity logs."
+        },
+        {
+            question: "How do I delete my account?",
+            answer: "To delete your account, please email clngo654@gmail.com with the subject line 'Account Deletion Request.' Make sure to include your registered email address and confirm that you'd like to delete your account. Our support team will process your request and notify you once the deletion is complete."
         }
     ];
 
