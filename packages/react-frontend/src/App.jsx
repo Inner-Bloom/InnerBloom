@@ -275,16 +275,6 @@ function App() {
                                         Check-In
                                     </button>
                                     <Flowers />
-                                    {/* <img src={flower} className = "flower"/> */}
-                                    {/* <img src={flower_anxious} className = "flower"/> */}
-                                    
-                                    {/*<button
-                                        className="calendar-button"
-                                        onClick={() =>
-                                            (window.location.href = "/calendar")
-                                        }>
-                                        Calendar
-                                    </button>*/}
                                     {/* Display the message below the action (button) */}
                                     {message && (
                                         <div className="action-message">
@@ -297,9 +287,6 @@ function App() {
                                         </div>
                                     )}
                                 </div>
-                                {/* <div> 
-                                    <img src={images[currentIndex]} className = "flower"/>
-                                    </div> */}
                             </AuthWrapper>
                         }
                     />

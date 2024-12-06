@@ -57,7 +57,8 @@
     
     .fade-out {
         opacity: 0.3; /* Fully transparent */
-=======
+    }
+    
 .check-in-complete{
         animation: fadeIn 1s;
     -webkit-animation: fadeIn 1s;
