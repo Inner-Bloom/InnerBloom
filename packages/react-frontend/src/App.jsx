@@ -114,9 +114,7 @@ function App() {
                     window.location.href = "/";
                 } else {
                     setIsError(true);
-                    setMessage(
-                        `Login Error: wrong username or password`
-                    );
+                    setMessage(`Login Error: wrong username or password`);
                 }
             })
             .catch(() => {
@@ -147,9 +145,7 @@ function App() {
                     window.location.href = "/";
                 } else {
                     setIsError(true);
-                    setSignupError(
-                        `Signup Error: username already exists.`
-                    );
+                    setSignupError(`Signup Error: username already exists.`);
                 }
             })
             .catch((error) => {
@@ -172,7 +168,7 @@ function App() {
             .catch((error) => {
                 console.log(error);
             });
-            setIsVisible(true)
+        setIsVisible(true);
     };
 
     const handleBack = () => {
@@ -244,7 +240,7 @@ function App() {
                         path="login"
                         element={
                             <Login
-                                handleSubmit={loginUser} 
+                                handleSubmit={loginUser}
                                 errorMessage={message}
                                 error={isError}
                             />
@@ -282,8 +278,10 @@ function App() {
                                         </div>
                                     )}
                                     {isVisible && (
-                                        <div id = "hideMe" className="check-in-complete"> 
-                                        Check-In Completed!
+                                        <div
+                                            id="hideMe"
+                                            className="check-in-complete">
+                                            Check-In Completed!
                                         </div>
                                     )}
                                 </div>

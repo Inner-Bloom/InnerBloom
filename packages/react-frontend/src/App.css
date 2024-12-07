@@ -65,11 +65,11 @@
     -moz-animation: fadeIn 1s;
     -o-animation: fadeIn 1s;
     -ms-animation: fadeIn 1s;
-        color: #563838;
-        height: 50px;
-        width: 300px;
-        border-radius: 8px;
-        background-color: #EFE2D0;
+    color: #563838;
+    height: 50px;
+    width: 300px;
+    border-radius: 8px;
+    background-color: #efe2d0;
     font-family: "Source Sans 3";
     font-size: 32px;
     font-weight: 300;
@@ -80,19 +80,31 @@
 }
 
 #hideMe {
-        -webkit-animation: cssAnimation 5s forwards; 
-        animation: cssAnimation 5s forwards;
+    -webkit-animation: cssAnimation 5s forwards;
+    animation: cssAnimation 5s forwards;
+}
+@keyframes cssAnimation {
+    0% {
+        opacity: 1;
     }
-    @keyframes cssAnimation {
-        0%   {opacity: 1;}
-        90%  {opacity: 1;}
-        100% {opacity: 0;}
+    90% {
+        opacity: 1;
     }
-    @-webkit-keyframes cssAnimation {
-        0%   {opacity: 1;}
-        90%  {opacity: 1;}
-        100% {opacity: 0;}
+    100% {
+        opacity: 0;
     }
+}
+@-webkit-keyframes cssAnimation {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 
 @keyframes fadeIn {
     0% {

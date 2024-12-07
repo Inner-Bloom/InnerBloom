@@ -243,6 +243,7 @@ function Form({ onSubmit }) {
                         <div className="sleep-time">
                             <label>How many hours did you sleep?</label>
                             <input
+                                data-testid="hour-slider"
                                 type="range"
                                 min="1"
                                 max="24"
@@ -258,6 +259,7 @@ function Form({ onSubmit }) {
                         <div className="sleep-time">
                             <label>Minutes of Sleep (10-min increments):</label>
                             <input
+                                data-testid="min-slider"
                                 type="range"
                                 min="0"
                                 max="50"
@@ -276,6 +278,7 @@ function Form({ onSubmit }) {
                                 How much did you eat? (Number of meals):
                             </label>
                             <input
+                                data-testid="meal-counter"
                                 type="number"
                                 value={meals}
                                 onChange={(e) =>
@@ -291,6 +294,7 @@ function Form({ onSubmit }) {
                         <div className="exercise-amnt">
                             <label>Did you exercise today?</label>
                             <input
+                                data-testid="exercise-check"
                                 type="checkbox"
                                 checked={exercise}
                                 onChange={(e) => setExercise(e.target.checked)}
@@ -301,19 +305,28 @@ function Form({ onSubmit }) {
                         <div className="relationship-ln">
                             <label>Who are you with?</label>
                             <select
+                                data-testid="relation-dropdown"
                                 value={relationship}
                                 onChange={(e) =>
                                     setRelationship(e.target.value)
                                 }
                                 className="relationship-select">
-                                <option value="By yourself">By yourself</option>
-                                <option value="With co-workers">
+                                <option value="By yourself" name="By yourself">
+                                    By yourself
+                                </option>
+                                <option
+                                    value="With co-workers"
+                                    name="With co-workers">
                                     With co-workers
                                 </option>
-                                <option value="With friends">
+                                <option
+                                    value="With friends"
+                                    name="With friends">
                                     With friends
                                 </option>
-                                <option value="With family">With family</option>
+                                <option value="With family" name="With family">
+                                    With family
+                                </option>
                             </select>
                         </div>
 

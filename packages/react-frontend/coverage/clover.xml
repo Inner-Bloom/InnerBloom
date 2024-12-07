@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1733554235271" clover="3.2.0">
+  <project timestamp="1733554235271" name="All files">
+    <metrics statements="54" coveredstatements="44" conditionals="10" coveredconditionals="9" methods="20" coveredmethods="13" elements="84" coveredelements="66" complexity="0" loc="54" ncloc="54" packages="2" files="2" classes="2"/>
+    <package name="mocks">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="fileMock.js" path="/Users/kevin/InnerBloom/packages/react-frontend/mocks/fileMock.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src">
+      <metrics statements="53" coveredstatements="43" conditionals="10" coveredconditionals="9" methods="20" coveredmethods="13"/>
+      <file name="LogForm.jsx" path="/Users/kevin/InnerBloom/packages/react-frontend/src/LogForm.jsx">
+        <metrics statements="53" coveredstatements="43" conditionals="10" coveredconditionals="9" methods="20" coveredmethods="13"/>
+        <line num="15" count="30" type="stmt"/>
+        <line num="22" count="30" type="stmt"/>
+        <line num="76" count="30" type="stmt"/>
+        <line num="77" count="30" type="stmt"/>
+        <line num="78" count="30" type="stmt"/>
+        <line num="79" count="30" type="stmt"/>
+        <line num="81" count="30" type="stmt"/>
+        <line num="82" count="30" type="stmt"/>
+        <line num="83" count="30" type="stmt"/>
+        <line num="84" count="30" type="stmt"/>
+        <line num="85" count="30" type="stmt"/>
+        <line num="86" count="30" type="stmt"/>
+        <line num="87" count="30" type="stmt"/>
+        <line num="89" count="30" type="stmt"/>
+        <line num="90" count="8" type="stmt"/>
+        <line num="91" count="8" type="stmt"/>
+        <line num="92" count="8" type="stmt"/>
+        <line num="95" count="30" type="stmt"/>
+        <line num="96" count="7" type="stmt"/>
+        <line num="97" count="7" type="stmt"/>
+        <line num="100" count="30" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="105" count="30" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="110" count="30" type="stmt"/>
+        <line num="111" count="0" type="stmt"/>
+        <line num="114" count="30" type="stmt"/>
+        <line num="116" count="30" type="stmt"/>
+        <line num="117" count="1" type="stmt"/>
+        <line num="118" count="1" type="stmt"/>
+        <line num="120" count="1" type="stmt"/>
+        <line num="129" count="1" type="stmt"/>
+        <line num="130" count="1" type="stmt"/>
+        <line num="133" count="30" type="stmt"/>
+        <line num="134" count="30" type="stmt"/>
+        <line num="139" count="30" type="stmt"/>
+        <line num="145" count="0" type="stmt"/>
+        <line num="169" count="84" type="stmt"/>
+        <line num="172" count="0" type="stmt"/>
+        <line num="179" count="7" type="stmt"/>
+        <line num="188" count="0" type="stmt"/>
+        <line num="189" count="0" type="stmt"/>
+        <line num="201" count="36" type="stmt"/>
+        <line num="203" count="0" type="stmt"/>
+        <line num="210" count="8" type="stmt"/>
+        <line num="252" count="1" type="stmt"/>
+        <line num="269" count="1" type="stmt"/>
+        <line num="285" count="1" type="stmt"/>
+        <line num="300" count="1" type="stmt"/>
+        <line num="311" count="1" type="stmt"/>
+        <line num="343" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

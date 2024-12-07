@@ -10,7 +10,6 @@ function Login(props) {
         pwd: ""
     });
 
-    
     return (
         <div className="login-container">
             <form className="login-form">
@@ -43,9 +42,10 @@ function Login(props) {
                 />
 
                 {props.errorMessage && (
-                    <p style={{ color: props.error ? "red" : "green" }}>{props.errorMessage}</p>
+                    <p style={{ color: props.error ? "red" : "green" }}>
+                        {props.errorMessage}
+                    </p>
                 )}
-
 
                 {props.buttonLabel !== "Sign Up" && (
                     <div className="signup-link">
