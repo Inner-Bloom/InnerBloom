@@ -392,11 +392,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .emotion-label-Grateful,
 .emotion-label-Joyful,
 .emotion-label-Content,
-.emotion-label-Proud
-{
-        color: #5EA15E;
-        font-size: 24px;
-        font-family: "Source Sans 3";
+.emotion-label-Proud {
+    color: #5ea15e;
+    font-size: 24px;
+    font-family: "Source Sans 3";
 }
 
 /* Styling for sub emotions in Anxious */
@@ -404,11 +403,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .emotion-label-Uneasy,
 .emotion-label-Nervous,
 .emotion-label-Worried,
-.emotion-label-Overwhelmed
-{
-        color: #c10a3f;
-        font-size: 24px;
-        font-family: "Source Sans 3";
+.emotion-label-Overwhelmed {
+    color: #c10a3f;
+    font-size: 24px;
+    font-family: "Source Sans 3";
 }
 
 /* Styling for sub emotions in Sad */
@@ -416,11 +414,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .emotion-label-Upset,
 .emotion-label-Lonely,
 .emotion-label-Regretful,
-.emotion-label-Hopeless
-{
-        color: #5e81a4;
-        font-size: 24px;
-        font-family: "Source Sans 3";
+.emotion-label-Hopeless {
+    color: #5e81a4;
+    font-size: 24px;
+    font-family: "Source Sans 3";
 }
 
 /* Styling for sub emotions in Calm */
@@ -428,11 +425,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .emotion-label-Satisfied,
 .emotion-label-Serene,
 .emotion-label-Peaceful,
-.emotion-label-Relaxed
-{
-        color: #ff7d00;
-        font-size: 24px;
-        font-family: "Source Sans 3";
+.emotion-label-Relaxed {
+    color: #ff7d00;
+    font-size: 24px;
+    font-family: "Source Sans 3";
 }
 
 /* Styling for description of sub emotion */

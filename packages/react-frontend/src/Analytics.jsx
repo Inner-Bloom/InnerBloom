@@ -10,7 +10,8 @@ const Analytics = () => {
     const savedCreds = JSON.parse(localStorage.getItem("userCreds"));
     const user = savedCreds.username;
     const INVALID_TOKEN = "INVALID_TOKEN";
-    const API_PATH = "https://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net";
+    const API_PATH =
+        "https://innnerbloom-api-geajb0eqfnezcjef.westus3-01.azurewebsites.net";
     // const API_PATH = "http://localhost:8000";
 
     function addAuthHeader(otherHeaders = {}) {
@@ -65,10 +66,16 @@ const Analytics = () => {
                     );
                 } else if (scope === "week") {
                     const oneWeekAgo = new Date();
-                    oneWeekAgo.setDate(currentDate.getDate() - currentDate.getDay());
+                    oneWeekAgo.setDate(
+                        currentDate.getDate() - currentDate.getDay()
+                    );
                     return rowDate >= oneWeekAgo;
                 } else if (scope === "month") {
-                    const oneMonthAgo = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+                    const oneMonthAgo = new Date(
+                        currentDate.getFullYear(),
+                        currentDate.getMonth(),
+                        1
+                    );
                     // oneMonthAgo.setMonth(currentDate.getFullYear(), currentDate.getMonth(), 1); // Start of the current month);
                     return rowDate >= oneMonthAgo;
                 } else if (scope === "All-Time") {

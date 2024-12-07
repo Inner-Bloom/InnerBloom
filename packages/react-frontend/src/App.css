@@ -15,7 +15,7 @@
 }
 
 .main-screen {
-        position: fixed;
+    position: fixed;
     animation: fadeIn 1s;
     -webkit-animation: fadeIn 1s;
     -moz-animation: fadeIn 1s;
@@ -23,44 +23,42 @@
     -ms-animation: fadeIn 1s;
 }
 
-.flower{
-        position: fixed;
-        width: 25%;
-        height: 100%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-200%, -10%);
-        filter: blur(1px);
-  -webkit-filter: blur(0px);
-  transition: opacity 1s ease-in-out; /* Smooth transition */
+.flower {
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-200%, -10%);
+    filter: blur(1px);
+    -webkit-filter: blur(0px);
+    transition: opacity 1s ease-in-out; /* Smooth transition */
     opacity: 1; /* Default to fully visible */
-         
 }
 
-.flower2{
-        position: fixed;
-        width: 25%;
-        height: 100%;
-        top: 50%;
-        left: 50%;
-        transform: scale(-1, 1) translate(-100%, -10%);
-        filter: blur(1px);
-  -webkit-filter: blur(0px);
-  transition: opacity 1s ease-in-out; /* Smooth transition */
+.flower2 {
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: scale(-1, 1) translate(-100%, -10%);
+    filter: blur(1px);
+    -webkit-filter: blur(0px);
+    transition: opacity 1s ease-in-out; /* Smooth transition */
     opacity: 1; /* Default to fully visible */
-         
 }
 
 .fade-in {
-        opacity: 1; /* Fully visible */
-    }
-    
-    .fade-out {
-        opacity: 0.3; /* Fully transparent */
-    }
-    
-.check-in-complete{
-        animation: fadeIn 1s;
+    opacity: 1; /* Fully visible */
+}
+
+.fade-out {
+    opacity: 0.3; /* Fully transparent */
+}
+
+.check-in-complete {
+    animation: fadeIn 1s;
     -webkit-animation: fadeIn 1s;
     -moz-animation: fadeIn 1s;
     -o-animation: fadeIn 1s;
